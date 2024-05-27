@@ -1,9 +1,7 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import { apiSlice } from "./apiSlice";
 type AuthResponse = {
-  data: {
-    "auth-token"?: string;
-  };
+  "auth-token"?: string;
   success: boolean;
   message: string;
 };

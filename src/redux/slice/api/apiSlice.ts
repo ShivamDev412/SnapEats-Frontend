@@ -8,7 +8,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
-import { logOut, setCredentials } from "@/redux/slice/authSlice";
+import { logOut, setCredentials } from "../authSlice";
 export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
   | {
       error: E;

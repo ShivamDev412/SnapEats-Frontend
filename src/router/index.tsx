@@ -3,14 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
-
+const HomeScreen = lazy(() => import("@/screens/Home"));
+const LoginScreen = lazy(() => import("@/screens/Login"));
+const SignupScreen = lazy(() => import("@/screens/Signup"));
+const ForgotPasswordScreen = lazy(() => import("@/screens/ForgotPassword"));
+const ResetPasswordScreen = lazy(() => import("@/screens/ResetPassword"));
+const StoreRegisterScreen = lazy(() => import("@/screens/StoreRegister"));
 const Routers = () => {
-  const HomeScreen = lazy(() => import("@/screens/Home"));
-  const LoginScreen = lazy(() => import("@/screens/Login"));
-  const SignupScreen = lazy(() => import("@/screens/Signup"));
-  const ForgotPasswordScreen = lazy(() => import("@/screens/ForgotPassword"));
-  const ResetPasswordScreen = lazy(() => import("@/screens/ResetPassword"));
-  const StoreRegisterScreen = lazy(() => import("@/screens/StoreRegister"));
   const {
     LOGIN,
     SIGNUP,
