@@ -16,7 +16,7 @@ const BROWSER_ROUTE = {
 
   HOME: "/",
   FORGOT_PASSWORD: "/forgot-password",
-  RESET_PASSWORD: "/reset-password",
+  RESET_PASSWORD: "/reset-password/:token",
   PROFILE: "/profile",
   SETTINGS: "/settings",
 
