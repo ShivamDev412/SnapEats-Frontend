@@ -9,6 +9,11 @@ type LoginType = {
   email: string;
   password: string;
 };
+type SignupType = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 type ResetPasswordType = {
   email: string;
   password: string;
@@ -23,7 +28,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    signup: builder.mutation<AuthResponse, FormData>({
+    signup: builder.mutation<AuthResponse, SignupType>({
       query: (data) => ({
         url: `${BASE_ROUTE.AUTH}${ENDPOINTS.SIGNUP}`,
         method: "POST",
