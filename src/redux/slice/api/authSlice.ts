@@ -10,9 +10,10 @@ type LoginType = {
   password: string;
 };
 type SignupType = {
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
-  confirmPassword: string;
 };
 type ResetPasswordType = {
   email: string;

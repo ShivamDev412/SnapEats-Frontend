@@ -21,7 +21,7 @@ const Signup = () => {
         <div className="h-auto w-[2.5in] mx-auto">
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
-        <h2 className="text-4xl text-center font-semibold mb-5">Log In</h2>
+        <h2 className="text-4xl text-center font-semibold mb-5">Sign Up</h2>
         <InputField
           id={"email"}
           label={"Email"}
