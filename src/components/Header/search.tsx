@@ -19,7 +19,7 @@ const Search = () => {
         />
       </div>
       {showSearchDropdown && (
-        <div className="absolute left-0 top-10 border border-zinc-600 rounded-2xl bg-zinc-950 bg-transparent z-10 w-full h-[3in]">
+        <div className="absolute sm:top-20 left-0 lg:top-10 border border-zinc-600 rounded-2xl bg-zinc-950 bg-transparent z-10 w-full h-[3in]">
           <div className="p-4">Dropdown Content</div>
         </div>
       )}
