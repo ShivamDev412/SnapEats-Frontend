@@ -8,12 +8,8 @@ import { useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { setCredentials } from "@/redux/slice/authSlice";
 import { useSignupMutation } from "@/redux/slice/api/authSlice";
+import { SignupType } from "@/redux/slice/api/authSlice";
 
-type SignupType = {
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
 export const useSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,9 +25,10 @@ export const useSignup = () => {
     setError,
   } = useForm<SignupType>({
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
     resolver: zodResolver(SignupSchema),
   });

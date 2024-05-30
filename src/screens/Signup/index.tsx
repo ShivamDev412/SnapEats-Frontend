@@ -23,6 +23,22 @@ const Signup = () => {
         </div>
         <h2 className="text-4xl text-center font-semibold mb-5">Sign Up</h2>
         <InputField
+          id={"firstName"}
+          label={"First Name"}
+          type={"text"}
+          register={register}
+          errors={errors}
+          getValues={getValues}
+        />
+        <InputField
+          id={"lastName"}
+          label={"Last Name"}
+          type={"text"}
+          register={register}
+          errors={errors}
+          getValues={getValues}
+        />
+        <InputField
           id={"email"}
           label={"Email"}
           type={"text"}
@@ -33,14 +49,6 @@ const Signup = () => {
         <InputField
           id={"password"}
           label={"Password"}
-          type={"password"}
-          register={register}
-          errors={errors}
-          getValues={getValues}
-        />
-        <InputField
-          id={"confirmPassword"}
-          label={"Confirm Password"}
           type={"password"}
           register={register}
           errors={errors}

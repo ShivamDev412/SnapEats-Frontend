@@ -9,9 +9,9 @@ type LoginType = {
   email: string;
   password: string;
 };
-type SignupType = {
-  firstname: string;
-  lastname: string;
+export type SignupType = {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 };
