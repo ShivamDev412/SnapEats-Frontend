@@ -9,6 +9,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { persistor } from "./redux/Store.ts";
 
+window.addEventListener("vite:preloadError", () => {
+  // window.reload()
+  window.location.reload();
+});
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,10 +24,6 @@ const theme = createTheme({
     },
   },
 });
-window.addEventListener('vite:preloadError', () => {
-  // window.reload()
-  window.location.reload()
-})
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
