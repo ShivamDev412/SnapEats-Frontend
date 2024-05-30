@@ -14,7 +14,7 @@ const Login = () => {
     <AuthWrapper>
       <FormControl
         component="form"
-        className="w-full lg:w-8/12 bg-white rounded-md text-zinc-900 h-full lg:h-[70%] justify-center gap-4 "
+        className="w-full lg:w-8/12 bg-white rounded-md text-zinc-900 h-full lg:h-fit justify-center gap-4 "
         style={{ padding: "2rem" }}
         onSubmit={handleSubmit(onSubmit)}
       >
