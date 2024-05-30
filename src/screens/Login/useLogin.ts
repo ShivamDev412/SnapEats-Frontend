@@ -47,8 +47,8 @@ export const useLogin = () => {
         clearErrors();
       }
     } catch (error:any) {
-      const message = error.data?.message;
-      const type = message.includes("Password") ? "password" : "email";
+      const message = error.data?.message.toLowerCase();
+      const type = message.includes("password") ? "password" : "email";
       setError(type, {
         type: "manual",
         message: error.data?.message,

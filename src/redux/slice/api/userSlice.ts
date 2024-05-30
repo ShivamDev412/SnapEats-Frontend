@@ -12,6 +12,20 @@ export type ResetPasswordType = {
   confirmPassword: string;
   token: string;
 };
+export type UserResponse = {
+  success: boolean;
+  data: {
+    id: string;
+    name: string;
+    email: string;
+    profilePicture: string;
+    compressedProfilePicture: string;
+    storeId: string;
+    emailVerified: string;
+    phoneNumberVerified: string;
+    phoneNumber: string;
+  };
+};
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     forgotPassword: builder.mutation<AuthResponse, ForgotPasswordType>({
@@ -28,6 +42,15 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    user: builder.query<UserResponse, string>({
+      query: () => ({
+        url: `${BASE_ROUTE.USER}/`,
+        method: "GET",
+        keepUnusedDataFor: 5,
+      }),
+      providesTags: ["User"],
+    }),
   }),
 });
-export const { useForgotPasswordMutation, useResetPasswordMutation } = authApiSlice;
+export const { useForgotPasswordMutation, useResetPasswordMutation, useUserQuery } =
+  authApiSlice;

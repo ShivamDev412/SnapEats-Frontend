@@ -18,6 +18,7 @@ const BROWSER_ROUTE = {
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password/:token",
   PROFILE: "/profile",
+  EDIT_PROFILE: "/edit-profile",
   SETTINGS: "/settings",
 
   STORE_REGISTER: "/store-register",
