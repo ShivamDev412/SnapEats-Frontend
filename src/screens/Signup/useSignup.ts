@@ -1,22 +1,19 @@
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { LoginSchema } from "@/Schema/AuthSchema";
+import { SignupSchema } from "@/Schema/AuthSchema";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import Toast from "@/utils/Toast";
 import { useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { setCredentials } from "@/redux/slice/authSlice";
-import { useLoginMutation } from "@/redux/slice/api/authSlice";
+import { useSignupMutation } from "@/redux/slice/api/authSlice";
+import { SignupType } from "@/redux/slice/api/authSlice";
 
-type LoginType = {
-  email: string;
-  password: string;
-};
-export const useLogin = () => {
+export const useSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  type FormField = z.infer<typeof LoginSchema>;
+  type FormField = z.infer<typeof SignupSchema>;
 
   const {
     register,
@@ -26,18 +23,21 @@ export const useLogin = () => {
     getValues,
     formState: { errors },
     setError,
-  } = useForm<LoginType>({
+  } = useForm<SignupType>({
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     },
-    resolver: zodResolver(LoginSchema),
+    resolver: zodResolver(SignupSchema),
   });
-  const [login, {isLoading}] = useLoginMutation();
+  const [signup, { isLoading }] = useSignupMutation();
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
+    //need to change according to signup
+    //1need to fix catch block
     try {
-     
-      const response = await login(credentials).unwrap();
+      const response = await signup(credentials).unwrap();
       const { success, message } = response;
       if (success) {
         Toast(message, "success");
@@ -46,14 +46,13 @@ export const useLogin = () => {
         reset();
         clearErrors();
       }
-    } catch (error:any) {
-      const message = error.data?.message.toLowerCase();
-      const type = message.includes("password") ? "password" : "email";
+    } catch (error: any) {
+      const message = error.data?.message;
+      const type = message.includes("Password") ? "password" : "email";
       setError(type, {
         type: "manual",
         message: error.data?.message,
       });
-    
     }
   };
 
