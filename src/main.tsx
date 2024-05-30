@@ -20,6 +20,10 @@ const theme = createTheme({
     },
   },
 });
+window.addEventListener('vite:preloadError', () => {
+  // window.reload()
+  window.location.reload()
+})
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
