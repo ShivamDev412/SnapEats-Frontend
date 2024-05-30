@@ -7,7 +7,7 @@ interface AuthWrapperProps {
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   return (
-    <main className="flex justify-between bg-zinc-900 h-screen text-zinc-100">
+    <main className="flex justify-between bg-zinc-950 h-screen text-zinc-100">
       <section className="hidden lg:flex flex-col justify-center items-center lg:w-6/12 2xl:w-7/12 h-full">
         <div className="h-auto w-7/12">
           <img
