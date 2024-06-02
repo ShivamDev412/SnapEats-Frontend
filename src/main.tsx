@@ -16,7 +16,7 @@ window.addEventListener("vite:preloadError", () => {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#e83c54",
+      main: "#E83C54",
     },
 
     secondary: {

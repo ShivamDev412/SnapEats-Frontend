@@ -19,4 +19,24 @@ const ResetPasswordSchema = z
     message: "Password and Confirm Password must match",
     path: ["confirmPassword"],
   });
-export { ForgotPasswordSchema, ResetPasswordSchema };
+const AddressSchema = z.object({
+  apt: z.optional(z.string()),
+  block: z.optional(z.string()),
+  address: z.string().min(1, "Address is required"),
+  type: z.string().min(1, "Type is required"),
+  lat: z.number(),
+  lon: z.number(),
+});
+const PhoneNumberSchema = z.object({
+  countryCode: z.string().min(1, "Country Code is required"),
+  phoneNumber: z
+    .string()
+    .min(1, "Phone Number is required")
+    .max(10, "Phone Number must of 10 digits"),
+});
+export {
+  ForgotPasswordSchema,
+  ResetPasswordSchema,
+  AddressSchema,
+  PhoneNumberSchema,
+};
