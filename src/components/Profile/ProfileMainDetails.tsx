@@ -6,6 +6,7 @@ import IsVerified from "../IsVerified";
 import ModalComponent from "../Modal";
 import VerifyCredentials from "./VerifyCredentials";
 import useProfileMainDetails from "./useProfileMainDetails";
+import Avatar from "../Avatar";
 
 const ProfileMainDetails: React.FC<{
   name: string;
@@ -25,12 +26,17 @@ const ProfileMainDetails: React.FC<{
     <section className="flex flex-col gap-2 md:gap-6">
       <h3 className="text-lg lg:text-xl font-bold">Personal Information</h3>
       <div className="flex flex-col md:flex-row gap-4 md:items-center">
-        <LazyLoadedImageComponent
-          image={profileImage}
-          compressedImage={compressedProfilePicture}
-          alt={`${name}_profile_picture`}
-          className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] rounded-full"
-        />
+        {profileImage && compressedProfilePicture ? (
+          <LazyLoadedImageComponent
+            image={profileImage}
+            compressedImage={compressedProfilePicture}
+            alt={`${name}_profile_picture`}
+            className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] rounded-full"
+          />
+        ) : (
+          <Avatar name={name} className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] text-[5rem]"/>
+        )}
+
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl md:text-3xl">{name}</h2>
           <div className="flex items-center gap-4 flex-wrap">
