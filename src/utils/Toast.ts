@@ -1,15 +1,16 @@
-import { toast, ToastOptions } from "react-toastify";
+import { Slide, toast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const toastConfig: ToastOptions = {
   position: "top-right",
-  autoClose: 5000,
+  autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
-  pauseOnHover: true,
+  pauseOnHover: false,
   draggable: true,
   progress: undefined,
-  theme: "light",
+  theme: "dark",
+  transition: Slide,
   toastId: Math.random().toString(36).substring(2, 10),
   style: {
     padding: "1rem",

@@ -21,7 +21,7 @@ import dayjs, { Dayjs } from "dayjs";
 import moment from "moment";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { FC, useEffect, useState } from "react";
-type InputProps = {
+export type InputProps = {
   register: UseFormRegister<any>;
   errors: any;
   id: string;
@@ -63,7 +63,7 @@ export const InputField: FC<
 
   return (
     <FormControl className="w-full">
-      {rest.type === "text" ? (
+      {rest.type === "text" || rest.type === "number"? (
         <>
           <TextField
             {...register(id)}
