@@ -12,15 +12,19 @@ const Avatar: React.FC<Props> = ({ className, name, onClick }) => {
   return (
     <div
       className={twMerge(
-        "rounded-full bg-zinc-200 text-zinc-700 flex justify-center items-center font-medium w-full h-full",
+        `rounded-full bg-zinc-200 text-zinc-700 flex justify-center items-center font-medium w-full h-full`,
         className
       )}
       style={{ lineHeight: "1" }}
     >
-      <button
-        className="h-full w-full"
-        onClick={onClick ? onClick : () => {}}
-      >{`${firstCharacter}${lastCharacter}`}</button>
+      {onClick ? (
+        <button
+          className={`h-full w-full`}
+          onClick={onClick}
+        >{`${firstCharacter}${lastCharacter}`}</button>
+      ) : (
+        <p>{`${firstCharacter}${lastCharacter}`}</p>
+      )}
     </div>
   );
 };

@@ -47,6 +47,12 @@ export type PhoneNumberType = {
   countryCode: string;
   phoneNumber: string;
 };
+export type UpdateUserType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePicture: string;
+};
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     forgotPassword: builder.mutation<AuthResponse, ForgotPasswordType>({
@@ -169,6 +175,15 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateUser: builder.mutation<AuthResponse, FormData>({
+      query: (data) => ({
+        url: `${BASE_ROUTE.USER}`,
+        method: "PUT",
+        body: data,
+        formData: true,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 export const {
@@ -188,4 +203,5 @@ export const {
   useSendEmailOTPMutation,
   useVerifyEmailOTPMutation,
   useResentEmailOTPMutation,
+  useUpdateUserMutation,
 } = authApiSlice;

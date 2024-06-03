@@ -1,12 +1,12 @@
 import { FaEdit } from "react-icons/fa";
 import LazyLoadedImageComponent from "../LazyLoadedImageComponent";
-import { Link } from "react-router-dom";
-import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import IsVerified from "../IsVerified";
 import ModalComponent from "../Modal";
 import VerifyCredentials from "./VerifyCredentials";
 import useProfileMainDetails from "./useProfileMainDetails";
 import Avatar from "../Avatar";
+import Button from "../Button";
+import EditProfile from "./EditProfile";
 
 const ProfileMainDetails: React.FC<{
   name: string;
@@ -21,7 +21,19 @@ const ProfileMainDetails: React.FC<{
   profileImage,
   compressedProfilePicture,
 }) => {
-  const { openModal, handleCloseModal, verifyEmail } = useProfileMainDetails();
+  const {
+    openModal,
+    handleCloseModal,
+    verifyEmail,
+    modalContentType,
+    register,
+    handleSubmit,
+    getValues,
+    errors,
+    onSubmit,
+    isLoading,
+    updateProfile,
+  } = useProfileMainDetails();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
       <h3 className="text-lg lg:text-xl font-bold">Personal Information</h3>
@@ -34,7 +46,10 @@ const ProfileMainDetails: React.FC<{
             className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] rounded-full"
           />
         ) : (
-          <Avatar name={name} className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] text-[5rem]"/>
+          <Avatar
+            name={name}
+            className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] text-[2.5rem] sm:text-[5rem]"
+          />
         )}
 
         <div className="flex flex-col gap-2">
@@ -50,12 +65,12 @@ const ProfileMainDetails: React.FC<{
             </div>
           </div>
 
-          <Link
-            to={BROWSER_ROUTE.EDIT_PROFILE}
-            className="flex gap-2 text-sm lg:text-lg items-center italic"
+          <Button
+            className="flex gap-2 text-sm lg:text-lg items-center italic bg-transparent p-0 w-fit"
+            onClick={() => updateProfile(name, email, profileImage)}
           >
             <FaEdit /> <p>Edit Profile</p>
-          </Link>
+          </Button>
         </div>
       </div>
       <ModalComponent
@@ -63,12 +78,24 @@ const ProfileMainDetails: React.FC<{
         handleClose={handleCloseModal}
         modalTitle={"add-phone-number"}
       >
-        <VerifyCredentials
-          phoneNumber=""
-          handleCloseModal={handleCloseModal}
-          type={"email"}
-          email={email}
-        />
+        {modalContentType === "verifyEmail" ? (
+          <VerifyCredentials
+            phoneNumber=""
+            handleCloseModal={handleCloseModal}
+            type={"email"}
+            email={email}
+          />
+        ) : (
+          <EditProfile
+            register={register}
+            errors={errors}
+            getValues={getValues}
+            isLoading={isLoading}
+            onSubmit={onSubmit}
+            handleSubmit={handleSubmit}
+            setValue={() => {}}
+          />
+        )}
       </ModalComponent>
     </section>
   );
