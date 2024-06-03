@@ -38,7 +38,7 @@ const ProfileSection = () => {
           />
         ) : (
           <AvatarComponent
-            className="h-[3rem] w-[3rem] text-2xl"
+            className="h-[2.5rem] w-[2.5rem] text-xl sm:w-[3rem] sm:h-[3rem] sm:text-2xl"
             name={user?.data?.name as string}
             onClick={() => setShowDropdown(!showDropdown)}
           />

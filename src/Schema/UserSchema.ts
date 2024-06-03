@@ -34,9 +34,25 @@ const PhoneNumberSchema = z.object({
     .min(1, "Phone Number is required")
     .max(10, "Phone Number must of 10 digits"),
 });
+const UpdateProfileSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, "First Name is required")
+    .regex(/^[a-zA-Z]+$/, "Name should only contain letters"),
+  lastName: z
+    .string()
+    .min(1, "Last Name is required")
+    .regex(/^[a-zA-Z]+$/, "Name should only contain letters"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address"),
+  profilePicture: z.any().optional(),
+});
 export {
   ForgotPasswordSchema,
   ResetPasswordSchema,
   AddressSchema,
   PhoneNumberSchema,
+  UpdateProfileSchema,
 };
