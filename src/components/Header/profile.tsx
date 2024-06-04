@@ -23,9 +23,10 @@ const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown }) => {
   );
 };
 const ProfileSection = () => {
-  const { data: user } = useUserQuery("",{
+  const { data: user } = useUserQuery("", {
     refetchOnMountOrArgChange: true,
     refetchOnFocus: true,
+    refetchOnReconnect: true,
   });
   const { logoutHandler } = useProfile();
   const [showDropdown, setShowDropdown] = useState(false);
