@@ -5,6 +5,7 @@ import MainWrapper from "@/Wrappers/MainWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/Store";
 function PrivateRoute() {
+
   const token = useSelector((state: RootState) => state.auth);
   return token?.token ? (
     <MainWrapper>
