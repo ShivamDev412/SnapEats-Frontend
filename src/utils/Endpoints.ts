@@ -1,6 +1,7 @@
 const BASE_ROUTE = {
   AUTH: "/auth",
   USER: "/user",
+  STORE: "/store",
 };
 const ENDPOINTS = {
   LOGIN: "/login",
@@ -18,6 +19,8 @@ const ENDPOINTS = {
   SEND_EMAIL_OTP: "/send-email-otp",
   VERIFY_EMAIL_OTP: "/verify-email-otp",
   RESEND_EMAIL_OTP: "/resend-email-otp",
+
+  STORE_REGISTER: "/register",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -33,6 +36,8 @@ const BROWSER_ROUTE = {
   SETTINGS: "/settings",
   VERIFY_EMAIL: "/verify-email",
   VERIFY_PHONE: "/verify-phoneNumber",
-  STORE_REGISTER: "/store-register",
+
+
+  STORE_REGISTER: "/store/register",
 };
 export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE };
