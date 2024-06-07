@@ -6,7 +6,9 @@ import PrivateRoute from "./PrivateRoute";
 const HomeScreen = lazy(() => import("@/screens/users/Home"));
 const LoginScreen = lazy(() => import("@/screens/users/Login"));
 const SignupScreen = lazy(() => import("@/screens/users/Signup"));
-const ForgotPasswordScreen = lazy(() => import("@/screens/users/ForgotPassword"));
+const ForgotPasswordScreen = lazy(
+  () => import("@/screens/users/ForgotPassword")
+);
 const ResetPasswordScreen = lazy(() => import("@/screens/users/ResetPassword"));
 const StoreRegisterScreen = lazy(() => import("@/screens/store/StoreRegister"));
 const ProfileScreen = lazy(() => import("@/screens/users/Profile"));
