@@ -3,9 +3,9 @@ import { UserType, useUserQuery } from "@/redux/slice/api/userSlice";
 import { ProfileSkeleton } from "@/components/Skeleton";
 const Profile = () => {
   const { data: user, isFetching } = useUserQuery("", {
-    refetchOnMountOrArgChange: true,
-    refetchOnFocus: true,
+    // refetchOnMountOrArgChange: true,
     refetchOnReconnect: true,
+    // pollingInterval: 100000,
   });
   const {
     name,
@@ -22,7 +22,7 @@ const Profile = () => {
       {isFetching ? (
         <ProfileSkeleton />
       ) : (
-        <div className="bg-zinc-800 p-6 rounded-xl text-zinc-100 flex flex-col gap-6">
+        <div className="bg-zinc-800 p-6 rounded-xl text-zinc-100 flex flex-col gap-6 h-fit w-full">
           <ProfileMainDetails
             name={name}
             profileImage={profilePicture}

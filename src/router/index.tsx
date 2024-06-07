@@ -10,7 +10,7 @@ const ForgotPasswordScreen = lazy(
   () => import("@/screens/users/ForgotPassword")
 );
 const ResetPasswordScreen = lazy(() => import("@/screens/users/ResetPassword"));
-const StoreRegisterScreen = lazy(() => import("@/screens/store/StoreRegister"));
+const StoreRegisterScreen = lazy(() => import("@/screens/store/Register"));
 const ProfileScreen = lazy(() => import("@/screens/users/Profile"));
 const ManageAddress = lazy(() => import("@/screens/users/ManageAddress"));
 const Routers = () => {

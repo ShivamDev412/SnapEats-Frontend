@@ -63,7 +63,7 @@ export const InputField: FC<
 
   return (
     <FormControl className="w-full">
-      {rest.type === "text" || rest.type === "number"? (
+      {rest.type === "text" || rest.type === "number" ? (
         <>
           <TextField
             {...register(id)}
@@ -227,8 +227,7 @@ export const DateField: FC<DateAndTimePickerProps> = ({
       setValue(id, dateOnlyString);
       setDate(dayjs(date.format()));
       setError(id, undefined);
-    } 
-    else if (date === null) {
+    } else if (date === null) {
       setError(id, { message: "Event Date is required", manually: true });
     } else {
       setError(id, { message: "Invalid Date", manually: true });
@@ -281,8 +280,7 @@ export const TimeField: FC<DateAndTimePickerProps> = ({
       const timeString = newTime.format("HH:mm");
       setValue(id, timeString);
       setError(id, undefined);
-    } 
-    else if (newTime === null) {
+    } else if (newTime === null) {
       setError(id, {
         message:
           id === "time"
@@ -334,10 +332,9 @@ export const MultiSelectField: FC<
   useEffect(() => {
     const val = getValues(id);
     if (val) {
-      
       setSelectedData(val);
-    } else if(val.length === 0) {
-      setSelectedData([])
+    } else if (val.length === 0) {
+      setSelectedData([]);
     }
   }, [getValues(id), id]);
   return (
@@ -356,7 +353,6 @@ export const MultiSelectField: FC<
           value: selectedData,
           onChange: (e: SelectChangeEvent<string[]>) => {
             if (e.target.value.length !== 0) {
-            
               clearErrors(id);
             }
             if (e.target.value.length === 0) {
