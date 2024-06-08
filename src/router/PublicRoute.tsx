@@ -4,18 +4,6 @@ import { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/Store";
 import RenderSkeleton from "@/components/RenderSkeleton";
-import { LoginSkeleton, SignupSkeleton } from "@/components/Skeleton";
-
-const handleSkeleton = (pathname: string) => {
-  switch (pathname) {
-    case BROWSER_ROUTE.LOGIN:
-      return <LoginSkeleton />;
-    case BROWSER_ROUTE.SIGNUP:
-      return <SignupSkeleton />;
-    default:
-      return "Loading...";
-  }
-};
 
 function PublicRoute() {
   const location = useLocation();
@@ -23,8 +11,7 @@ function PublicRoute() {
   return token?.token ? (
     <Navigate to={BROWSER_ROUTE.HOME} />
   ) : (
-    // <Suspense fallback={<RenderSkeleton pathname={location.pathname} />}>
-    <Suspense fallback={handleSkeleton(location.pathname)}>
+    <Suspense fallback={<RenderSkeleton pathname={location.pathname} />}>
       <Outlet />
     </Suspense>
   );

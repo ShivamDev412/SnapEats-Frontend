@@ -1,15 +1,16 @@
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { Suspense } from "react";
 import MainWrapper from "@/Wrappers/MainWrapper";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/Store";
+import RenderSkeleton from "@/components/RenderSkeleton";
 function PrivateRoute() {
-
   const token = useSelector((state: RootState) => state.auth);
+  const location = useLocation();
   return token?.token ? (
     <MainWrapper>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<RenderSkeleton pathname={location.pathname} />}>
         <Outlet />
       </Suspense>
     </MainWrapper>
