@@ -70,7 +70,7 @@ const ProfileSection = () => {
         />
         <MenuData
           menu="Settings"
-          link={BROWSER_ROUTE.EDIT_PROFILE}
+          link={BROWSER_ROUTE.SETTINGS}
           setShowDropdown={setShowDropdown}
         />
         <MenuItem

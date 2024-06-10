@@ -1,19 +1,19 @@
+import { z } from "zod";
+import { useState } from "react";
+import { SubmitHandler } from "react-hook-form";
 import { AddressSchema } from "@/Schema/UserSchema";
 import {
   AddressType,
   useCreateAddressMutation,
   useUpdateAddressMutation,
 } from "@/redux/slice/api/userSlice";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import Toast from "@/utils/Toast";
-import { z } from "zod";
+import { DEFAULT_VALUES } from "@/utils/Constants";
+import useFormHandler from "@/Hooks/useFormHandler";
 
 const useManageAddress = () => {
   const [openModal, setOpenModal] = useState(false);
   type FormField = z.infer<typeof AddressSchema>;
-
   const {
     register,
     handleSubmit,
@@ -21,18 +21,7 @@ const useManageAddress = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<AddressType>({
-    defaultValues: {
-      id: "",
-      apt: "",
-      block: "",
-      address: "",
-      type: "",
-      lat: 0,
-      lon: 0,
-    },
-    resolver: zodResolver(AddressSchema),
-  });
+  } = useFormHandler<AddressType>(DEFAULT_VALUES.ADDRESS, AddressSchema);
 
   const handleCloseModal = () => {
     setOpenModal(false);

@@ -8,9 +8,19 @@ import {
 } from "@/redux/slice/api/userSlice";
 import { useEffect, useState } from "react";
 import Toast from "@/utils/Toast";
+import {
+  useResendStorePhoneNumberOTPMutation,
+  useResentStoreEmailOTPMutation,
+  useSendStoreEmailOTPMutation,
+  useSendStorePhoneNumberOTPMutation,
+  useVerifyStoreEmailOTPMutation,
+  useVerifyStorePhoneNumberOTPMutation,
+} from "@/redux/slice/api/storeSlice";
+import useAccountType from "@/Hooks/useAccountType";
 
 const useVerifyCredential = (handleCloseModal: () => void) => {
   const [otp, setOtp] = useState("");
+  const isUser = useAccountType();
   const [counter, setCounter] = useState(120);
   const [isOtpSend, setIsOtpSend] = useState(false);
   useEffect(() => {
@@ -20,29 +30,66 @@ const useVerifyCredential = (handleCloseModal: () => void) => {
     }, 1000);
     return () => clearTimeout(timer);
   }, [counter, isOtpSend]);
-  const [sendOTP, { isLoading }] = useSendOTPMutation();
+  //* User Phone Number
+  const [sendOTP, { isLoading: isSendOTPLoading }] = useSendOTPMutation();
   const [verifyOTP, { isLoading: isVerifyOTPLoading }] = useVerifyOTPMutation();
   const [resendOTP] = useResendOTPMutation();
+  //* User Email
   const [sendEmailOtp, { isLoading: isSendEmailLoading }] =
     useSendEmailOTPMutation();
   const [verifyEmailOTP, { isLoading: isVerifyEmailOTPLoading }] =
     useVerifyEmailOTPMutation();
-  const [resendEmailOTP] =
-    useResentEmailOTPMutation();
+  const [resendEmailOTP] = useResentEmailOTPMutation();
+  //* Store Phone Number
+  const [sendStorePhoneOtp, { isLoading: isStorePhoneNumberOTPLoading }] =
+    useSendStorePhoneNumberOTPMutation();
+  const [
+    resendStorePhoneOtp,
+    { isLoading: isVerifyStorePhoneResendOTPLoading },
+  ] = useResendStorePhoneNumberOTPMutation();
+  const [verifyStorePhoneOtp, { isLoading: isVerifyStorePhoneOTPLoading }] =
+    useVerifyStorePhoneNumberOTPMutation();
+  //* Store Email
+  const [sendStoreEmailOtp, { isLoading: isStoreEmailOTPLoading }] =
+    useSendStoreEmailOTPMutation();
+  const [verifyStoreEmailOtp, { isLoading: isVerifyStoreEmailOTPLoading }] =
+    useVerifyStoreEmailOTPMutation();
+  const [resendStoreEmailOTP, { isLoading: isResentStoreEmailOTPLoading }] =
+    useResentStoreEmailOTPMutation();
+
+  const isLoading =
+    isSendOTPLoading ||
+    isVerifyOTPLoading ||
+    isVerifyEmailOTPLoading ||
+    isSendEmailLoading ||
+    isVerifyStorePhoneOTPLoading ||
+    isVerifyStorePhoneResendOTPLoading ||
+    isStorePhoneNumberOTPLoading ||
+    isStoreEmailOTPLoading ||
+    isResentStoreEmailOTPLoading ||
+    isVerifyStoreEmailOTPLoading;
   const handleSendOtp = async (
     credential: string,
     type: string,
     credType: string
   ) => {
     try {
-      const res =
-        credType === "email"
+      const res = isUser
+        ? credType === "email"
           ? type === "send"
             ? await sendEmailOtp({ email: credential }).unwrap()
             : await resendEmailOTP({ email: credential }).unwrap()
           : type === "send"
           ? await sendOTP({ phoneNumber: credential }).unwrap()
-          : await resendOTP({ phoneNumber: credential }).unwrap();
+          : await resendOTP({ phoneNumber: credential }).unwrap()
+        : credType === "email"
+        ? type === "send"
+          ? await sendStoreEmailOtp({ email: credential }).unwrap()
+          : await resendStoreEmailOTP({ email: credential }).unwrap()
+        : type === "send"
+        ? await sendStorePhoneOtp({ phoneNumber: credential }).unwrap()
+        : await resendStorePhoneOtp({ phoneNumber: credential }).unwrap();
+
       if (res.success) {
         Toast(res.message, "success");
         setCounter(120);
@@ -54,10 +101,13 @@ const useVerifyCredential = (handleCloseModal: () => void) => {
   };
   const handleVerifyOTP = async (credType: string) => {
     try {
-      const res =
-        credType === "email"
+      const res = isUser
+        ? credType === "email"
           ? await verifyEmailOTP({ otp }).unwrap()
-          : await verifyOTP({ otp }).unwrap();
+          : await verifyOTP({ otp }).unwrap()
+        : credType === "email"
+        ? await verifyStoreEmailOtp({ otp }).unwrap()
+        : await verifyStorePhoneOtp({ otp }).unwrap();
       if (res.success) {
         Toast(res.message, "success");
         handleCloseModal();
@@ -78,12 +128,9 @@ const useVerifyCredential = (handleCloseModal: () => void) => {
     isOtpSend,
     handleSendOtp,
     verifyOTP,
-    isLoading,
     handleVerifyOTP,
     renderCounter,
-    isVerifyOTPLoading,
-    isSendEmailLoading,
-    isVerifyEmailOTPLoading,
+    isLoading,
   };
 };
 export default useVerifyCredential;

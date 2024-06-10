@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import RegisterStoreSchema from "@/Schema/Store.Schema";
 import {
   StoreRegisterType,
-  useGetStoreQuery,
+  useGetStoreByUserQuery,
   useRegisterStoreMutation,
 } from "@/redux/slice/api/storeSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,7 +39,7 @@ const useStoreRegister = () => {
     resolver: zodResolver(RegisterStoreSchema),
   });
   const [registerStore, { isLoading }] = useRegisterStoreMutation();
-  const { data: store, isFetching } = useGetStoreQuery("");
+  const { data: store, isFetching } = useGetStoreByUserQuery("");
   useEffect(() => {
     if (store?.success) {
       dispatch(

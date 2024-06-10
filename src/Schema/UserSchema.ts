@@ -14,6 +14,7 @@ const ResetPasswordSchema = z
           "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
       }),
     confirmPassword: z.string().min(1, "Confirm Password is required"),
+    token: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password and Confirm Password must match",
