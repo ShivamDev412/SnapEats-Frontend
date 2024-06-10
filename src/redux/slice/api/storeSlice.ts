@@ -46,10 +46,11 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getStoreByUser: builder.query<AuthResponse<StoreType>, string>({
-      query: () => ({
-        url: `${BASE_ROUTE.STORE}${ENDPOINTS.USER}`,
+      query: (id) => ({
+        url: `${BASE_ROUTE.STORE}/${id}`,
         method: "GET",
       }),
+      providesTags: ["Store"],
     }),
     getStore: builder.query<AuthResponse<StoreType>, string>({
       query: () => ({
@@ -124,7 +125,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
 });
 export const {
   useRegisterStoreMutation,
-  useGetStoreByUserQuery,
+  useLazyGetStoreByUserQuery,
   useGetStoreQuery,
   useUpdateStorePhoneNumberMutation,
   useSendStorePhoneNumberOTPMutation,

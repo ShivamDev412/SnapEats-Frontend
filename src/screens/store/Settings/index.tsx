@@ -1,7 +1,11 @@
 import { SettingsListItem } from "@/components/Settings";
 import useSettings from "./useSettings";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/Store";
+
 const Settings = () => {
-  const { handleEditProfile, switchAccount } = useSettings();
+  const { handleEditProfile, switchAccount, isUser } = useSettings();
+  const { storeStatus } = useSelector((state: RootState) => state.store);
   return (
     <section className="w-10/12">
       <h2 className="text-3xl font-semibold my-10">Settings</h2>
@@ -13,7 +17,12 @@ const Settings = () => {
               onClick={handleEditProfile}
               title="Edit Profile"
             />
-            <SettingsListItem onClick={switchAccount} title="Switch Account" />
+            {(storeStatus === "approved" || !isUser) && (
+              <SettingsListItem
+                onClick={switchAccount}
+                title="Switch Account"
+              />
+            )}
             <button className="text-left font-semibold text-lg">
               Delete Account
             </button>

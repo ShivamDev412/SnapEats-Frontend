@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, MenuItem } from "@mui/material";
 import { Dropdown } from "@mui/base/Dropdown";
@@ -8,6 +8,9 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { useUserQuery } from "@/redux/slice/api/userSlice";
 import useProfile from "./useProfile";
 import AvatarComponent from "../Avatar";
+import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/storeSlice";
+import { setStoreStatus } from "@/redux/slice/storeSlice";
+import { useDispatch } from "react-redux";
 type MenuDataProps = {
   menu: string;
   link: string;
@@ -23,12 +26,27 @@ const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown }) => {
   );
 };
 const ProfileSection = () => {
+  const dispatch = useDispatch();
   const { data: user } = useUserQuery("", {
     // refetchOnMountOrArgChange: true,
     refetchOnReconnect: true,
   });
+  const [trigger, { data: store }] = useLazyGetStoreByUserQuery();
   const { logoutHandler } = useProfile();
   const [showDropdown, setShowDropdown] = useState(false);
+
+  useEffect(() => {
+    if (user?.data.storeId) {
+      trigger(user?.data.storeId);
+    }
+  }, [user?.data.storeId]);
+  useEffect(() => {
+    if (store?.data?.status === "PENDING") {
+      dispatch(setStoreStatus("pending"));
+    } else if (store?.data?.status === "APPROVED") {
+      dispatch(setStoreStatus("approved"));
+    }
+  }, [store?.data?.status]);
   return (
     <Dropdown open={showDropdown}>
       <MenuButton>
@@ -63,11 +81,14 @@ const ProfileSection = () => {
           link={BROWSER_ROUTE.ORDERS}
           setShowDropdown={setShowDropdown}
         />
-        <MenuData
-          menu="Register Your Store"
-          link={BROWSER_ROUTE.STORE_REGISTER}
-          setShowDropdown={setShowDropdown}
-        />
+        {(!user?.data.storeId || store?.data?.status === "PENDING") && (
+          <MenuData
+            menu="Register Your Store"
+            link={BROWSER_ROUTE.STORE_REGISTER}
+            setShowDropdown={setShowDropdown}
+          />
+        )}
+
         <MenuData
           menu="Settings"
           link={BROWSER_ROUTE.SETTINGS}
