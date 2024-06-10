@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import RegisterStoreSchema from "@/Schema/Store.Schema";
 import {
   StoreRegisterType,
-  useGetStoreByUserQuery,
   useRegisterStoreMutation,
 } from "@/redux/slice/api/storeSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,7 +10,6 @@ import { z } from "zod";
 import Toast from "@/utils/Toast";
 import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { RootState } from "@/redux/Store";
-import { useEffect } from "react";
 
 const useStoreRegister = () => {
   type FormField = z.infer<typeof RegisterStoreSchema>;
@@ -39,16 +37,6 @@ const useStoreRegister = () => {
     resolver: zodResolver(RegisterStoreSchema),
   });
   const [registerStore, { isLoading }] = useRegisterStoreMutation();
-  const { data: store, isFetching } = useGetStoreByUserQuery("");
-  useEffect(() => {
-    if (store?.success) {
-      dispatch(
-        setStoreStatus(
-          store?.data?.status === "PENDING" ? "pending" : "not-registered"
-        )
-      );
-    } 
-  }, [store]);
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
     try {
       const { email, name, address, phoneNumber, countryCode, lat, lon } =
@@ -64,7 +52,7 @@ const useStoreRegister = () => {
       }).unwrap();
       if (res.success) {
         Toast(res.message);
-        if (res.data.status === "PENDING") {
+        if (res?.data?.status === "PENDING") {
           dispatch(setStoreStatus("pending"));
         }
       }
@@ -84,7 +72,7 @@ const useStoreRegister = () => {
     setValue,
     isLoading,
     storeStatus,
-    isFetching,
+    // isFetching,
   };
 };
 export default useStoreRegister;

@@ -35,7 +35,7 @@ const BROWSER_ROUTE = {
   MANAGE_ADDRESS: "/manage-address",
   SETTINGS: "/settings",
 
-  STORE_REGISTER: "/store/register",
+  STORE_REGISTER: "/store-register",
   STORE_DASHBOARD: "/store",
   STORE_ORDERS: "/store/orders",
   STORE_SETTINGS: "/store/settings",

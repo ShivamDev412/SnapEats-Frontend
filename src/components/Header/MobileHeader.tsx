@@ -7,7 +7,7 @@ const MobileHeader = () => {
   return (
     <div className="flex flex-col md:hidden">
       <div className="flex  justify-between">
-        <Branding type="USER" />
+        <Branding />
         <Address />
         <Profile />
       </div>

@@ -18,10 +18,10 @@ const Avatar: React.FC<Props> = ({ className, name, onClick }) => {
       style={{ lineHeight: "1" }}
     >
       {onClick ? (
-        <button
-          className={`h-full w-full`}
+        <div
+          className={`h-full w-full justify-center flex items-center`}
           onClick={onClick}
-        >{`${firstCharacter}${lastCharacter}`}</button>
+        >{`${firstCharacter}${lastCharacter}`}</div>
       ) : (
         <p>{`${firstCharacter}${lastCharacter}`}</p>
       )}

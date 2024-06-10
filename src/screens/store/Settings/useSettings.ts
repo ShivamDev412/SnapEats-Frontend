@@ -1,10 +1,11 @@
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAccountType } from "@/redux/slice/accountSlice";
 import useAccountType from "@/Hooks/useAccountType";
 const useSettings = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const isUser = useAccountType();
   const handleEditProfile = () => {
@@ -19,6 +20,6 @@ const useSettings = () => {
       navigate(BROWSER_ROUTE.HOME);
     }
   };
-  return { handleEditProfile, switchAccount };
+  return { handleEditProfile, switchAccount, location, isUser };
 };
 export default useSettings;
