@@ -51,7 +51,7 @@ export type UpdateUserType = {
   firstName: string;
   lastName: string;
   email: string;
-  profilePicture: string;
+  profilePicture?: string;
 };
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

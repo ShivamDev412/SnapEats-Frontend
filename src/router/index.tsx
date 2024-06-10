@@ -6,11 +6,24 @@ import PrivateRoute from "./PrivateRoute";
 const HomeScreen = lazy(() => import("@/screens/users/Home"));
 const LoginScreen = lazy(() => import("@/screens/users/Login"));
 const SignupScreen = lazy(() => import("@/screens/users/Signup"));
-const ForgotPasswordScreen = lazy(() => import("@/screens/users/ForgotPassword"));
+const ForgotPasswordScreen = lazy(
+  () => import("@/screens/users/ForgotPassword")
+);
 const ResetPasswordScreen = lazy(() => import("@/screens/users/ResetPassword"));
-const StoreRegisterScreen = lazy(() => import("@/screens/store/Register"));
 const ProfileScreen = lazy(() => import("@/screens/users/Profile"));
 const ManageAddress = lazy(() => import("@/screens/users/ManageAddress"));
+const OrdersScreen = lazy(() => import("@/screens/users/Orders"));
+
+// Store
+const StoreRegisterScreen = lazy(() => import("@/screens/store/Register"));
+const StoreDashboardScreen = lazy(() => import("@/screens/store/Dashboard"));
+const StoreOrdersScreen = lazy(() => import("@/screens/store/Orders"));
+const StoreSettingsScreen = lazy(() => import("@/screens/store/Settings"));
+const StoreEditProfileScreen = lazy(
+  () => import("@/screens/store/EditProfile")
+);
+const StoreMenuScreen = lazy(() => import("@/screens/store/Menu"));
+const StoreProfileScreen = lazy(() => import("@/screens/store/Profile"));
 const Routers = () => {
   const {
     LOGIN,
@@ -21,6 +34,14 @@ const Routers = () => {
     STORE_REGISTER,
     PROFILE,
     MANAGE_ADDRESS,
+    STORE_DASHBOARD,
+    STORE_ORDERS,
+    STORE_SETTINGS,
+    STORE_EDIT_PROFILE,
+    STORE_PROFILE,
+    STORE_MENU,
+    SETTINGS,
+    ORDERS,
   } = BROWSER_ROUTE;
   return (
     <BrowserRouter>
@@ -36,9 +57,19 @@ const Routers = () => {
           <Route path={HOME} element={<HomeScreen />} />
           <Route path={PROFILE} element={<ProfileScreen />} />
           <Route path={MANAGE_ADDRESS} element={<ManageAddress />} />
-
+          <Route path={ORDERS} element={<OrdersScreen />} />
+          <Route path={SETTINGS} element={<StoreSettingsScreen />} />
           {/* Store */}
           <Route path={STORE_REGISTER} element={<StoreRegisterScreen />} />
+          <Route path={STORE_DASHBOARD} element={<StoreDashboardScreen />} />
+          <Route path={STORE_ORDERS} element={<StoreOrdersScreen />} />
+          <Route path={STORE_SETTINGS} element={<StoreSettingsScreen />} />
+          <Route
+            path={STORE_EDIT_PROFILE}
+            element={<StoreEditProfileScreen />}
+          />
+          <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
+          <Route path={STORE_MENU} element={<StoreMenuScreen />} />
         </Route>
       </Routes>
     </BrowserRouter>

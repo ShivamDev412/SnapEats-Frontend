@@ -21,6 +21,7 @@ export type FormProps<T extends FieldValues> = {
   handleSubmit: UseFormHandleSubmit<T, undefined>;
   onSubmit: SubmitHandler<T>;
   isLoading: boolean;
+  isUser?: boolean;
 };
 
 const AddAddress: React.FC<FormProps<AddressType>> = ({

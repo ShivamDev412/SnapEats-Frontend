@@ -26,6 +26,7 @@ const AdditionalDetails: FC<{
     handleUpdatePhoneNumber,
     verifyPhoneNumber,
     modalOperation,
+    updateStorePhoneNumberLoading
   } = useAdditionalDetails();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
@@ -80,7 +81,7 @@ const AdditionalDetails: FC<{
             setValue={setValue}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
-            isLoading={isLoading}
+            isLoading={isLoading || updateStorePhoneNumberLoading}
           />
         ) : (
           <VerifyCredentials

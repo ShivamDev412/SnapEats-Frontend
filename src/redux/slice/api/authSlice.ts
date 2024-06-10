@@ -2,6 +2,7 @@ import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import { apiSlice } from "./apiSlice";
 type AuthResponse = {
   "auth-token"?: string;
+  isStoreRegistered?: boolean;
   success: boolean;
   message: string;
 };

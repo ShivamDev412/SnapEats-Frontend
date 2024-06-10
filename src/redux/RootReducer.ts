@@ -3,11 +3,13 @@ import { apiSlice } from "./slice/api/apiSlice";
 import authSlice from "./slice/authSlice";
 import loadingSlice from "./slice/loadingSlice";
 import storeSlice from "./slice/storeSlice";
+import accountSlice from "./slice/accountSlice";
 
 const appReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authSlice,
   loading: loadingSlice,
+  account: accountSlice,
   store: storeSlice,
 });
 
