@@ -10,6 +10,7 @@ import { useLoginMutation } from "@/redux/slice/api/authSlice";
 import { setAccountType } from "@/redux/slice/accountSlice";
 import useFormHandler from "@/Hooks/useFormHandler";
 import { DEFAULT_VALUES } from "@/utils/Constants";
+import useDeviceType from "@/Hooks/useDeviceType";
 
 type LoginType = {
   email: string;
@@ -18,6 +19,7 @@ type LoginType = {
 export const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useDeviceType()
   type FormField = z.infer<typeof LoginSchema>;
   const {
     register,
@@ -36,7 +38,7 @@ export const useLogin = () => {
       if (success) {
         Toast(message, "success");
         dispatch(setCredentials(response["auth-token"]));
-        if (isStoreRegistered) {
+        if (isStoreRegistered && !isMobile) {
           dispatch(setAccountType("STORE"));
           navigate(BROWSER_ROUTE.STORE_DASHBOARD);
         } else navigate(BROWSER_ROUTE.HOME);
