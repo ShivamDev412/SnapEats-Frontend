@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
 import Button from "@/components/Button";
-import { InputField } from "@/components/Input";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { CircularProgress, FormControl } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { useForgotPassword } from "./useForgotPasssword";
 import Logo from "@/assets/logo.svg";
+import { TextInput } from "@/components/InputComponent";
 
 const ForgotPassword = () => {
-  const { register, handleSubmit, onSubmit, errors, getValues, isLoading } =
+  const { register, handleSubmit, onSubmit, errors, isLoading } =
     useForgotPassword();
   return (
     <main className="bg-zinc-900 text-zinc-100 flex justify-center items-center h-screen">
-      <FormControl
-        component="form"
-        className="w-full lg:w-1/3 bg-white rounded-md text-zinc-900 h-full lg:h-[70%] justify-center gap-4 "
+      <form
+        className="w-full lg:w-1/3 bg-white rounded-md text-zinc-900 h-full lg:h-fit justify-center gap-4 "
         style={{ padding: "2rem" }}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -23,15 +22,14 @@ const ForgotPassword = () => {
         <h2 className="text-4xl text-center font-semibold mb-5">
           Forgot Password
         </h2>
-        <InputField
-          id={"email"}
-          label={"Email"}
-          type={"text"}
+        <TextInput
+          id="email"
+          type="email"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your email"
         />
-        <Button type="submit" variant="contained" disabled={isLoading}>
+        <Button type="submit" variant="contained" disabled={isLoading} className="w-full my-2">
           {isLoading ? (
             <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
@@ -44,7 +42,7 @@ const ForgotPassword = () => {
             Login
           </Link>
         </p>
-      </FormControl>
+      </form>
     </main>
   );
 };
