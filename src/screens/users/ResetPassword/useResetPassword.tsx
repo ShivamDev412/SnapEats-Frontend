@@ -1,34 +1,32 @@
 import { z } from "zod";
 import { useNavigate, useParams } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import Toast from "@/utils/Toast";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { ResetPasswordSchema } from "@/Schema/UserSchema";
 import {
   ResetPasswordType,
   useResetPasswordMutation,
 } from "@/redux/slice/api/userSlice";
 import { ENDPOINTS } from "@/utils/Endpoints";
+import { DEFAULT_VALUES } from "@/utils/Constants";
+import useFormHandler from "@/Hooks/useFormHandler";
 
 export const useResetPassword = () => {
   const navigation = useNavigate();
   const params = useParams();
   const { token } = params;
   type FormField = z.infer<typeof ResetPasswordSchema>;
-
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
     setError,
-  } = useForm<ResetPasswordType>({
-    defaultValues: {
-      password: "",
-      confirmPassword: "",
-    },
-    resolver: zodResolver(ResetPasswordSchema),
-  });
+  } = useFormHandler<ResetPasswordType>(
+    DEFAULT_VALUES.RESET_PASSWORD,
+    ResetPasswordSchema
+  );
+
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
     try {

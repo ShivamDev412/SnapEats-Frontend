@@ -7,7 +7,7 @@ import useProfileMainDetails from "./useProfileMainDetails";
 import Avatar from "../Avatar";
 import Button from "../Button";
 import EditProfile from "./EditProfile";
-
+import StorePlaceholderImage from "@/assets/store_placeholder.webp";
 const ProfileMainDetails: React.FC<{
   name: string;
   email: string;
@@ -33,10 +33,13 @@ const ProfileMainDetails: React.FC<{
     onSubmit,
     isLoading,
     updateProfile,
+    isUser,
   } = useProfileMainDetails();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
-      <h3 className="text-lg lg:text-xl font-bold">Personal Information</h3>
+      <h3 className="text-lg lg:text-xl font-bold">
+        {isUser ? " Personal Information" : "Store Primary Information"}
+      </h3>
       <div className="flex flex-col md:flex-row gap-4 md:items-center">
         {profileImage && compressedProfilePicture ? (
           <LazyLoadedImageComponent
@@ -45,6 +48,14 @@ const ProfileMainDetails: React.FC<{
             alt={`${name}_profile_picture`}
             className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] rounded-full"
           />
+        ) : !isUser ? (
+          <div className="w-[5rem] md:w-[10rem] h-[5rem] md:h-[10rem] rounded-full bg-zinc-700">
+            <img
+              src={StorePlaceholderImage}
+              alt="store_placeholder_image"
+              className="h-full w-full object-contain"
+            />
+          </div>
         ) : (
           <Avatar
             name={name}
@@ -94,6 +105,7 @@ const ProfileMainDetails: React.FC<{
             onSubmit={onSubmit}
             handleSubmit={handleSubmit}
             setValue={() => {}}
+            isUser={isUser}
           />
         )}
       </ModalComponent>

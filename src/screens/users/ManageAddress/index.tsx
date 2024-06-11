@@ -20,7 +20,7 @@ const ManageAddress = () => {
     isUpdateAddressLoading,
   } = useManageAddress();
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full w-full">
       <section className="flex justify-between">
         <h2 className="text-3xl font-semibold">Your Address</h2>
         <Button

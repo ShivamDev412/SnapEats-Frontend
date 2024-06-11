@@ -22,9 +22,6 @@ const VerifyCredentials: React.FC<Props> = ({
     handleVerifyOTP,
     renderCounter,
     isLoading,
-    isVerifyOTPLoading,
-    isSendEmailLoading,
-    isVerifyEmailOTPLoading,
   } = useVerifyCredential(handleCloseModal);
 
   return (
@@ -59,7 +56,6 @@ const VerifyCredentials: React.FC<Props> = ({
                   type
                 )
               }
-         
             >
               {counter === 0
                 ? "Resend OTP"
@@ -68,7 +64,7 @@ const VerifyCredentials: React.FC<Props> = ({
           </div>
           <Button
             onClick={() => handleVerifyOTP(type)}
-            isLoading={isVerifyOTPLoading || isVerifyEmailOTPLoading}
+            isLoading={isLoading}
             className="w-full"
           >
             Verify OTP
@@ -78,7 +74,9 @@ const VerifyCredentials: React.FC<Props> = ({
         <>
           <p className="break-word">
             You will receive an OTP on{" "}
-            <span className="font-semibold">{type === "email" ? email : phoneNumber} </span>
+            <span className="font-semibold">
+              {type === "email" ? email : phoneNumber}{" "}
+            </span>
             on click of Send OTP button.
           </p>
           <Button
@@ -90,7 +88,7 @@ const VerifyCredentials: React.FC<Props> = ({
               )
             }
             className="w-full"
-            isLoading={isLoading || isSendEmailLoading}
+            isLoading={isLoading}
           >
             Send OTP
           </Button>

@@ -1,6 +1,7 @@
 const BASE_ROUTE = {
   AUTH: "/auth",
   USER: "/user",
+  STORE: "/store",
 };
 const ENDPOINTS = {
   LOGIN: "/login",
@@ -18,21 +19,28 @@ const ENDPOINTS = {
   SEND_EMAIL_OTP: "/send-email-otp",
   VERIFY_EMAIL_OTP: "/verify-email-otp",
   RESEND_EMAIL_OTP: "/resend-email-otp",
+
+  STORE_REGISTER: "/register",
+  USER: "/user",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
   SIGNUP: "/signup",
-
-  HOME: "/",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password/:token",
+  
+  HOME: "/",
   PROFILE: "/profile",
-  EDIT_PROFILE: "/edit-profile",
   ORDERS: "/orders",
   MANAGE_ADDRESS: "/manage-address",
   SETTINGS: "/settings",
-  VERIFY_EMAIL: "/verify-email",
-  VERIFY_PHONE: "/verify-phoneNumber",
+
   STORE_REGISTER: "/store-register",
+  STORE_DASHBOARD: "/store",
+  STORE_ORDERS: "/store/orders",
+  STORE_SETTINGS: "/store/settings",
+  STORE_EDIT_PROFILE: "/store/edit-profile",
+  STORE_PROFILE: "/store/profile",
+  STORE_MENU: "/store/menu",
 };
 export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE };

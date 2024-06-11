@@ -3,19 +3,25 @@ import {
   PhoneNumberType,
   useUpdatePhoneNumberMutation,
 } from "@/redux/slice/api/userSlice";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import Toast from "@/utils/Toast";
 import { z } from "zod";
+import { DEFAULT_VALUES } from "@/utils/Constants";
+import useFormHandler from "@/Hooks/useFormHandler";
+import { useUpdateStorePhoneNumberMutation } from "@/redux/slice/api/storeSlice";
+import useAccountType from "@/Hooks/useAccountType";
 
 const useAdditionalDetails = () => {
+  const isUser = useAccountType();
   const [modalOperation, setModalOperation] = useState<
     "phoneNumber" | "verifyPhoneNumber" | ""
   >("");
   const [openModal, setOpenModal] = useState(false);
   type FormField = z.infer<typeof PhoneNumberSchema>;
   const [updatePhoneNumber, { isLoading }] = useUpdatePhoneNumberMutation();
+  const [updateStorePhoneNumber, { isLoading: updateStorePhoneNumberLoading }] =
+    useUpdateStorePhoneNumberMutation();
   const {
     register,
     handleSubmit,
@@ -23,13 +29,11 @@ const useAdditionalDetails = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<PhoneNumberType>({
-    defaultValues: {
-      countryCode: "",
-      phoneNumber: "",
-    },
-    resolver: zodResolver(PhoneNumberSchema),
-  });
+  } = useFormHandler<PhoneNumberType>(
+    DEFAULT_VALUES.PHONE_NUMBER,
+    PhoneNumberSchema
+  );
+
   const handleCloseModal = () => {
     setOpenModal(false);
     setModalOperation("");
@@ -54,14 +58,16 @@ const useAdditionalDetails = () => {
       phoneNumber: credentials.phoneNumber as string,
     };
     try {
-      const res = await updatePhoneNumber(dataToSend).unwrap();
+      const res = isUser
+        ? await updatePhoneNumber(dataToSend).unwrap()
+        : await updateStorePhoneNumber(dataToSend).unwrap();
       if (res.success) {
         Toast(res.message, "success");
         handleCloseModal();
         reset();
       }
     } catch (err: any) {
-      Toast(err.data.message, "error");
+      Toast(err?.data?.message, "error");
     }
   };
   const verifyPhoneNumber = () => {
@@ -83,6 +89,7 @@ const useAdditionalDetails = () => {
     handleUpdatePhoneNumber,
     verifyPhoneNumber,
     modalOperation,
+    updateStorePhoneNumberLoading
   };
 };
 export default useAdditionalDetails;
