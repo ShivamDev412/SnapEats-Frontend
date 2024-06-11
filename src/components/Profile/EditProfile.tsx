@@ -1,9 +1,9 @@
 import { UpdateUserType } from "@/redux/slice/api/userSlice";
 import Button from "../Button";
-import { InputField } from "../Input";
 import { FormProps } from "../ManageAddress/AddAddress";
 import FileUpload from "../UploadFile";
 import { StoreProfileData } from "@/redux/slice/api/storeSlice";
+import { TextInput } from "../InputComponent";
 
 const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
   register,
@@ -28,41 +28,36 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
         />
         {isUser ? (
           <>
-            <InputField
-              id={"firstName"}
-              label={"First Name"}
-              type={"text"}
+            <TextInput
+              id="firstName"
+              type="text"
               register={register}
               errors={errors}
-              getValues={getValues}
+              placeholder="Your first name"
             />
-            <InputField
-              id={"lastName"}
-              label={"Last Name"}
-              type={"text"}
+            <TextInput
+              id="lastName"
+              type="text"
               register={register}
               errors={errors}
-              getValues={getValues}
+              placeholder="Your last name"
             />
           </>
         ) : (
-          <InputField
-            id={"name"}
-            label={"Store Name"}
-            type={"text"}
+          <TextInput
+            id="name"
+            type="text"
             register={register}
             errors={errors}
-            getValues={getValues}
+            placeholder="Store Name"
           />
         )}
-
-        <InputField
-          id={"email"}
-          label={"Email"}
-          type={"text"}
+        <TextInput
+          id="email"
+          type="email"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your email"
         />
         <Button type="submit" isLoading={isLoading}>
           Submit

@@ -1,8 +1,8 @@
-import { InputField, SelectField } from "@/components/Input";
 import useStoreRegister from "./useStoreRegister";
 import SearchLocation from "@/components/SearchLocation";
 import { countryCode } from "@/utils/Constants";
 import Button from "@/components/Button";
+import { TextInput, SelectField } from "@/components/InputComponent";
 const PendingRequest = () => {
   return (
     <section className="text-zinc-100 text-center flex flex-col gap-2">
@@ -22,7 +22,6 @@ const StoreRegister = () => {
     register,
     handleSubmit,
     onSubmit,
-    getValues,
     errors,
     setValue,
     isLoading,
@@ -38,49 +37,43 @@ const StoreRegister = () => {
           <h2 className="text-3xl text-center font-semibold mb-5">
             Register Your Store
           </h2>
-          <InputField
-            id={"name"}
-            label={"Store Name"}
-            type={"text"}
+          <TextInput
+            id="name"
+            type="text"
             register={register}
             errors={errors}
-            getValues={getValues}
+            placeholder="Store Name"
           />
-          <InputField
-            id={"email"}
-            label={"Store Email"}
-            type={"text"}
+          <TextInput
+            id="email"
+            type="email"
             register={register}
             errors={errors}
-            getValues={getValues}
+            placeholder="Store Email"
           />
           <SearchLocation
             id={"address"}
-            label={"Store Location"}
+            placeholder={"Store Location"}
             register={register}
-            getValues={getValues}
             errors={errors}
             setValue={setValue}
           />
           <div className="flex gap-4">
             <div className="w-4/12">
               <SelectField
-                id={"countryCode"}
+                id="countryCode"
                 register={register}
-                label={"Code"}
+                placeholder="Country Code"
                 errors={errors}
-                options={[...countryCode]}
-                defaultValue={getValues("countryCode")}
-                getValues={getValues}
+                data={countryCode}
               />
             </div>
-            <InputField
-              id={"phoneNumber"}
-              label={"Store Phone Number"}
-              type={"number"}
+            <TextInput
+              id="phoneNumber"
+              type="number"
               register={register}
               errors={errors}
-              getValues={getValues}
+              placeholder="Phone Number"
             />
           </div>
 

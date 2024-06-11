@@ -25,7 +25,6 @@ export const useLogin = () => {
     register,
     handleSubmit,
     reset,
-    getValues,
     clearErrors,
     formState: { errors },
     setError,
@@ -55,5 +54,5 @@ export const useLogin = () => {
     }
   };
 
-  return { register, handleSubmit, onSubmit, errors, getValues, isLoading };
+  return { register, handleSubmit, onSubmit, errors, isLoading };
 };

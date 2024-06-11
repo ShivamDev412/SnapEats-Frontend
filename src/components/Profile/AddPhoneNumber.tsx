@@ -1,12 +1,11 @@
 import { PhoneNumberType } from "@/redux/slice/api/userSlice";
 import Button from "../Button";
-import { InputField, SelectField } from "../Input";
 import { FormProps } from "../ManageAddress/AddAddress";
 import { countryCode } from "@/utils/Constants";
+import { SelectField, TextInput } from "../InputComponent";
 
 const AddPhoneNumber: React.FC<FormProps<PhoneNumberType>> = ({
   register,
-  getValues,
   errors,
   handleSubmit,
   onSubmit,
@@ -20,22 +19,20 @@ const AddPhoneNumber: React.FC<FormProps<PhoneNumberType>> = ({
       </h3>
       <div className="my-4 flex gap-4 flex-col">
         <SelectField
-          id={"countryCode"}
+          id="countryCode"
           register={register}
-          label={"Country Code"}
+          placeholder="Country Code"
           errors={errors}
-          options={[...countryCode]}
-          defaultValue={getValues("countryCode") || countryCode[0]?.value}
-          getValues={getValues}
+          data={countryCode}
         />
-        <InputField
-          id={"phoneNumber"}
-          label={"Phone Number"}
-          type={"number"}
+        <TextInput
+          id="phoneNumber"
+          type="number"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Phone Number"
         />
+
         <Button type="submit" isLoading={isLoading}>
           Submit
         </Button>
