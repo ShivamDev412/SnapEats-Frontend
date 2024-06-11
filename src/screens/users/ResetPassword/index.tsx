@@ -1,16 +1,15 @@
 import Button from "@/components/Button";
-import { InputField } from "@/components/Input";
-import { CircularProgress, FormControl } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { useResetPassword } from "./useResetPassword";
 import Logo from "@/assets/logo.svg";
+import { PasswordField } from "@/components/InputComponent";
 
 const ResetPassword = () => {
-  const { register, handleSubmit, onSubmit, errors, getValues, isLoading } =
+  const { register, handleSubmit, onSubmit, errors, isLoading } =
     useResetPassword();
   return (
     <main className="bg-zinc-900 text-zinc-100 flex justify-center items-center h-screen">
-      <FormControl
-        component="form"
+      <form
         className="w-full lg:w-1/3 bg-white rounded-md text-zinc-900 h-full lg:h-[70%] justify-center gap-4 "
         style={{ padding: "2rem" }}
         onSubmit={handleSubmit(onSubmit)}
@@ -21,30 +20,31 @@ const ResetPassword = () => {
         <h2 className="text-4xl text-center font-semibold mb-5">
           Reset Password
         </h2>
-        <InputField
+        <PasswordField
           id={"password"}
-          label={"Password"}
-          type={"password"}
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your New Password"
         />
-        <InputField
+        <PasswordField
           id={"confirmPassword"}
-          label={"Confirm Password"}
-          type={"password"}
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Confirm Password"
         />
-        <Button type="submit" variant="contained" disabled={isLoading}>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={isLoading}
+          className="w-full my-2"
+        >
           {isLoading ? (
             <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
             "Reset Password"
           )}
         </Button>
-      </FormControl>
+      </form>
     </main>
   );
 };

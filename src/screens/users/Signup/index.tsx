@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
-import { CircularProgress, FormControl } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import Button from "@/components/Button";
 import AuthWrapper from "@/Wrappers/AuthWrapper";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { InputField } from "@/components/Input";
 import { useSignup } from "./useSignup";
 import Logo from "@/assets/logo.svg";
+import { PasswordField, TextInput } from "@/components/InputComponent";
 
 const Signup = () => {
-  const { register, handleSubmit, onSubmit, errors, getValues, isLoading } =
+  const { register, handleSubmit, onSubmit, errors, isLoading } =
     useSignup();
   return (
     <AuthWrapper>
-      <FormControl
-        component="form"
+      <form
         className="w-full lg:w-8/12 bg-white rounded-md text-zinc-900 h-full lg:h-fit justify-center gap-4 "
         style={{ padding: "2rem" }}
         onSubmit={handleSubmit(onSubmit)}
@@ -22,40 +21,35 @@ const Signup = () => {
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
         <h2 className="text-4xl text-center font-semibold mb-5">Sign Up</h2>
-        <InputField
-          id={"firstName"}
-          label={"First Name"}
-          type={"text"}
+        <TextInput
+          id="firstName"
+          type="text"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your first name"
         />
-        <InputField
-          id={"lastName"}
-          label={"Last Name"}
-          type={"text"}
+        <TextInput
+          id="lastName"
+          type="text"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your last name"
         />
-        <InputField
-          id={"email"}
-          label={"Email"}
-          type={"text"}
+        <TextInput
+          id="email"
+          type="email"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your email"
         />
-        <InputField
+        <PasswordField
           id={"password"}
-          label={"Password"}
-          type={"password"}
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your Password"
         />
 
-        <Button type="submit" variant="contained" disabled={isLoading}>
+        <Button type="submit" variant="contained" disabled={isLoading} className="w-full my-2">
           {isLoading ? (
             <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
@@ -68,7 +62,7 @@ const Signup = () => {
             Login
           </Link>
         </p>
-      </FormControl>
+      </form>
     </AuthWrapper>
   );
 };

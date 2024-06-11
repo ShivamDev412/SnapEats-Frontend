@@ -154,7 +154,7 @@ function OTP({
       {new Array(length).fill(null).map((_, index) => (
         <React.Fragment key={index}>
           <input
-            className="w-10 h-10 text-center border rounded-lg shadow-sm focus:outline-zinc-900"
+            className="w-10 h-10 text-center border rounded-lg shadow-sm border-zinc-500 focus:outline-zinc-900 bg-transparent"
             aria-label={`Digit ${index + 1} of OTP`}
             ref={(ele) => {
               inputRefs.current[index] = ele!;

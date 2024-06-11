@@ -1,54 +1,47 @@
-import { FC, useState } from "react";
-import { InputProps } from "@/components/Input";
-import { TextField, TextFieldProps } from "@mui/material";
+import { FC } from "react";
 import { useSearchLocation } from "./useSearchLocation";
 import LocationDropdown from "@/components/LocationDropdown";
+import { TextInput } from "../InputComponent";
 
-const SearchLocation: FC<
-  InputProps & TextFieldProps & { setValue: Function; disabled?: boolean}
-> = ({ register, label, errors, setValue, id, getValues, disabled = false }) => {
+type SearchLocationProps = {
+  register: any;
+  errors: any;
+  placeholder: string;
+  setValue: Function;
+  id: string;
+};
+const SearchLocation: FC<SearchLocationProps> = ({
+  register,
+  errors,
+  setValue,
+  placeholder,
+  id,
+}) => {
   const {
-    // locationInput,
     placePredictions,
     isPlacePredictionsLoading,
     handleLocationSelect,
     showLocationDropdown,
     onChangeHandler,
   } = useSearchLocation(setValue, id);
-  const [focused, setFocused] = useState(false);
-  const handleFocus = () => setFocused(true);
-  const handleBlur = () => setFocused(false);
   return (
     <div className="relative w-full">
-      <TextField
-        variant="outlined"
-        color="primary"
-        InputLabelProps={{ shrink: focused || (!!getValues && !!getValues(id)) }}
-        label={label}
-        autoComplete="off"
-        {...register(id, {
-          // value: locationInput,
-          onChange: onChangeHandler,
-        })}
-        // onChange={onChangeHandler}
-        className="w-full"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        disabled={disabled}
+      <TextInput
+        id="address"
+        type="text"
+        register={register}
+        onChange={onChangeHandler}
+        errors={errors}
+        placeholder={placeholder}
       />
+
       {showLocationDropdown && (
         <LocationDropdown
           placePredictions={placePredictions}
           isPlacePredictionsLoading={isPlacePredictionsLoading}
           handleLocationSelect={handleLocationSelect}
           className="top-[3.5rem]"
-         
         />
-      )}
-      {errors[id] && (
-        <p className="text-red-700 my-2">
-          {typeof errors[id] === "string" ? errors[id] : errors[id].message}
-        </p>
       )}
     </div>
   );

@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
-import { CircularProgress, FormControl } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import Button from "@/components/Button";
 import AuthWrapper from "@/Wrappers/AuthWrapper";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { InputField } from "@/components/Input";
 import { useLogin } from "./useLogin";
 import Logo from "@/assets/logo.svg";
+import { TextInput, PasswordField } from "@/components/InputComponent";
 
 const Login = () => {
-  const { register, handleSubmit, onSubmit, errors, getValues, isLoading } =
-    useLogin();
+  const { register, handleSubmit, onSubmit, errors, isLoading } = useLogin();
   return (
     <AuthWrapper>
-      <FormControl
-        component="form"
+      <form
         className="w-full lg:w-8/12 bg-white rounded-md text-zinc-900 h-full lg:h-fit justify-center gap-4 "
         style={{ padding: "2rem" }}
         onSubmit={handleSubmit(onSubmit)}
@@ -22,29 +20,26 @@ const Login = () => {
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
         <h2 className="text-4xl text-center font-semibold mb-5">Log In</h2>
-        <InputField
-          id={"email"}
-          label={"Email"}
-          type={"text"}
+        <TextInput
+          id="email"
+          type="email"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your email"
         />
-        <InputField
+        <PasswordField
           id={"password"}
-          label={"Password"}
-          type={"password"}
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Your Password"
         />
         <div className="flex justify-between">
           <Link to={BROWSER_ROUTE.FORGOT_PASSWORD}>Forgot Password?</Link>
         </div>
 
-        <Button type="submit" variant="contained" disabled={isLoading}>
+        <Button type="submit" variant="contained" disabled={isLoading} className="w-full my-2">
           {isLoading ? (
-            <CircularProgress size={28} color="secondary" thickness={5}/>
+            <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
             "Login"
           )}
@@ -55,7 +50,7 @@ const Login = () => {
             Signup
           </Link>
         </p>
-      </FormControl>
+      </form>
     </AuthWrapper>
   );
 };

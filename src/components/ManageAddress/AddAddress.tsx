@@ -9,9 +9,9 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 import { AddressType } from "@/redux/slice/api/userSlice";
-import { InputField, SelectField } from "../Input";
 import Button from "../Button";
 import { addressTypes } from "@/utils/Constants";
+import { TextInput, SelectField } from "../InputComponent";
 
 export type FormProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
@@ -40,40 +40,34 @@ const AddAddress: React.FC<FormProps<AddressType>> = ({
         {isEdit ? "Update Address" : "Add New Address"}
       </h3>
       <div className="my-4 flex gap-4 flex-col">
-        <InputField
-          id={"apt"}
-          label={"Apt (Optional)"}
-          type={"text"}
+        <TextInput
+          id="apt"
+          type="text"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Apt (Optional)"
         />
-        <InputField
-          id={"block"}
-          label={"Block (Optional)"}
-          type={"text"}
+        <TextInput
+          id="block"
+          type="text"
           register={register}
           errors={errors}
-          getValues={getValues}
+          placeholder="Block (Optional)"
         />
         <SearchLocation
           id={"address"}
-          label={"Your Location"}
+          placeholder={"Search Address"}
           register={register}
-          getValues={getValues}
           errors={errors}
           setValue={setValue}
         />
         <SelectField
-          id={"type"}
+          id="type"
           register={register}
-          label={"Type"}
+          placeholder="Type"
           errors={errors}
-          options={[...addressTypes]}
-          defaultValue={getValues("type") || addressTypes[0]?.value}
-          getValues={getValues}
+          data={addressTypes}
         />
-
         <Button type="submit" isLoading={isLoading}>
           Submit
         </Button>
