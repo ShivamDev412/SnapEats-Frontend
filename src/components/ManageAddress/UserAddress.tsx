@@ -9,7 +9,7 @@ const UserAddress: React.FC<{
   const { data, handleDelete, markAsDefaultAddress } = useUserAddress();
 
   return (
-    <section className="flex gap-4 mt-10 flex-wrap flex-1">
+    <section className="flex gap-4 mt-10 flex-wrap flex-1 h-full">
       {data?.data && data?.data?.length > 0 ? (
         <>
           {data?.data?.map((value) => (

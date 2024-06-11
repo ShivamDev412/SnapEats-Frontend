@@ -20,9 +20,9 @@ const ManageAddress = () => {
     isUpdateAddressLoading,
   } = useManageAddress();
   return (
-    <div className="flex flex-col h-full w-full">
+    <section className="flex flex-col h-full w-full flex-1">
       <section className="flex justify-between">
-        <h2 className="text-3xl font-semibold">Your Address</h2>
+        <h2 className="text-2xl lg:text-3xl font-semibold">Your Address</h2>
         <Button
           className="bg-green-800 flex items-center gap-2"
           type="button"
@@ -48,7 +48,7 @@ const ManageAddress = () => {
           isLoading={isLoading || isUpdateAddressLoading}
         />
       </ModalComponent>
-    </div>
+    </section>
   );
 };
 
