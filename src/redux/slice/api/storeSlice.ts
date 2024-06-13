@@ -47,7 +47,7 @@ type OptionType = {
 };
 
 export type MenuItemType = {
-  image: File | null;
+  image: any;
   name: string;
   description: string;
   price: number;
@@ -167,11 +167,23 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
-    getMenuChoices: builder.query<AuthResponse<{ value: string; label: string }[]>, string>({
+    getMenuChoices: builder.query<
+      AuthResponse<{ value: string; label: string }[]>,
+      string
+    >({
       query: (id) => ({
         url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CHOICE}/${id}`,
         method: "GET",
       }),
+    }),
+    addMenuItem: builder.mutation<AuthResponse, FormData>({
+      query: (data) => ({
+        url: `${BASE_ROUTE.STORE_MENU}`,
+        method: "POST",
+        body: data,
+        formData: true
+      }),
+      invalidatesTags: ["Menu"],
     }),
   }),
 });
@@ -191,4 +203,5 @@ export const {
   useMenuOptionsQuery,
   useLazyGetMenuChoicesQuery,
   useLazyGetStoreQuery,
+  useAddMenuItemMutation,
 } = storeApiSlice;

@@ -20,7 +20,7 @@ const TextInput: React.FC<TextInputProps> = ({
 }) => {
   return (
     <div className="w-full mx-auto">
-      <div className="mb-4">
+      <div className="">
         <input
           className={`appearance-none block w-full bg-transparent text-zinc-950 border ${
             errors[id] ? "border-red-700" : "border-zinc-400"
@@ -35,7 +35,7 @@ const TextInput: React.FC<TextInputProps> = ({
           })}
         />
         {errors[id] && (
-          <p className="text-red-700 text-[1rem] italic mt-1">
+          <p className=" text-red-700 text-[1rem] italic mt-1">
             {String(errors[id]?.message)}
           </p>
         )}

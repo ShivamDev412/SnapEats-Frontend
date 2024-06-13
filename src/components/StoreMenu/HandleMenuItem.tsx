@@ -1,5 +1,7 @@
 import React from "react";
 import { MenuItemType } from "@/redux/slice/api/storeSlice";
+import { IoFastFoodOutline } from "react-icons/io5";
+
 import FileUpload from "../UploadFile";
 import { SelectField, TextInput, TextareaField } from "../InputComponent";
 import Button from "../Button";
@@ -8,8 +10,12 @@ import useHandleMenuItem from "./useHandleMenuItem";
 
 type HandleMenuItemProps = {
   actionType: string;
+  handleCloseModal: () => void;
 };
-const HandleMenuItem: React.FC<HandleMenuItemProps> = ({ actionType }) => {
+const HandleMenuItem: React.FC<HandleMenuItemProps> = ({
+  actionType,
+  handleCloseModal,
+}) => {
   const {
     categories,
     isFetching,
@@ -24,8 +30,9 @@ const HandleMenuItem: React.FC<HandleMenuItemProps> = ({ actionType }) => {
     appendChoice,
     removeChoice,
     watchedOptions,
-    control
-  } = useHandleMenuItem();
+    control,
+    isLoading,
+  } = useHandleMenuItem(handleCloseModal);
   const handleChoiceChange = (
     optionIndex: number,
     choiceIndex: number,
@@ -40,7 +47,8 @@ const HandleMenuItem: React.FC<HandleMenuItemProps> = ({ actionType }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full gap-4 flex flex-col max-h-[80vh] overflow-auto"
     >
-      <h3 className="text-2xl font-semibold text-center">
+      <h3 className="text-2xl font-semibold text-center flex gap-1 items-center mx-auto">
+        <IoFastFoodOutline className="h-7 w-7" />
         {actionType === "add" ? "Add New Dish" : "Edit Dish"}
       </h3>
       <FileUpload
@@ -101,7 +109,9 @@ const HandleMenuItem: React.FC<HandleMenuItemProps> = ({ actionType }) => {
         </Button>
       </div>
 
-      <Button type="submit">Add Dish</Button>
+      <Button type="submit" isLoading={isLoading}>
+        Add Dish
+      </Button>
     </form>
   );
 };

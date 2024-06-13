@@ -1,4 +1,6 @@
 import { PhoneNumberType } from "@/redux/slice/api/userSlice";
+import { MdOutlinePhoneIphone } from "react-icons/md";
+
 import Button from "../Button";
 import { FormProps } from "../ManageAddress/AddAddress";
 import { countryCode } from "@/utils/Constants";
@@ -9,12 +11,13 @@ const AddPhoneNumber: React.FC<FormProps<PhoneNumberType>> = ({
   errors,
   handleSubmit,
   onSubmit,
+  isEdit,
   isLoading,
 }) => {
-  const isEdit = false;
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <h3 className="text-2xl font-semibold text-center">
+      <h3 className="text-2xl font-semibold text-center flex gap-1 items-center justify-center">
+        <MdOutlinePhoneIphone className="h-7 w-7" />
         {isEdit ? "Update Phone Number" : "Add Phone Number"}
       </h3>
       <div className="my-4 flex gap-4 flex-col">

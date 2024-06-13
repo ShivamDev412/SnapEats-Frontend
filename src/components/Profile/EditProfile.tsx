@@ -1,4 +1,6 @@
 import { UpdateUserType } from "@/redux/slice/api/userSlice";
+import { CgProfile } from "react-icons/cg";
+
 import Button from "../Button";
 import { FormProps } from "../ManageAddress/AddAddress";
 import FileUpload from "../UploadFile";
@@ -16,7 +18,7 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
 }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <h3 className="text-2xl font-semibold text-center">Edit Profile</h3>
+      <h3 className="text-2xl font-semibold text-center flex gap-1 mx-auto items-center justify-center"><CgProfile className="h-7 w-7"/>Edit Profile </h3>
       <div className="my-4 flex gap-4 flex-col">
         <FileUpload
           id={isUser ? "profilePicture" : "image"}

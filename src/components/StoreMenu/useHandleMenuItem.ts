@@ -1,12 +1,16 @@
 import { useFieldArray, useWatch } from "react-hook-form";
-import { MenuItemType } from "@/redux/slice/api/storeSlice";
+import {
+  MenuItemType,
+  useAddMenuItemMutation,
+} from "@/redux/slice/api/storeSlice";
 import useFormHandler from "@/Hooks/useFormHandler";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import { MenuItemSchema } from "@/Schema/Store.Schema";
 import { v4 as uuidv4 } from "uuid";
 import { useMenuCategoriesQuery } from "@/redux/slice/api/storeSlice";
+import Toast from "@/utils/Toast";
 
-const useHandleMenuItem = () => {
+const useHandleMenuItem = (handleCloseModal: () => void) => {
   const { data: categories, isFetching } = useMenuCategoriesQuery("");
   const {
     register,
@@ -56,16 +60,43 @@ const useHandleMenuItem = () => {
       shouldTouch: true,
     });
   };
-
-  const onSubmit = (data: MenuItemType) => {
-    console.log(data);
-    reset({
-      name: "",
-      description: "",
-      price: 0,
-      image: null,
-      options: [],
+  const [addMenuItem, { isLoading }] = useAddMenuItemMutation();
+  const onSubmit = async (data: MenuItemType) => {
+    const { image, name, description, category, price, options } = { ...data };
+    const optionsToSend = options.map((option) => {
+      return {
+        optionId: option.optionId,
+        choice: option.choices.map((choice) => ({
+          choiceId: choice.choiceId,
+          name: choice.name,
+          additionalPrice: choice.additionalPrice,
+        })),
+      };
     });
+    const formData = new FormData();
+    formData.append("image", typeof image[0] === "object" ? image[0] : image);
+
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("basePrice", price.toString());
+    formData.append("category", category);
+    formData.append("options", JSON.stringify(optionsToSend));
+    try {
+      const res = await addMenuItem(formData).unwrap();
+      if (res.success) {
+        Toast(res.message, "success");
+        handleCloseModal();
+        reset({
+          name: "",
+          description: "",
+          price: 0,
+          image: null,
+          options: [],
+        });
+      }
+    } catch (e: any) {
+      Toast(e?.data?.message, "error");
+    }
   };
 
   return {
@@ -89,6 +120,7 @@ const useHandleMenuItem = () => {
     removeChoice,
     control,
     watchedOptions,
+    isLoading,
   };
 };
 

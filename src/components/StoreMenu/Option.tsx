@@ -43,7 +43,7 @@ const Option: React.FC<OptionProps> = ({
   return (
     <div
       key={option.id}
-      className="border-zinc-300 border-[0.5px] mb-2 p-2 rounded-sm"
+      className="border-zinc-300 border-[0.5px] mb-2 p-2 rounded-sm gap-4 flex flex-col"
     >
       <div className="flex gap-2 items-end ">
         <SelectField
@@ -56,7 +56,7 @@ const Option: React.FC<OptionProps> = ({
         />
         <Button
           onClick={() => removeOption(optionIndex)}
-          className="bg-red-700 p-0 mb-4"
+          className="bg-red-700 p-0"
         >
           <FiMinus className="h-7 w-7" />
         </Button>
