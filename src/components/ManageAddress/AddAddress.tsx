@@ -1,5 +1,6 @@
 import SearchLocation from "../SearchLocation";
 import {
+  Control,
   FieldErrors,
   FieldValues,
   SubmitHandler,
@@ -20,6 +21,7 @@ export type FormProps<T extends FieldValues> = {
   setValue: UseFormSetValue<T>;
   handleSubmit: UseFormHandleSubmit<T, undefined>;
   onSubmit: SubmitHandler<T>;
+  control:Control<T>
   isLoading: boolean;
   isUser?: boolean;
 };

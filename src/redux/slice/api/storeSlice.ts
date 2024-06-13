@@ -32,7 +32,33 @@ export type StoreProfileData = {
   name: string;
   email: string;
   image?: string;
-}
+};
+type ChoiceType = {
+  id: string;
+  choiceId: string;
+  name: string;
+  additionalPrice: number;
+};
+
+type OptionType = {
+  id: string;
+  optionId: string;
+  choices: ChoiceType[];
+};
+
+export type MenuItemType = {
+  image: File | null;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  options: OptionType[];
+};
+
+type MenuCategory = {
+  value: string;
+  label: string;
+};
 export const storeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     registerStore: builder.mutation<
@@ -67,13 +93,15 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Store"],
     }),
-    sendStorePhoneNumberOTP: builder.mutation<AuthResponse, { phoneNumber: string }>({
+    sendStorePhoneNumberOTP: builder.mutation<
+      AuthResponse,
+      { phoneNumber: string }
+    >({
       query: (data) => ({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.SEND_OTP}`,
         method: "POST",
         body: data,
       }),
-      
     }),
     verifyStorePhoneNumberOTP: builder.mutation<AuthResponse, { otp: string }>({
       query: (data) => ({
@@ -83,7 +111,10 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Store"],
     }),
-    resendStorePhoneNumberOTP: builder.mutation<AuthResponse, { phoneNumber: string }>({
+    resendStorePhoneNumberOTP: builder.mutation<
+      AuthResponse,
+      { phoneNumber: string }
+    >({
       query: (data) => ({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.RESEND_OTP}`,
         method: "POST",
@@ -121,6 +152,27 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Store"],
     }),
+    menuCategories: builder.query<AuthResponse<MenuCategory[]>, string>({
+      query: () => ({
+        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CATEGORIES}`,
+        method: "GET",
+      }),
+    }),
+    menuOptions: builder.query<
+      AuthResponse<{ value: string; label: string }[]>,
+      string
+    >({
+      query: () => ({
+        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.OPTIONS}`,
+        method: "GET",
+      }),
+    }),
+    getMenuChoices: builder.query<AuthResponse<{ value: string; label: string }[]>, string>({
+      query: (id) => ({
+        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CHOICE}/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 export const {
@@ -135,4 +187,8 @@ export const {
   useVerifyStoreEmailOTPMutation,
   useResentStoreEmailOTPMutation,
   useUpdateStoreMutation,
+  useMenuCategoriesQuery,
+  useMenuOptionsQuery,
+  useLazyGetMenuChoicesQuery,
+  useLazyGetStoreQuery,
 } = storeApiSlice;

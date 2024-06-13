@@ -2,6 +2,7 @@ const BASE_ROUTE = {
   AUTH: "/auth",
   USER: "/user",
   STORE: "/store",
+  STORE_MENU: "/store/menu",
 };
 const ENDPOINTS = {
   LOGIN: "/login",
@@ -19,9 +20,11 @@ const ENDPOINTS = {
   SEND_EMAIL_OTP: "/send-email-otp",
   VERIFY_EMAIL_OTP: "/verify-email-otp",
   RESEND_EMAIL_OTP: "/resend-email-otp",
-
+  CATEGORIES: "/categories",
   STORE_REGISTER: "/register",
   USER: "/user",
+  OPTIONS: "/options",
+  CHOICE: "/choice",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
