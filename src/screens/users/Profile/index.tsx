@@ -1,6 +1,6 @@
 import { AdditionalDetails, ProfileMainDetails } from "@/components/Profile";
 import { UserType, useUserQuery } from "@/redux/slice/api/userSlice";
-
+import { ProfileSkeleton } from "@/components/Skeleton";
 const Profile = () => {
   const { data: user, isFetching } = useUserQuery("", {
     // refetchOnMountOrArgChange: true,
@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <>
       {isFetching ? (
-        <div>Skeleton for profile</div>
+        <ProfileSkeleton />
       ) : (
         <div className="bg-zinc-800 p-6 rounded-xl text-zinc-100 flex flex-col gap-6 h-fit w-full">
           <ProfileMainDetails
