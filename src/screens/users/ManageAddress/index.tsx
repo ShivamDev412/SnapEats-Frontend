@@ -18,6 +18,7 @@ const ManageAddress = () => {
     isLoading,
     handleUpdateAddress,
     isUpdateAddressLoading,
+    control,
   } = useManageAddress();
   return (
     <section className="flex flex-col h-full w-full flex-1">
@@ -45,6 +46,7 @@ const ManageAddress = () => {
           setValue={setValue}
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
+          control={control}
           isLoading={isLoading || isUpdateAddressLoading}
         />
       </ModalComponent>
