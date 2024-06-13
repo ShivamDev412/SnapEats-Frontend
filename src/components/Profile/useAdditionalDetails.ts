@@ -28,6 +28,7 @@ const useAdditionalDetails = () => {
     reset,
     getValues,
     setValue,
+    control,
     formState: { errors },
   } = useFormHandler<PhoneNumberType>(
     DEFAULT_VALUES.PHONE_NUMBER,
@@ -88,6 +89,7 @@ const useAdditionalDetails = () => {
     addPhoneNumber,
     handleUpdatePhoneNumber,
     verifyPhoneNumber,
+    control,
     modalOperation,
     updateStorePhoneNumberLoading
   };

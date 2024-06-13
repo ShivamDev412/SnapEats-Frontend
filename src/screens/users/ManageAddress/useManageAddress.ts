@@ -20,6 +20,7 @@ const useManageAddress = () => {
     reset,
     getValues,
     setValue,
+    control,
     formState: { errors },
   } = useFormHandler<AddressType>(DEFAULT_VALUES.ADDRESS, AddressSchema);
 
@@ -71,6 +72,7 @@ const useManageAddress = () => {
     setValue,
     isLoading,
     handleUpdateAddress,
+    control,
     isUpdateAddressLoading,
   };
 };
