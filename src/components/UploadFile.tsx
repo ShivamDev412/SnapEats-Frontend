@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import { Control, useWatch } from "react-hook-form";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 
@@ -11,19 +12,23 @@ const FileUpload: FC<
   InputProps & {
     className?: string;
     title?: string;
-    getValues?: Function;
+    control: Control<any>;
   }
-> = ({ id, register, errors, className, title, getValues }) => {
+> = ({ id, register, errors, className, title, control }) => {
   const [previewURL, setPreviewURL] = useState<string | null>("");
+  const file = useWatch({
+    control,
+    name: id,
+  });
   useEffect(() => {
-    if (getValues) {
-      const image = getValues(id);
-     
-      if (image) {
-        setPreviewURL(image);
-      }
+    if (typeof file === "string") {
+      setPreviewURL(file);
+    } else if (file instanceof File) {
+      setPreviewURL(URL.createObjectURL(file));
+    } else if (file === null) {
+      setPreviewURL(null);
     }
-  }, [getValues, id]);
+  }, [file]);
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
       const file = e?.target?.files[0];
@@ -43,14 +48,11 @@ const FileUpload: FC<
             className
           )}
         >
-          {previewURL ? (
+          {previewURL && previewURL.length ? (
             <img
               src={previewURL}
               alt="Preview"
-              className={twMerge(
-                "absolute inset-0 w-full h-full",
-                className
-              )}
+              className={twMerge("absolute inset-0 w-full h-full", className)}
             />
           ) : (
             <div className="flex items-center justify-center flex-col">
@@ -63,7 +65,6 @@ const FileUpload: FC<
           <input
             type="file"
             accept="image/*"
-            
             id={id}
             multiple={false}
             {...register(id, {

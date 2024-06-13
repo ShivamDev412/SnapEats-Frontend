@@ -11,7 +11,7 @@ type UseFormHandlerReturn<T extends FieldValues> = UseFormReturn<T>;
 
 const useFormHandler = <T extends FieldValues>(
   defaultValues: DefaultValues<T> | undefined,
-  schema: ZodSchema<T>
+  schema: ZodSchema<any>
 ): UseFormHandlerReturn<T> => {
   return useForm<T>({
     defaultValues,

@@ -8,11 +8,11 @@ import { TextInput } from "../InputComponent";
 const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
   register,
   errors,
-  getValues,
   onSubmit,
   handleSubmit,
   isLoading,
   isUser,
+  control,
 }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -22,7 +22,7 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
           id={isUser ? "profilePicture" : "image"}
           register={register}
           errors={errors}
-          getValues={getValues}
+          control={control}
           className="rounded-full w-[2in] object-cover"
           title={isUser ? "Upload profile picture" : "Upload store picture"}
         />

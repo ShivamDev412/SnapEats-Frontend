@@ -27,6 +27,8 @@ const TextInput: React.FC<TextInputProps> = ({
           } rounded py-4 px-3 text-lg leading-tight hover:border-zinc-950 focus:outline-none focus:border-zinc-950`}
           id={id}
           type={type}
+          min={0}
+          step={"any"}
           placeholder={placeholder}
           {...register(id, {
             onChange,

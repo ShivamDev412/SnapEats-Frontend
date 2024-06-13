@@ -26,4 +26,67 @@ export const UpdateStoreProfileSchema = z.object({
     .email("Please enter a valid email address"),
   image: z.any().optional(),
 });
+
+export const MenuItemSchema = z.object({
+  image: z.any().refine(
+    (value) => {
+      if (value instanceof FileList) {
+        return value.length > 0;
+      }
+      return value !== null && value !== undefined;
+    },
+    {
+      message: "Image is required",
+    }
+  ),
+  name: z.string().min(3, "Name is required"),
+  price: z.preprocess(
+    (val) => Number(val),
+    z
+      .number()
+      .min(1, "Price must be greater than 0")
+      .refine((val) => val > 0, "Price is required and must be greater than 0")
+  ),
+  description: z.string().min(3, "Description is required"),
+  category: z.string().min(1, "Category is required"),
+  options: z
+    .array(
+      z.object({
+        id: z.string().uuid(),
+        optionId: z.string().min(1, "Option is required"),
+        choices: z.array(
+          z
+            .object({
+              choiceId: z.string().optional(),
+              id: z.string().uuid(),
+              name: z.string().optional(),
+              additionalPrice: z.preprocess(
+                (val) => Number(val),
+                z
+                  .number()
+                  .min(0, "Additional price must be 0 or greater")
+                  .refine(
+                    (val) => val >= 0,
+                    "Additional price is required and must be 0 or greater"
+                  )
+              ),
+            })
+            .refine(
+              (data) => {
+                return (
+                  (data.choiceId && !data.name) || (!data.choiceId && data.name)
+                );
+              },
+              {
+                message:
+                  "Either predefined choice or custom choice is required, but not both",
+                path: ["choiceId"],
+              }
+            )
+        ),
+      })
+    )
+    .optional(),
+});
+
 export default RegisterStoreSchema;

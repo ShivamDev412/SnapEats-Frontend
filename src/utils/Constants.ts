@@ -4,7 +4,7 @@ import { IoSettings } from "react-icons/io5";
 import { RiFileListFill } from "react-icons/ri";
 import { BROWSER_ROUTE } from "./Endpoints";
 import { IoRestaurant } from "react-icons/io5";
-
+import { v4 as uuidv4 } from "uuid";
 const addressTypes = [
   { value: "home", label: "Home" },
   { value: "work", label: "Work" },
@@ -330,6 +330,24 @@ const DEFAULT_VALUES = {
     image: "",
     name: "",
     email: "",
+  },
+  MENU_ITEM: {
+    MENU_ITEM: {
+      image: "",
+      name: "",
+      description: "",
+      price: 0,
+      category: "",
+      options: [
+        {
+          id: uuidv4(),
+          optionId: "",
+          choices: [
+            { choiceId: "", id: uuidv4(), name: "", additionalPrice: 0 },
+          ],
+        },
+      ],
+    },
   },
 };
 export {
