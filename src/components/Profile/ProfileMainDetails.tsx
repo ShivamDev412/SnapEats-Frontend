@@ -34,6 +34,7 @@ const ProfileMainDetails: React.FC<{
     isLoading,
     updateProfile,
     isUser,
+    control,
   } = useProfileMainDetails();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
@@ -99,6 +100,7 @@ const ProfileMainDetails: React.FC<{
         ) : (
           <EditProfile
             register={register}
+            control={control}
             errors={errors}
             getValues={getValues}
             isLoading={isLoading}

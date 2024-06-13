@@ -30,6 +30,7 @@ const useProfileMainDetails = () => {
     setValue,
     formState: { errors },
     setError,
+    control,
   } = useFormHandler<UpdateUserType | StoreProfileData>(
     isUser
       ? DEFAULT_VALUES.USER_PRIMARY_DATA
@@ -108,7 +109,8 @@ const useProfileMainDetails = () => {
     onSubmit,
     isLoading,
     updateProfile,
-    isUser
+    isUser,
+    control,
   };
 };
 export default useProfileMainDetails;

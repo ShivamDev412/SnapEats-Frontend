@@ -26,6 +26,7 @@ const AdditionalDetails: FC<{
     handleUpdatePhoneNumber,
     verifyPhoneNumber,
     modalOperation,
+    control,
     updateStorePhoneNumberLoading
   } = useAdditionalDetails();
   return (
@@ -80,6 +81,7 @@ const AdditionalDetails: FC<{
             errors={errors}
             setValue={setValue}
             handleSubmit={handleSubmit}
+            control={control}
             onSubmit={onSubmit}
             isLoading={isLoading || updateStorePhoneNumberLoading}
           />

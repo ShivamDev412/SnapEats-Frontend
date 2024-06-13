@@ -4,7 +4,7 @@ import Button from "../Button";
 import useSearchAndAdd from "./useSearchAndAdd";
 
 type Props = {
-  handleMenuItem: (action: string) => void;
+  handleMenuItem: (action: "add"|"edit") => void;
   
 };
 const SearchAndAdd: React.FC<Props> = ({ handleMenuItem }) => {
