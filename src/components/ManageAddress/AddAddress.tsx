@@ -22,6 +22,7 @@ export type FormProps<T extends FieldValues> = {
   handleSubmit: UseFormHandleSubmit<T, undefined>;
   onSubmit: SubmitHandler<T>;
   control:Control<T>
+  isEdit?: boolean;
   isLoading: boolean;
   isUser?: boolean;
 };

@@ -4,8 +4,11 @@ import { SelectField, TextInput } from "../InputComponent";
 import Button from "../Button";
 import { FiMinus } from "react-icons/fi";
 import { IoIosAdd } from "react-icons/io";
+import { BiDollar } from "react-icons/bi";
+
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { MenuItemType } from "@/redux/slice/api/storeSlice";
+
 type ChoiceProps = {
   optionIndex: number;
   choiceIndex: number;
@@ -42,7 +45,7 @@ const Choice: React.FC<ChoiceProps> = ({
         <SelectField
           id={`options.${optionIndex}.choices.${choiceIndex}.choiceId`}
           register={register}
-          placeholder="Predefined Choice"
+          placeholder="Choice"
           errors={errors}
           data={predefinedChoices || []}
         />
@@ -81,7 +84,8 @@ const Choice: React.FC<ChoiceProps> = ({
           </Button>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-1/2 flex gap-1 items-center">
+        <BiDollar className="h-7 w-7" />
         <TextInput
           id={`options.${optionIndex}.choices.${choiceIndex}.additionalPrice`}
           type="number"

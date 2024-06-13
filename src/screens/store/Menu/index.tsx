@@ -14,7 +14,7 @@ const Menu = () => {
         handleClose={handleCloseModal}
         modalTitle={"handle menu item"}
       >
-        <HandleMenuItem actionType={actionType} />
+        <HandleMenuItem actionType={actionType} handleCloseModal={handleCloseModal}/>
       </ModalComponent>
     </section>
   );

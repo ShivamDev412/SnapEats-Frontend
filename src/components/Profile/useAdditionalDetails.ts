@@ -18,6 +18,7 @@ const useAdditionalDetails = () => {
     "phoneNumber" | "verifyPhoneNumber" | ""
   >("");
   const [openModal, setOpenModal] = useState(false);
+  const [actionType, setActionType] = useState<"add" | "update">("add");
   type FormField = z.infer<typeof PhoneNumberSchema>;
   const [updatePhoneNumber, { isLoading }] = useUpdatePhoneNumberMutation();
   const [updateStorePhoneNumber, { isLoading: updateStorePhoneNumberLoading }] =
@@ -36,11 +37,13 @@ const useAdditionalDetails = () => {
   );
 
   const handleCloseModal = () => {
+    setActionType("add");
     setOpenModal(false);
     setModalOperation("");
     reset();
   };
   const addPhoneNumber = () => {
+    setActionType("add");
     setModalOperation("phoneNumber");
     setOpenModal(true);
   };
@@ -48,6 +51,7 @@ const useAdditionalDetails = () => {
     countryCode: string;
     phoneNumber: string;
   }) => {
+    setActionType("update");
     setModalOperation("phoneNumber");
     setValue("countryCode", data.countryCode);
     setValue("phoneNumber", data.phoneNumber);
@@ -67,8 +71,8 @@ const useAdditionalDetails = () => {
         handleCloseModal();
         reset();
       }
-    } catch (err: any) {
-      Toast(err?.data?.message, "error");
+    } catch (error: any) {
+      Toast(error.data?.message, "error");
     }
   };
   const verifyPhoneNumber = () => {
@@ -91,7 +95,8 @@ const useAdditionalDetails = () => {
     verifyPhoneNumber,
     control,
     modalOperation,
-    updateStorePhoneNumberLoading
+    updateStorePhoneNumberLoading,
+    actionType,
   };
 };
 export default useAdditionalDetails;

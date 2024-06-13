@@ -75,9 +75,9 @@ const FileUpload: FC<
         </label>
       </div>
       {typeof errors[id] === "string" ? (
-        <p className="text-red-700 my-2">{errors[id]}</p>
+        <p className="text-red-700 text-[1rem] italic mt-1">{errors[id]}</p>
       ) : (
-        errors[id] && <p className="text-red-700 my-2">{errors[id].message}</p>
+        errors[id] && <p className="text-red-700 text-[1rem] italic mt-1">{errors[id].message}</p>
       )}
     </div>
   );
