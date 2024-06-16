@@ -2,7 +2,7 @@ import Skeleton from "react-loading-skeleton";
 
 const ProfileSkeleton = () => {
   return (
-    <div className="p-6 rounded-xl animate-pulse text-zinc-100 flex flex-col gap-6">
+    <div className="p-6 rounded-xl animate-pulse text-zinc-100 flex flex-col gap-6 h-fit w-full">
       <section className="flex flex-col gap-2 md:gap-6">
         <Skeleton height={28} width={200} />
         <div className="flex flex-col md:flex-row gap-4 md:items-center">

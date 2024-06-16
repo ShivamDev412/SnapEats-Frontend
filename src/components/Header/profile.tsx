@@ -11,6 +11,8 @@ import AvatarComponent from "../Avatar";
 import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/storeSlice";
 import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { useDispatch } from "react-redux";
+import Skeleton from "react-loading-skeleton";
+
 type MenuDataProps = {
   menu: string;
   link: string;
@@ -27,7 +29,7 @@ const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown }) => {
 };
 const ProfileSection = () => {
   const dispatch = useDispatch();
-  const { data: user } = useUserQuery("", {
+  const { data: user, isLoading: isUserLoading } = useUserQuery("", {
     // refetchOnMountOrArgChange: true,
     refetchOnReconnect: true,
   });
@@ -50,7 +52,9 @@ const ProfileSection = () => {
   return (
     <Dropdown open={showDropdown}>
       <MenuButton>
-        {user?.data?.profilePicture ? (
+        {isUserLoading ? (
+          <Skeleton circle={true} height={40} width={40} />
+        ) : user?.data?.profilePicture ? (
           <Avatar
             alt={`${user?.data?.name}_profile_picture`}
             src={user?.data?.profilePicture}
