@@ -338,6 +338,8 @@ const DEFAULT_VALUES = {
       description: "",
       price: 0,
       category: "",
+      isVeg:true,
+      prepTime: 0,
       options: [
         {
           id: uuidv4(),

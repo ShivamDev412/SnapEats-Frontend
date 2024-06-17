@@ -6,8 +6,12 @@ import { FiMinus } from "react-icons/fi";
 import { IoIosAdd } from "react-icons/io";
 import { BiDollar } from "react-icons/bi";
 
-import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { MenuItemType } from "@/redux/slice/api/storeSlice";
+import {
+  FieldErrors,
+  UseFormGetValues,
+  UseFormRegister,
+} from "react-hook-form";
+import { MenuItemType } from "@/redux/slice/api/store/menuSlice";
 
 type ChoiceProps = {
   optionIndex: number;
@@ -27,6 +31,7 @@ type ChoiceProps = {
     value: string;
     label: string;
   }[];
+  getValues?: UseFormGetValues<MenuItemType>;
 };
 const Choice: React.FC<ChoiceProps> = ({
   optionIndex,
@@ -38,6 +43,7 @@ const Choice: React.FC<ChoiceProps> = ({
   watchedChoices,
   removeChoice,
   appendChoice,
+  getValues,
 }) => {
   return (
     <>
@@ -46,6 +52,7 @@ const Choice: React.FC<ChoiceProps> = ({
           id={`options.${optionIndex}.choices.${choiceIndex}.choiceId`}
           register={register}
           placeholder="Choice"
+          getValues={getValues}
           errors={errors}
           data={predefinedChoices || []}
         />

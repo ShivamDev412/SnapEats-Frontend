@@ -1,5 +1,5 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
-import { apiSlice } from "./apiSlice";
+import { apiSlice } from "@/redux/slice/api/apiSlice";
 type AuthResponse = {
   "auth-token"?: string;
   isStoreRegistered?: boolean;

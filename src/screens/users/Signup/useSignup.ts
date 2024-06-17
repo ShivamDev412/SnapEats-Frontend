@@ -6,8 +6,8 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import Toast from "@/utils/Toast";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "@/redux/slice/authSlice";
-import { useSignupMutation } from "@/redux/slice/api/authSlice";
-import { SignupType } from "@/redux/slice/api/authSlice";
+import { useSignupMutation } from "@/redux/slice/api/user/authSlice";
+import { SignupType } from "@/redux/slice/api/user/authSlice";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useFormHandler from "@/Hooks/useFormHandler";
 

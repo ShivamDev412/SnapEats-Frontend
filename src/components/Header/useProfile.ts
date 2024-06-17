@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut } from "@/redux/slice/authSlice";
 import Toast from "@/utils/Toast";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { useLogOutMutation } from "@/redux/slice/api/userSlice";
+import { useLogOutMutation } from "@/redux/slice/api/user/profileSlice";
 
 const useProfile = () => {
   const dispatch = useDispatch();

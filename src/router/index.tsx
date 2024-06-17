@@ -24,6 +24,9 @@ const StoreEditProfileScreen = lazy(
 );
 const StoreMenuScreen = lazy(() => import("@/screens/store/Menu"));
 const StoreProfileScreen = lazy(() => import("@/screens/store/Profile"));
+const StoreMenuDetailScreen = lazy(
+  () => import("@/screens/store/Menu/detail")
+);
 const Routers = () => {
   const {
     LOGIN,
@@ -42,6 +45,7 @@ const Routers = () => {
     STORE_MENU,
     SETTINGS,
     ORDERS,
+    STORE_MENU_DETAILS,
   } = BROWSER_ROUTE;
   return (
     <BrowserRouter>
@@ -69,6 +73,7 @@ const Routers = () => {
             element={<StoreEditProfileScreen />}
           />
           <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
+          <Route path={STORE_MENU_DETAILS} element={<StoreMenuDetailScreen />} />
           <Route path={STORE_MENU} element={<StoreMenuScreen />} />
         </Route>
       </Routes>

@@ -48,6 +48,14 @@ export const MenuItemSchema = z.object({
       .refine((val) => val > 0, "Price is required and must be greater than 0")
   ),
   description: z.string().min(3, "Description is required"),
+  isVeg: z.boolean().optional(),
+  prepTime: z.preprocess(
+    (val) => Number(val),
+    z
+      .number()
+      .min(1, "Preparation time is required")
+      .refine((val) => val > 0, "Preparation time must be greater than 0")
+  ),
   category: z.string().min(1, "Category is required"),
   options: z
     .array(

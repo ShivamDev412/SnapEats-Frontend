@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface SelectFieldProps {
@@ -6,6 +6,8 @@ interface SelectFieldProps {
   placeholder: string;
   register: UseFormRegister<any>;
   errors: FieldErrors;
+  getValues?: any;
+  setValue?: any;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   data: Array<{
     value: string;
@@ -20,7 +22,21 @@ const SelectField: React.FC<SelectFieldProps> = ({
   errors,
   onChange,
   data,
+  getValues,
 }) => {
+  const [value, setSelectField] = useState("");
+
+  useEffect(() => {
+    if (getValues) {
+      const initialValue = getValues(id);
+      if (initialValue) {
+        setSelectField(initialValue);
+      }
+    }
+  }, [getValues, id]);
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectField(e.target.value);
+  };
   return (
     <div className="w-full mx-auto">
       <div
@@ -31,8 +47,10 @@ const SelectField: React.FC<SelectFieldProps> = ({
         <select
           className="appearance-none w-full bg-transparent focus:outline-none"
           id={id}
+          {...(getValues && { value })}
           {...register(id, {
-            onChange,
+            onChange: getValues ? handleChange : onChange,
+            value,
           })}
         >
           <option value="" disabled className="bg-white text-zinc-950">

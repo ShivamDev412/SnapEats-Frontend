@@ -6,7 +6,7 @@ import { ResetPasswordSchema } from "@/Schema/UserSchema";
 import {
   ResetPasswordType,
   useResetPasswordMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/profileSlice";
 import { ENDPOINTS } from "@/utils/Endpoints";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useFormHandler from "@/Hooks/useFormHandler";

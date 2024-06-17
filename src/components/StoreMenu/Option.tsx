@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   UseFormRegister,
   FieldErrors,
   FieldArrayWithId,
+  UseFormSetValue,
+  UseFormGetValues,
 } from "react-hook-form";
 import { FiMinus } from "react-icons/fi";
 import { SelectField } from "../InputComponent";
 import Button from "../Button";
-import { MenuItemType } from "@/redux/slice/api/storeSlice";
+import { MenuItemType } from "@/redux/slice/api/store/menuSlice";
 import useOption from "./useOption";
 import Choice from "./Choice";
 
@@ -26,6 +28,8 @@ type OptionProps = {
   ) => void;
   removeChoice: (optionIndex: number, choiceIndex: number) => void;
   watchedChoices: MenuItemType["options"][number]["choices"];
+  setValue: UseFormSetValue<MenuItemType>;
+  getValues?:UseFormGetValues<MenuItemType>
 };
 
 const Option: React.FC<OptionProps> = ({
@@ -38,8 +42,18 @@ const Option: React.FC<OptionProps> = ({
   handleChoiceChange,
   removeChoice,
   watchedChoices,
+  getValues,
 }) => {
   const { options, handleOptionChange, predefinedChoices } = useOption();
+
+  useEffect(() => {
+    const fetchChoices = async () => {
+      await handleOptionChange(option.optionId);
+    };
+
+    fetchChoices();
+  }, [option.optionId]);
+
   return (
     <div
       key={option.id}
@@ -53,6 +67,7 @@ const Option: React.FC<OptionProps> = ({
           errors={errors}
           onChange={(e) => handleOptionChange(e.target.value)}
           data={options?.data || []}
+     
         />
         <Button
           onClick={() => removeOption(optionIndex)}
@@ -62,22 +77,21 @@ const Option: React.FC<OptionProps> = ({
         </Button>
       </div>
 
-      {predefinedChoices?.data &&
-        predefinedChoices?.data?.length > 0 &&
-        watchedChoices?.map((choice, choiceIndex) => (
-          <Choice
-            key={choice.id}
-            register={register}
-            choiceIndex={choiceIndex}
-            optionIndex={optionIndex}
-            errors={errors}
-            handleChoiceChange={handleChoiceChange}
-            predefinedChoices={predefinedChoices?.data || []}
-            removeChoice={removeChoice}
-            watchedChoices={watchedChoices}
-            appendChoice={appendChoice}
-          />
-        ))}
+      {watchedChoices?.map((choice, choiceIndex) => (
+        <Choice
+          key={choice.id}
+          register={register}
+          choiceIndex={choiceIndex}
+          optionIndex={optionIndex}
+          errors={errors}
+          handleChoiceChange={handleChoiceChange}
+          predefinedChoices={predefinedChoices?.data || []}
+          removeChoice={removeChoice}
+          watchedChoices={watchedChoices}
+          appendChoice={appendChoice}
+          getValues={getValues}
+        />
+      ))}
     </div>
   );
 };
