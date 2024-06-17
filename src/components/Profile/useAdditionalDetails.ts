@@ -2,14 +2,14 @@ import { PhoneNumberSchema } from "@/Schema/UserSchema";
 import {
   PhoneNumberType,
   useUpdatePhoneNumberMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/profileSlice";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import Toast from "@/utils/Toast";
 import { z } from "zod";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useFormHandler from "@/Hooks/useFormHandler";
-import { useUpdateStorePhoneNumberMutation } from "@/redux/slice/api/storeSlice";
+import { useUpdateStorePhoneNumberMutation } from "@/redux/slice/api/store/profileSlice";
 import useAccountType from "@/Hooks/useAccountType";
 
 const useAdditionalDetails = () => {

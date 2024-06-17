@@ -1,6 +1,6 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
-import { apiSlice } from "./apiSlice";
-import { PhoneNumberType } from "./userSlice";
+import { apiSlice } from "@/redux/slice/api/apiSlice";
+import { PhoneNumberType } from "../user/profileSlice";
 type AuthResponse<T = undefined> = {
   success: boolean;
   message: string;
@@ -33,32 +33,6 @@ export type StoreProfileData = {
   email: string;
   image?: string;
 };
-type ChoiceType = {
-  id: string;
-  choiceId: string;
-  name: string;
-  additionalPrice: number;
-};
-
-type OptionType = {
-  id: string;
-  optionId: string;
-  choices: ChoiceType[];
-};
-
-export type MenuItemType = {
-  image: any;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  options: OptionType[];
-};
-
-type MenuCategory = {
-  value: string;
-  label: string;
-};
 export const storeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     registerStore: builder.mutation<
@@ -73,14 +47,14 @@ export const storeApiSlice = apiSlice.injectEndpoints({
     }),
     getStoreByUser: builder.query<AuthResponse<StoreType>, string>({
       query: (id) => ({
-        url: `${BASE_ROUTE.STORE}/${id}`,
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.PROFILE}/${id}`,
         method: "GET",
       }),
       providesTags: ["Store"],
     }),
     getStore: builder.query<AuthResponse<StoreType>, string>({
       query: () => ({
-        url: `${BASE_ROUTE.STORE}`,
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.PROFILE}`,
         method: "GET",
       }),
       providesTags: ["Store"],
@@ -145,45 +119,12 @@ export const storeApiSlice = apiSlice.injectEndpoints({
     }),
     updateStore: builder.mutation<AuthResponse, FormData>({
       query: (data) => ({
-        url: `${BASE_ROUTE.STORE}`,
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.PROFILE}`,
         method: "PUT",
         body: data,
         formData: true,
       }),
       invalidatesTags: ["Store"],
-    }),
-    menuCategories: builder.query<AuthResponse<MenuCategory[]>, string>({
-      query: () => ({
-        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CATEGORIES}`,
-        method: "GET",
-      }),
-    }),
-    menuOptions: builder.query<
-      AuthResponse<{ value: string; label: string }[]>,
-      string
-    >({
-      query: () => ({
-        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.OPTIONS}`,
-        method: "GET",
-      }),
-    }),
-    getMenuChoices: builder.query<
-      AuthResponse<{ value: string; label: string }[]>,
-      string
-    >({
-      query: (id) => ({
-        url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CHOICE}/${id}`,
-        method: "GET",
-      }),
-    }),
-    addMenuItem: builder.mutation<AuthResponse, FormData>({
-      query: (data) => ({
-        url: `${BASE_ROUTE.STORE_MENU}`,
-        method: "POST",
-        body: data,
-        formData: true
-      }),
-      invalidatesTags: ["Menu"],
     }),
   }),
 });
@@ -199,9 +140,5 @@ export const {
   useVerifyStoreEmailOTPMutation,
   useResentStoreEmailOTPMutation,
   useUpdateStoreMutation,
-  useMenuCategoriesQuery,
-  useMenuOptionsQuery,
-  useLazyGetMenuChoicesQuery,
   useLazyGetStoreQuery,
-  useAddMenuItemMutation,
 } = storeApiSlice;

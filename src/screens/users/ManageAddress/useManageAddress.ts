@@ -6,7 +6,7 @@ import {
   AddressType,
   useCreateAddressMutation,
   useUpdateAddressMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/addressSlice";
 import Toast from "@/utils/Toast";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useFormHandler from "@/Hooks/useFormHandler";

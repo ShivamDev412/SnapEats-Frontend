@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Toast from "@/utils/Toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ForgotPasswordSchema } from "@/Schema/UserSchema";
-import { ForgotPasswordType, useForgotPasswordMutation } from "@/redux/slice/api/userSlice";
+import { ForgotPasswordType, useForgotPasswordMutation } from "@/redux/slice/api/user/profileSlice";
 
 export const useForgotPassword = () => {
   type FormField = z.infer<typeof ForgotPasswordSchema>;

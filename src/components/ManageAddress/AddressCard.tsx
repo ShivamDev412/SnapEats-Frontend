@@ -5,14 +5,13 @@ import {
   MdOutlineWork,
   MdMiscellaneousServices,
   MdDelete,
-  MdFamilyRestroom
+  MdFamilyRestroom,
 } from "react-icons/md";
 import { IoSchoolSharp } from "react-icons/io5";
 import { GiThreeFriends } from "react-icons/gi";
 import { FaUmbrellaBeach } from "react-icons/fa6";
 
-
-import { AddressType } from "@/redux/slice/api/userSlice";
+import { AddressType } from "@/redux/slice/api/user/addressSlice";
 import Button from "../Button";
 
 const AddressCard: React.FC<{
@@ -50,7 +49,7 @@ const AddressCard: React.FC<{
     }
   };
   return (
-    <div className="w-full lg:w-[49%] 2xl:w-[32.5%]  rounded-lg p-4 shadow-md shadow-zinc-600 bg-zinc-900 flex flex-col justify-between gap-4 h-[2in]">
+    <div className="w-full lg:w-[49%] 2xl:w-[32.5%] rounded-lg p-4 bg-zinc-800 flex flex-col justify-between gap-4 h-[2in]">
       <div className="flex items-start justify-between">
         <div className="w-10/12 lg:w-8/12">
           <p>

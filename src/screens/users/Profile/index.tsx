@@ -1,5 +1,5 @@
 import { AdditionalDetails, ProfileMainDetails } from "@/components/Profile";
-import { UserType, useUserQuery } from "@/redux/slice/api/userSlice";
+import { UserType, useUserQuery } from "@/redux/slice/api/user/profileSlice";
 import { ProfileSkeleton } from "@/components/Skeleton";
 const Profile = () => {
   const { data: user, isFetching } = useUserQuery("", {

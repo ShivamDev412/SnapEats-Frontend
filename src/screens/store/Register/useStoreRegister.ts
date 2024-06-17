@@ -3,7 +3,7 @@ import RegisterStoreSchema from "@/Schema/Store.Schema";
 import {
   StoreRegisterType,
   useRegisterStoreMutation,
-} from "@/redux/slice/api/storeSlice";
+} from "@/redux/slice/api/store/profileSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
