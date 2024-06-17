@@ -1,5 +1,5 @@
 import { AdditionalDetails, ProfileMainDetails } from "@/components/Profile";
-import { useGetStoreQuery } from "@/redux/slice/api/storeSlice";
+import { useGetStoreQuery } from "@/redux/slice/api/store/profileSlice";
 
 const Profile = () => {
   const { data: store, isFetching } = useGetStoreQuery("", {

@@ -9,7 +9,7 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
-import { AddressType } from "@/redux/slice/api/userSlice";
+import { AddressType } from "@/redux/slice/api/user/addressSlice";
 import Button from "../Button";
 import { addressTypes } from "@/utils/Constants";
 import { TextInput, SelectField } from "../InputComponent";
@@ -35,6 +35,7 @@ const AddAddress: React.FC<FormProps<AddressType>> = ({
   handleSubmit,
   onSubmit,
   isLoading,
+  
 }) => {
   const isEdit = getValues("id") ? true : false;
   return (

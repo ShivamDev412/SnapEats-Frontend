@@ -1,4 +1,4 @@
-import { useLogOutMutation } from "@/redux/slice/api/userSlice";
+import { useLogOutMutation } from "@/redux/slice/api/user/profileSlice";
 import { useDispatch } from "react-redux";
 import { logOut } from "@/redux/slice/authSlice";
 import Toast from "@/utils/Toast";

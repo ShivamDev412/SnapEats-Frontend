@@ -11,10 +11,11 @@ type ListType = {
 };
 
 const LinkItem: React.FC<ListType> = ({ Icon, link, title, currentPath }) => {
+  const isActive = currentPath.includes(link)
   return (
     <Link
       className={`text-zinc-100 flex gap-4 items-center hover:bg-primary transition-all p-2 rounded-lg ${
-        currentPath === link ? "bg-primary" : "bg-transparent"
+        isActive ? "bg-primary" : "bg-transparent"
       }`}
       to={link}
     >

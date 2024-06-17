@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   storeStatus: "not-registered",
+  selectedCategory: "all",
 };
 const storeSlice = createSlice({
   name: "store",
@@ -10,7 +11,13 @@ const storeSlice = createSlice({
     setStoreStatus: (state, action) => {
       state.storeStatus = action.payload;
     },
+    setSelectedCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
   },
 });
-export const { setStoreStatus } = storeSlice.actions;
+export const {
+  setStoreStatus,
+  setSelectedCategory,
+} = storeSlice.actions;
 export default storeSlice.reducer;

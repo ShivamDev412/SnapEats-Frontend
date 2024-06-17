@@ -5,12 +5,12 @@ import { UpdateProfileSchema } from "@/Schema/UserSchema";
 import {
   UpdateUserType,
   useUpdateUserMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/profileSlice";
 import Toast from "@/utils/Toast";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useFormHandler from "@/Hooks/useFormHandler";
 import { UpdateStoreProfileSchema } from "@/Schema/Store.Schema";
-import { StoreProfileData, useUpdateStoreMutation } from "@/redux/slice/api/storeSlice";
+import { StoreProfileData, useUpdateStoreMutation } from "@/redux/slice/api/store/profileSlice";
 import useAccountType from "@/Hooks/useAccountType";
 
 const useProfileMainDetails = () => {

@@ -5,10 +5,10 @@ import { Dropdown } from "@mui/base/Dropdown";
 import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { useUserQuery } from "@/redux/slice/api/userSlice";
+import { useUserQuery } from "@/redux/slice/api/user/profileSlice";
 import useProfile from "./useProfile";
 import AvatarComponent from "../Avatar";
-import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/storeSlice";
+import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice";
 import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { useDispatch } from "react-redux";
 type MenuDataProps = {

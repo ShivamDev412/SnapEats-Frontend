@@ -1,4 +1,4 @@
-import { PhoneNumberType } from "@/redux/slice/api/userSlice";
+import { PhoneNumberType } from "@/redux/slice/api/user/profileSlice";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 
 import Button from "../Button";

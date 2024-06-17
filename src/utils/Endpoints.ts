@@ -25,6 +25,7 @@ const ENDPOINTS = {
   USER: "/user",
   OPTIONS: "/options",
   CHOICE: "/choice",
+  PROFILE: "/profile",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -39,11 +40,12 @@ const BROWSER_ROUTE = {
   SETTINGS: "/settings",
 
   STORE_REGISTER: "/store-register",
-  STORE_DASHBOARD: "/store",
+  STORE_DASHBOARD: "/store/dashboard",
   STORE_ORDERS: "/store/orders",
   STORE_SETTINGS: "/store/settings",
   STORE_EDIT_PROFILE: "/store/edit-profile",
   STORE_PROFILE: "/store/profile",
   STORE_MENU: "/store/menu",
+  STORE_MENU_DETAILS: "/store/menu/:id",
 };
 export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE };

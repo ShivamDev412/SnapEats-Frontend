@@ -1,7 +1,7 @@
 import NoDataFound from "../NoDataFound";
 import AddressCard from "./AddressCard";
 import useUserAddress from "./useUserAddress";
-import { AddressType } from "@/redux/slice/api/userSlice";
+import { AddressType } from "@/redux/slice/api/user/addressSlice";
 
 const UserAddress: React.FC<{
   handleUpdateAddress: (address: AddressType) => void;

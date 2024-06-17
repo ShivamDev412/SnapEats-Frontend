@@ -3,7 +3,7 @@ import {
   useAddressQuery,
   useDeleteAddressMutation,
   useMarkAddressAsDefaultMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/addressSlice";
 
 import Toast from "@/utils/Toast";
 import { setLoading } from "@/redux/slice/loadingSlice";

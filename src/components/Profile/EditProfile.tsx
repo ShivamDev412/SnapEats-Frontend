@@ -1,10 +1,10 @@
-import { UpdateUserType } from "@/redux/slice/api/userSlice";
+import { UpdateUserType } from "@/redux/slice/api/user/profileSlice";
 import { CgProfile } from "react-icons/cg";
 
 import Button from "../Button";
 import { FormProps } from "../ManageAddress/AddAddress";
 import FileUpload from "../UploadFile";
-import { StoreProfileData } from "@/redux/slice/api/storeSlice";
+import { StoreProfileData } from "@/redux/slice/api/store/profileSlice";
 import { TextInput } from "../InputComponent";
 
 const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({

@@ -5,7 +5,7 @@ import {
   useSendOTPMutation,
   useVerifyEmailOTPMutation,
   useVerifyOTPMutation,
-} from "@/redux/slice/api/userSlice";
+} from "@/redux/slice/api/user/profileSlice";
 import { useEffect, useState } from "react";
 import Toast from "@/utils/Toast";
 import {
@@ -15,7 +15,7 @@ import {
   useSendStorePhoneNumberOTPMutation,
   useVerifyStoreEmailOTPMutation,
   useVerifyStorePhoneNumberOTPMutation,
-} from "@/redux/slice/api/storeSlice";
+} from "@/redux/slice/api/store/profileSlice";
 import useAccountType from "@/Hooks/useAccountType";
 
 const useVerifyCredential = (handleCloseModal: () => void) => {
