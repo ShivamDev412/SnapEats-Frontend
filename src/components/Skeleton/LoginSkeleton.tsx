@@ -3,8 +3,8 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const LoginSkeleton = () => {
   return (
-    <section className="flex justify-between bg-zinc-950 h-screen">
-      <section className="hidden animate-pulse lg:flex flex-col justify-center items-center lg:w-6/12 2xl:w-7/12 h-full">
+    <div className="flex justify-between bg-zinc-950 h-screen">
+      <div className="hidden animate-pulse lg:flex flex-col justify-center items-center lg:w-6/12 2xl:w-7/12 h-full">
         <div className="h-auto w-7/12">
           <Skeleton style={{ aspectRatio: "1/1" }} />
         </div>
@@ -14,8 +14,8 @@ const LoginSkeleton = () => {
         <h3 className="text-2xl mt-2 text-center">
           <Skeleton width={400} />
         </h3>
-      </section>
-      <section className="w-full animate-pulse lg:w-6/12 2xl:w-5/12 flex flex-col justify-center items-center h-full">
+      </div>
+      <div className="w-full animate-pulse lg:w-6/12 2xl:w-5/12 flex flex-col justify-center items-center h-full">
         <div
           className="w-full lg:w-8/12 rounded-md h-full lg:h-fit content-center justify-center gap-4"
           style={{ padding: "2rem" }}
@@ -42,8 +42,8 @@ const LoginSkeleton = () => {
             <Skeleton width={200} height={24} />
           </div>
         </div>
-      </section>
-    </section>
+      </div>
+    </div>
   );
 };
 

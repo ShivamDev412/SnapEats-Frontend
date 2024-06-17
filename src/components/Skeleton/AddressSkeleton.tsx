@@ -3,15 +3,15 @@ import Skeleton from "react-loading-skeleton";
 const AddressSkeleton = () => {
   return (
     <div className="animate-pulse flex flex-col h-full w-full flex-1">
-      <section className="flex justify-between">
+      <div className="flex justify-between">
         <Skeleton width={180} height={40} />
         <Skeleton width={150} height={40} />
-      </section>
-      <section className="flex gap-4 mt-10 flex-wrap flex-1 h-full">
+      </div>
+      <div className="flex gap-4 mt-10 flex-wrap flex-1 h-full">
         <AddressCardSkeleton />
         <AddressCardSkeleton />
         <AddressCardSkeleton />
-      </section>
+      </div>
     </div>
   );
 };

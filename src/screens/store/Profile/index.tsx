@@ -1,4 +1,5 @@
 import { AdditionalDetails, ProfileMainDetails } from "@/components/Profile";
+import StoreProfileSkeleton from "@/components/Skeleton/StoreProfileSkeleton";
 import { useGetStoreQuery } from "@/redux/slice/api/store/profileSlice";
 
 const Profile = () => {
@@ -7,7 +8,7 @@ const Profile = () => {
     refetchOnReconnect: true,
     // pollingInterval: 100000,
   });
-  if (isFetching) return <div>Skeleton for profile</div>;
+  if (isFetching) return <StoreProfileSkeleton />;
   return (
     <>
       {store && store.data && (
