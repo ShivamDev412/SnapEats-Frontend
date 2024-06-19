@@ -109,6 +109,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}/${menuId}`,
         method: "GET",
       }),
+      providesTags: ["MenuDetail"],
     }),
     storeMenuItems: builder.query<AuthResponse<MenuType[]>, string>({
       query: (query) => ({
@@ -117,22 +118,21 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["Menu"],
     }),
-    updateMenuItem: builder.mutation<
-      AuthResponse,
-      { menuId: string; data: FormData }
-    >({
-      query: ({ menuId, data }) => ({
-        url: `${BASE_ROUTE.STORE_MENU}/${menuId}`,
-        method: "PATCH",
-        body: data,
+    updateMenuItem: builder.mutation<AuthResponse, FormData>({
+      query: (formData) => ({
+        url: BASE_ROUTE.STORE_MENU,
+        method: "PUT",
+        body: formData,
         formData: true,
       }),
+      invalidatesTags: ["Menu", "Categories", "MenuDetail"],
     }),
     deleteMenuItem: builder.mutation<AuthResponse, string>({
       query: (menuId) => ({
         url: `${BASE_ROUTE.STORE_MENU}/${menuId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Menu", "Categories"],
     }),
   }),
 });

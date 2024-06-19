@@ -11,8 +11,7 @@ const useOption = () => {
 
   const handleOptionChange = async (optionId: string) => {
     try {
-      const choices = await getMenuChoices(optionId).unwrap();
-      return choices;
+      await getMenuChoices(optionId).unwrap();
     } catch (error: any) {
       Toast(error.message as string, "error");
       return [];
