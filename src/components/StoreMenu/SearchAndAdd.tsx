@@ -4,10 +4,10 @@ import Button from "../Button";
 import useSearchAndAdd from "./useSearchAndAdd";
 
 type Props = {
-  handleMenuItem: (action: "add"|"edit") => void;
-  
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setActionType: any;
 };
-const SearchAndAdd: React.FC<Props> = ({ handleMenuItem }) => {
+const SearchAndAdd: React.FC<Props> = ({ setShowModal, setActionType }) => {
   const { searchMenu, setSearchMenu } = useSearchAndAdd();
   return (
     <section className="flex gap-4 items-center">
@@ -21,7 +21,13 @@ const SearchAndAdd: React.FC<Props> = ({ handleMenuItem }) => {
           onChange={(e) => setSearchMenu(e.target.value)}
         />
       </div>
-      <Button className="bg-green-800" onClick={() => handleMenuItem("add")}>
+      <Button
+        className="bg-green-800"
+        onClick={() => {
+          setActionType("add");
+          setShowModal(true);
+        }}
+      >
         <IoIosAdd className="fill-white h-7 w-auto" /> Add New Item
       </Button>
     </section>

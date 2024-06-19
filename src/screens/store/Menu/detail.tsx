@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { HandleMenuItem, PrimaryDetail } from "@/components/StoreMenu";
 import Button from "@/components/Button";
-import ModalComponent from "@/components/Modal";
 import useMenu from "./useMenu";
 
 const MenuDetails = () => {
@@ -14,27 +13,8 @@ const MenuDetails = () => {
     isFetching: isMenuFetching,
     handleDelete,
   } = useMenuDetails();
-  const {
-    handleMenuItem,
-    showModal,
-    handleCloseModal,
-    actionType,
-    categories,
-    handleSubmit,
-    onSubmit,
-    register,
-    errors,
-    setValue,
-    optionFields,
-    appendOption,
-    removeOption,
-    appendChoice,
-    removeChoice,
-    watchedOptions,
-    control,
-    getValues,
-    isLoading,
-  } = useMenu(menuItem?.data);
+  const { categories, showModal, setShowModal, actionType, setActionType } =
+    useMenu();
   const { data } = { ...menuItem };
   const {
     name,
@@ -45,12 +25,11 @@ const MenuDetails = () => {
     prepTime,
     isVeg,
     category,
-
     options,
   } = { ...data };
   if (isMenuFetching) return <div>Loading...</div>;
   return (
-    <section className="flex flex-col w-8/12 mt-10 gap-4">
+    <section className="flex flex-col w-11/12 2xl:w-10/12 mt-10 gap-4">
       <Link to={BROWSER_ROUTE.STORE_MENU}>
         {" "}
         <IoArrowBack className="fill-zinc-100 h-10 w-10" />
@@ -60,7 +39,7 @@ const MenuDetails = () => {
           image={image || ""}
           compressedImage={compressedImage || ""}
           alt={`${name} image`}
-          className="w-6/12 h-full rounded-lg"
+          className="w-5/12 h-full rounded-lg"
         />
         <section className="flex flex-col gap-4">
           <PrimaryDetail
@@ -74,7 +53,10 @@ const MenuDetails = () => {
           <section className="flex gap-2">
             <Button
               className="bg-green-800"
-              onClick={() => handleMenuItem("edit")}
+              onClick={() => {
+                setActionType("edit");
+                setShowModal(true);
+              }}
             >
               Edit
             </Button>
@@ -107,31 +89,14 @@ const MenuDetails = () => {
           </section>
         </section>
       </section>
-      <ModalComponent
-        open={showModal}
-        handleClose={handleCloseModal}
-        modalTitle={"handle menu item"}
-      >
-        <HandleMenuItem
-          actionType={actionType}
-          handleCloseModal={handleCloseModal}
-          categories={categories?.data ?? []}
-          handleSubmit={handleSubmit}
-          onSubmit={onSubmit}
-          register={register}
-          errors={errors}
-          setValue={setValue}
-          optionFields={optionFields}
-          appendOption={appendOption}
-          removeOption={removeOption}
-          appendChoice={appendChoice}
-          removeChoice={removeChoice}
-          watchedOptions={watchedOptions}
-          control={control}
-          isLoading={isLoading}
-          getValues={getValues}
-        />
-      </ModalComponent>
+      <HandleMenuItem
+        categories={categories?.data ?? []}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        actionType={actionType}
+        setActionType={setActionType}
+        menuItem={menuItem?.data}
+      />
     </section>
   );
 };
