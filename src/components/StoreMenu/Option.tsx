@@ -29,7 +29,7 @@ type OptionProps = {
   removeChoice: (optionIndex: number, choiceIndex: number) => void;
   watchedChoices: MenuItemType["options"][number]["choices"];
   setValue: UseFormSetValue<MenuItemType>;
-  getValues?:UseFormGetValues<MenuItemType>
+  getValues?: UseFormGetValues<MenuItemType>;
 };
 
 const Option: React.FC<OptionProps> = ({
@@ -48,7 +48,7 @@ const Option: React.FC<OptionProps> = ({
 
   useEffect(() => {
     const fetchChoices = async () => {
-      await handleOptionChange(option.optionId);
+      option.optionId && (await handleOptionChange(option.optionId));
     };
 
     fetchChoices();
@@ -67,7 +67,6 @@ const Option: React.FC<OptionProps> = ({
           errors={errors}
           onChange={(e) => handleOptionChange(e.target.value)}
           data={options?.data || []}
-     
         />
         <Button
           onClick={() => removeOption(optionIndex)}
