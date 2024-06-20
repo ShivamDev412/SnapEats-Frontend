@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const useMenu = () => {
   const [showModal, setShowModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [actionType, setActionType] = useState("add");
   const { data: categories, isFetching } = useMenuCategoriesQuery("");
   return {
@@ -12,6 +13,8 @@ const useMenu = () => {
     setShowModal,
     actionType,
     setActionType,
+    searchValue,
+    setSearchValue,
   };
 };
 

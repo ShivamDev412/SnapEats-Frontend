@@ -44,8 +44,8 @@ const Item: React.FC<{ item: MenuType }> = ({ item }) => {
     </Link>
   );
 };
-const MenuItems = () => {
-  const { menuItems, isFetching } = useMenuItems();
+const MenuItems = ({ searchValue }: { searchValue: string }) => {
+  const { menuItems, isFetching } = useMenuItems(searchValue);
   const { data } = { ...menuItems };
   if (isFetching) {
     return <MenuItemsSkeleton count={3} />;

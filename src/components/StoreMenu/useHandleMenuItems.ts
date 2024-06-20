@@ -10,8 +10,6 @@ import {
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import Toast from "@/utils/Toast";
 import { useFieldArray, useWatch } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { useEffect } from "react";
 const useMenu = (
   showModal: boolean,
@@ -20,7 +18,6 @@ const useMenu = (
   setActionType: any,
   menuItem?: MenuDetailType
 ) => {
-  const navigation = useNavigate();
 
   const [addMenuItem, { isLoading: isAddMenuItemLoading }] =
     useAddMenuItemMutation();
@@ -120,6 +117,7 @@ const useMenu = (
       };
     });
     const formData = new FormData();
+    console.log(data.isVeg, "isVeg")
     formData.append("image", typeof image[0] === "object" ? image[0] : image);
     formData.append("name", name);
     formData.append("description", description);
@@ -136,7 +134,7 @@ const useMenu = (
           : await updateMenuItem(formData).unwrap();
       if (res.success) {
         Toast(res.message, "success");
-        navigation(BROWSER_ROUTE.STORE_MENU);
+
         handleCloseModal();
         reset(DEFAULT_VALUES.MENU_ITEM as unknown as MenuItemType);
       }

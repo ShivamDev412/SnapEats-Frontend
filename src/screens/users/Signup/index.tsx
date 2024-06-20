@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { CircularProgress } from "@mui/material";
 import Button from "@/components/Button";
 import AuthWrapper from "@/Wrappers/AuthWrapper";
@@ -10,6 +11,7 @@ import { PasswordField, TextInput } from "@/components/InputComponent";
 const Signup = () => {
   const { register, handleSubmit, onSubmit, errors, isLoading } =
     useSignup();
+    const {t} = useTranslation()
   return (
     <AuthWrapper>
       <form
@@ -20,46 +22,46 @@ const Signup = () => {
         <div className="h-auto w-[2.5in] mx-auto">
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
-        <h2 className="text-4xl text-center font-semibold mb-5">Sign Up</h2>
+        <h2 className="text-4xl text-center font-semibold mb-5">{t('SignUp')}</h2>
         <TextInput
           id="firstName"
           type="text"
           register={register}
           errors={errors}
-          placeholder="Your first name"
+          placeholder={t('yourFirstName')}
         />
         <TextInput
           id="lastName"
           type="text"
           register={register}
           errors={errors}
-          placeholder="Your last name"
+          placeholder={t('yourLastName')}
         />
         <TextInput
           id="email"
           type="email"
           register={register}
           errors={errors}
-          placeholder="Your email"
+          placeholder={t('yourEmail')}
         />
         <PasswordField
           id={"password"}
           register={register}
           errors={errors}
-          placeholder="Your Password"
+          placeholder={t('yourPassword')}
         />
 
         <Button type="submit" variant="contained" disabled={isLoading} className="w-full my-2">
           {isLoading ? (
             <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
-            "Signup"
+            <>{t('signup')}</>
           )}
         </Button>
         <p className="text-right font-medium">
-          Already have an account?{" "}
+          {t('alreadyHaveAccount')}{" "}
           <Link to={BROWSER_ROUTE.LOGIN} className="text-primary">
-            Login
+            {t('login')}
           </Link>
         </p>
       </form>

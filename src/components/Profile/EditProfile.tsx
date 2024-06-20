@@ -6,6 +6,7 @@ import { FormProps } from "../ManageAddress/AddAddress";
 import FileUpload from "../UploadFile";
 import { StoreProfileData } from "@/redux/slice/api/store/profileSlice";
 import { TextInput } from "../InputComponent";
+import { useTranslation } from "react-i18next";
 
 const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
   register,
@@ -16,9 +17,13 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
   isUser,
   control,
 }) => {
+  const { t } = useTranslation();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <h3 className="text-2xl font-semibold text-center flex gap-1 mx-auto items-center justify-center"><CgProfile className="h-7 w-7"/>Edit Profile </h3>
+      <h3 className="text-2xl font-semibold text-center flex gap-1 mx-auto items-center justify-center">
+        <CgProfile className="h-7 w-7" />
+        {t("editProfile")}
+      </h3>
       <div className="my-4 flex gap-4 flex-col">
         <FileUpload
           id={isUser ? "profilePicture" : "image"}
@@ -26,7 +31,9 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
           errors={errors}
           control={control}
           className="rounded-full w-[2in] object-cover"
-          title={isUser ? "Upload profile picture" : "Upload store picture"}
+          title={
+            isUser ? `${t("uploadProfilePic")}` : `${t("upload store picture")}`
+          }
         />
         {isUser ? (
           <>
@@ -35,14 +42,14 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
               type="text"
               register={register}
               errors={errors}
-              placeholder="Your first name"
+              placeholder={t("yourFirstName")}
             />
             <TextInput
               id="lastName"
               type="text"
               register={register}
               errors={errors}
-              placeholder="Your last name"
+              placeholder={t("yourLastName")}
             />
           </>
         ) : (
@@ -51,7 +58,7 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
             type="text"
             register={register}
             errors={errors}
-            placeholder="Store Name"
+            placeholder={t("storeName")}
           />
         )}
         <TextInput
@@ -59,10 +66,10 @@ const EditProfile: React.FC<FormProps<UpdateUserType | StoreProfileData>> = ({
           type="email"
           register={register}
           errors={errors}
-          placeholder="Your email"
+          placeholder={"yourEmail"}
         />
         <Button type="submit" isLoading={isLoading}>
-          Submit
+          {t("update")}
         </Button>
       </div>
     </form>
