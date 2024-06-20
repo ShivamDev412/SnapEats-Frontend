@@ -1,14 +1,19 @@
 import { IoSearch } from "react-icons/io5";
 import { IoIosAdd } from "react-icons/io";
 import Button from "../Button";
-import useSearchAndAdd from "./useSearchAndAdd";
 
 type Props = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setActionType: any;
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 };
-const SearchAndAdd: React.FC<Props> = ({ setShowModal, setActionType }) => {
-  const { searchMenu, setSearchMenu } = useSearchAndAdd();
+const SearchAndAdd: React.FC<Props> = ({
+  setShowModal,
+  setActionType,
+  searchValue,
+  setSearchValue,
+}) => {
   return (
     <section className="flex gap-4 items-center">
       <div className="flex items-center bg-zinc-800 border border-zinc-600 rounded-[25px] p-2 gap-2 mt-2 md:m-0 w-6/12">
@@ -17,8 +22,8 @@ const SearchAndAdd: React.FC<Props> = ({ setShowModal, setActionType }) => {
           type="text"
           className="bg-transparent w-full focus:outline-none"
           placeholder="Search for menu items"
-          value={searchMenu}
-          onChange={(e) => setSearchMenu(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
       <Button

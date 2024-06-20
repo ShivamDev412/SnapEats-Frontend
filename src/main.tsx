@@ -8,7 +8,7 @@ import store from "./redux/Store.ts";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { persistor } from "./redux/Store.ts";
-
+import "./i18n"
 window.addEventListener("vite:preloadError", () => {
   // window.reload()
   window.location.reload();

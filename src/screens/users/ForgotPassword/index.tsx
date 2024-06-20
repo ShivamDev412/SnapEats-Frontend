@@ -5,10 +5,12 @@ import { CircularProgress } from "@mui/material";
 import { useForgotPassword } from "./useForgotPasssword";
 import Logo from "@/assets/logo.svg";
 import { TextInput } from "@/components/InputComponent";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
   const { register, handleSubmit, onSubmit, errors, isLoading } =
     useForgotPassword();
+  const { t } = useTranslation();
   return (
     <main className="bg-zinc-900 text-zinc-100 flex justify-center items-center h-screen">
       <form
@@ -20,26 +22,31 @@ const ForgotPassword = () => {
           <img src={Logo} alt="brand_logo" className="w-full h-full" />
         </div>
         <h2 className="text-4xl text-center font-semibold mb-5">
-          Forgot Password
+          {t("forgotPassword")}
         </h2>
         <TextInput
           id="email"
           type="email"
           register={register}
           errors={errors}
-          placeholder="Your email"
+          placeholder={t("yourEmail")}
         />
-        <Button type="submit" variant="contained" disabled={isLoading} className="w-full my-2">
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={isLoading}
+          className="w-full my-2"
+        >
           {isLoading ? (
             <CircularProgress size={28} color="secondary" thickness={5} />
           ) : (
-            "Send Reset Link"
+            <>{t("sendResetLink")}</>
           )}
         </Button>
         <p className="text-right font-medium">
-          Remember your password?{" "}
+          {t("rememberYourPassword")}{" "}
           <Link to={BROWSER_ROUTE.LOGIN} className="text-primary">
-            Login
+            {t("login")}
           </Link>
         </p>
       </form>

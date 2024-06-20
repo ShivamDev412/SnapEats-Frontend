@@ -44,7 +44,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       ) : (
         <div className="flex h-full justify-between flex-1">
           <Aside />
-          <main className="flex-1 w-9/12 ml-10 my-10">{children}</main>
+          <main className="pl-[20%] 2xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">{children}</main>
         </div>
       )}
     </div>
