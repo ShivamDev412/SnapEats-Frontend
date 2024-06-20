@@ -1,25 +1,25 @@
 import React from "react";
-import { FieldErrors, UseFormRegister, useWatch, Control } from "react-hook-form";
-
+import {
+  FieldErrors,
+  UseFormRegister,
+  useWatch,
+  Control,
+} from "react-hook-form";
 interface ToggleInputProps {
   id: string;
   control: Control<any>;
   register: UseFormRegister<any>;
   errors: FieldErrors;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
 }
-
 const ToggleInput: React.FC<ToggleInputProps> = ({
   id,
   control,
   register,
   errors,
-  onChange,
   label,
 }) => {
   const isChecked = useWatch({ control, name: id });
-
   return (
     <div className="w-full mx-auto">
       <div className="flex items-center">
@@ -30,7 +30,7 @@ const ToggleInput: React.FC<ToggleInputProps> = ({
           className="appearance-none hidden"
           id={id}
           type="checkbox"
-          {...register(id, { onChange })}
+          {...register(id)}
         />
         <label
           htmlFor={id}

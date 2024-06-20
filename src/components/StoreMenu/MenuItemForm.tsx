@@ -113,7 +113,7 @@ const MenuItemForm: React.FC<MenuItemFormProps> = ({
           placeholder="Base Price $0.00"
         />
         <ToggleInput
-          id="toggle"
+          id="isVeg"
           control={control}
           register={register}
           errors={errors}

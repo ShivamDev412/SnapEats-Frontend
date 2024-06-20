@@ -8,6 +8,7 @@ import Avatar from "../Avatar";
 import Button from "../Button";
 import EditProfile from "./EditProfile";
 import StorePlaceholderImage from "@/assets/store_placeholder.webp";
+import { useTranslation } from "react-i18next";
 const ProfileMainDetails: React.FC<{
   name: string;
   email: string;
@@ -36,10 +37,15 @@ const ProfileMainDetails: React.FC<{
     isUser,
     control,
   } = useProfileMainDetails();
+  const { t } = useTranslation();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
       <h3 className="text-lg lg:text-xl font-bold">
-        {isUser ? " Personal Information" : "Store Primary Information"}
+        {isUser ? (
+          <> {t("personalInformation")}</>
+        ) : (
+          <> {t("storePrimaryInformation")}</>
+        )}
       </h3>
       <div className="flex flex-col md:flex-row gap-4 md:items-center">
         {profileImage && compressedProfilePicture ? (
@@ -81,7 +87,7 @@ const ProfileMainDetails: React.FC<{
             className="flex gap-2 text-sm lg:text-lg items-center italic bg-transparent p-0 w-fit"
             onClick={() => updateProfile(name, email, profileImage)}
           >
-            <FaEdit /> <p>Edit Profile</p>
+            <FaEdit /> <p>{t('editProfile')}</p>
           </Button>
         </div>
       </div>

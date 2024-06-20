@@ -1,0 +1,16 @@
+{
+    "login": "Iniciar sesión",
+    "LogIn": "Iniciar sesión",
+    "signup": "Registrarse",
+    "SignUp": "Regístrate",
+    "yourFirstName": "Tu nombre",
+    "yourLastName": "Tu apellido",
+    "yourEmail": "Tu correo electrónico",
+    "yourPassword": "Tu contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "resetPassword": "Restablecer la contraseña",
+    "rememberYourPassword": "¿Recuerdas tu contraseña?"
+  }
+  

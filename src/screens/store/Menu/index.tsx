@@ -14,6 +14,8 @@ const Menu = () => {
     setShowModal,
     actionType,
     setActionType,
+    searchValue,
+    setSearchValue,
   } = useMenu();
   if (isFetching) {
     return <div>Loading...</div>;
@@ -21,9 +23,14 @@ const Menu = () => {
   return (
     <section className="w-11/12 2xl:w-10/12">
       <h2 className="text-3xl font-semibold mb-10">Your Menu</h2>
-      <SearchAndAdd setShowModal={setShowModal} setActionType={setActionType} />
+      <SearchAndAdd
+        setShowModal={setShowModal}
+        setActionType={setActionType}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <MenuCategories categories={categories?.data ?? []} />
-      <MenuItems />
+      <MenuItems searchValue={searchValue} />
       <HandleMenuItem
         categories={categories?.data ?? []}
         showModal={showModal}

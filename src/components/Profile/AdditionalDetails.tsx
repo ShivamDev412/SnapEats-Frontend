@@ -6,6 +6,7 @@ import ModalComponent from "../Modal";
 import useAdditionalDetails from "./useAdditionalDetails";
 import AddPhoneNumber from "./AddPhoneNumber";
 import VerifyCredentials from "./VerifyCredentials";
+import { useTranslation } from "react-i18next";
 
 const AdditionalDetails: FC<{
   phoneNumber: string;
@@ -30,9 +31,10 @@ const AdditionalDetails: FC<{
     updateStorePhoneNumberLoading,
     actionType,
   } = useAdditionalDetails();
+  const { t } = useTranslation();
   return (
     <section className="flex flex-col gap-2 md:gap-6">
-      <h3 className="text-lg md:text-xl font-bold">Additional Information</h3>
+      <h3 className="text-lg md:text-xl font-bold">{t('additionalInformation')}</h3>
       <div>
         {phoneNumber ? (
           <div className="flex gap-4 items-center">
@@ -57,7 +59,7 @@ const AdditionalDetails: FC<{
                   handleUpdatePhoneNumber({ countryCode, phoneNumber })
                 }
               >
-                Update Phone Number
+                {t('updatePhoneNumber')}
               </Button>
             </div>
           </div>
@@ -66,7 +68,7 @@ const AdditionalDetails: FC<{
             className="px-2 bg-green-800 text-[1rem]"
             onClick={addPhoneNumber}
           >
-            Add Phone Number
+            {t('addPhoneNumber')}
           </Button>
         )}
       </div>

@@ -1,6 +1,7 @@
 import OTP from "../OtpInput";
 import Button from "../Button";
 import useVerifyCredential from "./useVerifyCredentail";
+import { useTranslation } from "react-i18next";
 type Props = {
   phoneNumber?: string;
   handleCloseModal: () => void;
@@ -23,18 +24,19 @@ const VerifyCredentials: React.FC<Props> = ({
     renderCounter,
     isLoading,
   } = useVerifyCredential(handleCloseModal);
-
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center gap-3">
       <h3 className="text-lg md:text-xl font-bold">
-        Verify {type === "email" ? "Email" : "Phone Number"}
+        {t("verify")}{" "}
+        {type === "email" ? <>{t("email")}</> : <>{t("phoneNumber")}</>}
       </h3>
 
       {isOtpSend ? (
         <>
           <p>
-            Enter OPT you received on your{" "}
-            {type === "email" ? "Email" : "Phone Number"}
+            {t("enter otp received on your")}{" "}
+            {type === "email" ? <>{t("email")}</> : <>{t("phoneNumber")}</>}
           </p>{" "}
           <OTP
             separator={<span> </span>}
@@ -57,9 +59,13 @@ const VerifyCredentials: React.FC<Props> = ({
                 )
               }
             >
-              {counter === 0
-                ? "Resend OTP"
-                : `Resend in ${renderCounter(counter)} min`}
+              {counter === 0 ? (
+                <>{t("resendOTP")}</>
+              ) : (
+                <>
+                  {t("resendIn")} {`${renderCounter(counter)} min`}
+                </>
+              )}
             </Button>
           </div>
           <Button
@@ -67,17 +73,17 @@ const VerifyCredentials: React.FC<Props> = ({
             isLoading={isLoading}
             className="w-full"
           >
-            Verify OTP
+            {t("verifyOTP")}
           </Button>
         </>
       ) : (
         <>
           <p className="break-word">
-            You will receive an OTP on{" "}
+            {t("you will receive an OTP on")}{" "}
             <span className="font-semibold">
               {type === "email" ? email : phoneNumber}{" "}
             </span>
-            on click of Send OTP button.
+            {t("on click of Send OTP button.")}
           </p>
           <Button
             onClick={() =>
@@ -90,7 +96,7 @@ const VerifyCredentials: React.FC<Props> = ({
             className="w-full"
             isLoading={isLoading}
           >
-            Send OTP
+            {t("sendOTP")}
           </Button>
         </>
       )}
