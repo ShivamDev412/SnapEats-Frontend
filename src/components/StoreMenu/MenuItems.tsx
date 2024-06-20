@@ -4,6 +4,7 @@ import useMenuItems from "./useMenuItems";
 import LazyLoadedImageComponent from "../LazyLoadedImageComponent";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { Link } from "react-router-dom";
+import MenuItemsSkeleton from "../Skeleton/MenuItemsSkeleton";
 const Item: React.FC<{ item: MenuType }> = ({ item }) => {
   const {
     name,
@@ -47,7 +48,7 @@ const MenuItems = () => {
   const { menuItems, isFetching } = useMenuItems();
   const { data } = { ...menuItems };
   if (isFetching) {
-    return <div>Loading...</div>;
+    return <MenuItemsSkeleton count={3} />;
   }
   return (
     <section className="flex gap-4 flex-wrap">

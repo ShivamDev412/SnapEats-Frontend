@@ -5,6 +5,8 @@ import {
   SignupSkeleton,
   AddressSkeleton,
   StoreProfileSkeleton,
+  MenuSkeleton,
+  ItemDetailSkeleton,
 } from "./Skeleton";
 
 const RenderSkeleton = ({ pathname }: { pathname: string }) => {
@@ -18,6 +20,10 @@ const RenderSkeleton = ({ pathname }: { pathname: string }) => {
     return <AddressSkeleton />;
   } else if (pathname === BROWSER_ROUTE.STORE_PROFILE) {
     return <StoreProfileSkeleton />;
+  } else if (pathname === BROWSER_ROUTE.STORE_MENU) {
+    return <MenuSkeleton />;
+  } else if (pathname === BROWSER_ROUTE.STORE_MENU_DETAILS) {
+    return <ItemDetailSkeleton />;
   }
 };
 export default RenderSkeleton;
