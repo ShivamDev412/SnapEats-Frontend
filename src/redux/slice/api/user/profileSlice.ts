@@ -1,6 +1,6 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import { apiSlice } from "@/redux/slice/api/apiSlice";
-type AuthResponse = {
+export type AuthResponse = {
   success: boolean;
   message: string;
 };
@@ -23,6 +23,7 @@ export type UserType = {
   phoneNumberVerified: boolean;
   phoneNumber: string;
   countryCode: string;
+  language: string;
 };
 export type UserResponse = {
   success: boolean;

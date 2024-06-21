@@ -2,8 +2,8 @@ import Skeleton from "react-loading-skeleton";
 
 const ProfileSkeleton = () => {
   return (
-    <div className="p-6 rounded-xl animate-pulse text-zinc-100 flex flex-col gap-6">
-      <section className="flex flex-col gap-2 md:gap-6">
+    <div className="p-6 rounded-xl animate-pulse text-zinc-100 flex flex-col gap-6 h-fit w-full">
+      <div className="flex flex-col gap-2 md:gap-6">
         <Skeleton height={28} width={200} />
         <div className="flex flex-col md:flex-row gap-4 md:items-center">
           <Skeleton
@@ -18,9 +18,9 @@ const ProfileSkeleton = () => {
             <Skeleton width="20%" height={30} className="mt-2" />
           </div>
         </div>
-      </section>
-
-      <section className="flex flex-col gap-2 md:gap-6">
+      </div>
+      <div className="border-b-[0.1px] border-zinc-700 w-full"></div>
+      <div className="flex flex-col gap-2 md:gap-6">
         <Skeleton height={28} width={200} />
         <div>
           <div className="flex gap-4 items-center">
@@ -30,7 +30,7 @@ const ProfileSkeleton = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { HandleMenuItem, PrimaryDetail } from "@/components/StoreMenu";
 import Button from "@/components/Button";
 import useMenu from "./useMenu";
+import ItemDetailSkeleton from "@/components/Skeleton/ItemDetailSkeleton";
 
 const MenuDetails = () => {
   const {
@@ -27,7 +28,7 @@ const MenuDetails = () => {
     category,
     options,
   } = { ...data };
-  if (isMenuFetching) return <div>Loading...</div>;
+  if (isMenuFetching) return <ItemDetailSkeleton />;
   return (
     <section className="flex flex-col w-11/12 2xl:w-10/12 mt-10 gap-4">
       <Link to={BROWSER_ROUTE.STORE_MENU}>

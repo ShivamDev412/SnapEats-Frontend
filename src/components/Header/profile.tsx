@@ -11,6 +11,9 @@ import AvatarComponent from "../Avatar";
 import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice";
 import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { useDispatch } from "react-redux";
+import Skeleton from "react-loading-skeleton";
+import { useTranslation } from "react-i18next";
+
 type MenuDataProps = {
   menu: string;
   link: string;
@@ -27,19 +30,24 @@ const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown }) => {
 };
 const ProfileSection = () => {
   const dispatch = useDispatch();
-  const { data: user } = useUserQuery("", {
+  const { data: user, isLoading: isUserLoading } = useUserQuery("", {
     // refetchOnMountOrArgChange: true,
     refetchOnReconnect: true,
   });
   const [trigger, { data: store }] = useLazyGetStoreByUserQuery();
   const { logoutHandler } = useProfile();
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const { i18n } = useTranslation();
   useEffect(() => {
     if (user?.data.storeId) {
       trigger(user?.data.storeId);
     }
   }, [user?.data.storeId]);
+  useEffect(() => {
+    if (user?.data.language) {
+      i18n.changeLanguage(user?.data.language);
+    }
+  }, [user?.data.language]);
   useEffect(() => {
     if (store?.data?.status === "PENDING") {
       dispatch(setStoreStatus("pending"));
@@ -50,7 +58,9 @@ const ProfileSection = () => {
   return (
     <Dropdown open={showDropdown}>
       <MenuButton>
-        {user?.data?.profilePicture ? (
+        {isUserLoading ? (
+          <Skeleton circle={true} height={40} width={40} />
+        ) : user?.data?.profilePicture ? (
           <Avatar
             alt={`${user?.data?.name}_profile_picture`}
             src={user?.data?.profilePicture}
