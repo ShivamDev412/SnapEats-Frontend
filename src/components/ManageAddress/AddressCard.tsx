@@ -27,8 +27,9 @@ const AddressCard: React.FC<{
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       markAsDefaultAddress(address?.id as string);
-    }
-    setDefaultAddress(event.target.checked);
+      setDefaultAddress(event.target.checked);
+    } 
+
   };
   const renderAddressType = (type: string) => {
     switch (type) {

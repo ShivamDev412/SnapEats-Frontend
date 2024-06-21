@@ -1,7 +1,7 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import { apiSlice } from "@/redux/slice/api/apiSlice";
 import { PhoneNumberType } from "../user/profileSlice";
-type AuthResponse<T = undefined> = {
+export type AuthResponse<T = undefined> = {
   success: boolean;
   message: string;
   data?: T;

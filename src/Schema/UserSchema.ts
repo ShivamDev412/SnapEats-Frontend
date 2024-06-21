@@ -50,10 +50,31 @@ const UpdateProfileSchema = z.object({
     .email("Please enter a valid email address"),
   profilePicture: z.any().optional(),
 });
+const ChangePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, "Current Password is required"),
+    newPassword: z
+      .string()
+      .min(1, "New Password is required")
+      .refine(passwordComplexity, {
+        message:
+          "New Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      }),
+    confirmNewPassword: z.string().min(1, "Confirm New Password is required"),
+  })
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "New Password and Confirm New Password must match",
+    path: ["confirmNewPassword"],
+  })
+  .refine((data) => data.newPassword !== data.currentPassword, {
+    message: "New Password should not be the same as the Current Password",
+    path: ["newPassword"],
+  });
 export {
   ForgotPasswordSchema,
   ResetPasswordSchema,
   AddressSchema,
   PhoneNumberSchema,
   UpdateProfileSchema,
+  ChangePasswordSchema,
 };

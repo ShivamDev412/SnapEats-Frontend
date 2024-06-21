@@ -249,6 +249,17 @@ const countryCode = [
   { value: "+260", label: "+260 ZMB" },
   { value: "+263", label: "+263 ZWE" },
 ];
+const LANGUAGE = [
+  {
+    value: "en",
+    label: "English",
+  },
+  { value: "es", label: "Espanol" },
+  {
+    value: "fr",
+    label: "Français",
+  },
+];
 const ACCOUNT_TYPE = {
   USER: "USER",
   STORE: "STORE",
@@ -338,7 +349,7 @@ const DEFAULT_VALUES = {
       description: "",
       price: 0,
       category: "",
-      isVeg:true,
+      isVeg: true,
       prepTime: 0,
       options: [
         {
@@ -351,6 +362,11 @@ const DEFAULT_VALUES = {
       ],
     },
   },
+  CHANGE_PASSWORD: {
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  },
 };
 export {
   addressTypes,
@@ -359,4 +375,5 @@ export {
   STORE_NAV_LIST,
   USER_ROUTES,
   DEFAULT_VALUES,
+  LANGUAGE
 };

@@ -24,8 +24,10 @@ const StoreEditProfileScreen = lazy(
 );
 const StoreMenuScreen = lazy(() => import("@/screens/store/Menu"));
 const StoreProfileScreen = lazy(() => import("@/screens/store/Profile"));
-const StoreMenuDetailScreen = lazy(
-  () => import("@/screens/store/Menu/detail")
+const StoreMenuDetailScreen = lazy(() => import("@/screens/store/Menu/detail"));
+const PrivacyPolicyScreen = lazy(() => import("@/screens/users/PrivacyPolicy"));
+const TermsOfServiceScreen = lazy(
+  () => import("@/screens/users/TermsAndConditions")
 );
 const Routers = () => {
   const {
@@ -46,6 +48,8 @@ const Routers = () => {
     SETTINGS,
     ORDERS,
     STORE_MENU_DETAILS,
+    PRIVACY_POLICY,
+    TERMS_AND_CONDITIONS,
   } = BROWSER_ROUTE;
   return (
     <BrowserRouter>
@@ -63,6 +67,11 @@ const Routers = () => {
           <Route path={MANAGE_ADDRESS} element={<ManageAddress />} />
           <Route path={ORDERS} element={<OrdersScreen />} />
           <Route path={SETTINGS} element={<StoreSettingsScreen />} />
+          <Route path={PRIVACY_POLICY} element={<PrivacyPolicyScreen />} />
+          <Route
+            path={TERMS_AND_CONDITIONS}
+            element={<TermsOfServiceScreen />}
+          />
           {/* Store */}
           <Route path={STORE_REGISTER} element={<StoreRegisterScreen />} />
           <Route path={STORE_DASHBOARD} element={<StoreDashboardScreen />} />
@@ -73,7 +82,10 @@ const Routers = () => {
             element={<StoreEditProfileScreen />}
           />
           <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
-          <Route path={STORE_MENU_DETAILS} element={<StoreMenuDetailScreen />} />
+          <Route
+            path={STORE_MENU_DETAILS}
+            element={<StoreMenuDetailScreen />}
+          />
           <Route path={STORE_MENU} element={<StoreMenuScreen />} />
         </Route>
       </Routes>

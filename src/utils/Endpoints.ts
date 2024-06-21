@@ -26,6 +26,8 @@ const ENDPOINTS = {
   OPTIONS: "/options",
   CHOICE: "/choice",
   PROFILE: "/profile",
+  CHANGE_LANGUAGE:"/change-language",
+  CHANGE_PASSWORD:"/change-password",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -38,6 +40,8 @@ const BROWSER_ROUTE = {
   ORDERS: "/orders",
   MANAGE_ADDRESS: "/manage-address",
   SETTINGS: "/settings",
+  PRIVACY_POLICY: "/privacy-policy",
+  TERMS_AND_CONDITIONS: "/terms-and-conditions",
 
   STORE_REGISTER: "/store-register",
   STORE_DASHBOARD: "/store/dashboard",

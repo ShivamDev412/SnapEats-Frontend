@@ -12,6 +12,7 @@ import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice
 import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
+import { useTranslation } from "react-i18next";
 
 type MenuDataProps = {
   menu: string;
@@ -36,12 +37,17 @@ const ProfileSection = () => {
   const [trigger, { data: store }] = useLazyGetStoreByUserQuery();
   const { logoutHandler } = useProfile();
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const { i18n } = useTranslation();
   useEffect(() => {
     if (user?.data.storeId) {
       trigger(user?.data.storeId);
     }
   }, [user?.data.storeId]);
+  useEffect(() => {
+    if (user?.data.language) {
+      i18n.changeLanguage(user?.data.language);
+    }
+  }, [user?.data.language]);
   useEffect(() => {
     if (store?.data?.status === "PENDING") {
       dispatch(setStoreStatus("pending"));

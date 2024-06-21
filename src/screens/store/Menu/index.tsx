@@ -5,6 +5,7 @@ import {
   MenuItems,
 } from "@/components/StoreMenu";
 import useMenu from "./useMenu";
+import { MenuSkeleton } from "@/components/Skeleton";
 
 const Menu = () => {
   const {
@@ -18,7 +19,7 @@ const Menu = () => {
     setSearchValue,
   } = useMenu();
   if (isFetching) {
-    return <div>Loading...</div>;
+    return <MenuSkeleton />;
   }
   return (
     <section className="w-11/12 2xl:w-10/12">
