@@ -23,3 +23,21 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #000 !important;
   caret-color: #000 !important;
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background:rgb(82 82 91);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(39 39 42);
+  border-radius: 8px;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */

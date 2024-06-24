@@ -20,7 +20,7 @@ const Item: React.FC<{ item: MenuType }> = ({ item }) => {
   };
   return (
     <Link
-      className="bg-zinc-800 rounded-lg w-[23.5%] 2xl:w-1/5"
+      className="bg-zinc-800 rounded-lg w-[48%] lg:w-[31.5%] xl:w-1/5"
       to={`${BROWSER_ROUTE.STORE_MENU}/${id}`}
     >
       <LazyLoadedImageComponent

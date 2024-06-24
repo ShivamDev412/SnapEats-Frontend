@@ -29,6 +29,9 @@ const PrivacyPolicyScreen = lazy(() => import("@/screens/users/PrivacyPolicy"));
 const TermsOfServiceScreen = lazy(
   () => import("@/screens/users/TermsAndConditions")
 );
+const LoginSuccessScreen = lazy(
+  () => import("@/screens/users/Login/SuccessPage")
+);
 const Routers = () => {
   const {
     LOGIN,
@@ -50,6 +53,7 @@ const Routers = () => {
     STORE_MENU_DETAILS,
     PRIVACY_POLICY,
     TERMS_AND_CONDITIONS,
+    LOGIN_SUCCESS,
   } = BROWSER_ROUTE;
   return (
     <BrowserRouter>
@@ -59,6 +63,7 @@ const Routers = () => {
           <Route path={SIGNUP} element={<SignupScreen />} />
           <Route path={FORGOT_PASSWORD} element={<ForgotPasswordScreen />} />
           <Route path={RESET_PASSWORD} element={<ResetPasswordScreen />} />
+          <Route path={LOGIN_SUCCESS} element={<LoginSuccessScreen />} />
         </Route>
         <Route element={<PrivateRoute />}>
           {/* User  */}

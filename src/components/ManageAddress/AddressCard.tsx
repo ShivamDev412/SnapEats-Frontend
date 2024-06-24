@@ -50,7 +50,7 @@ const AddressCard: React.FC<{
     }
   };
   return (
-    <div className="w-full lg:w-[49%] 2xl:w-[32.5%] rounded-lg p-4 bg-zinc-800 flex flex-col justify-between gap-4 h-[2in]">
+    <div className="w-full lg:w-[49%] xl:w-[32.4%] rounded-lg p-4 bg-zinc-800 flex flex-col justify-between gap-4 h-[2in]">
       <div className="flex items-start justify-between">
         <div className="w-10/12 lg:w-8/12">
           <p>
