@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import Aside from "@/components/Aside";
 import Footer from "@/components/Footer";
@@ -24,7 +25,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }
   }, [pathName]);
   return (
-    <div className="flex flex-col justify-between bg-zinc-900 min-h-screen text-zinc-100">
+    <div className="flex flex-col justify-between bg-zinc-900 min-h-screen text-zinc-100 scrollbar-thumb-rounded-full">
       {loading && (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -36,7 +37,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {isUser ? (
         <>
           <Header />{" "}
-          <main className="flex-1 w-11/12 md:w-9/12 lg:w-8/12 mx-auto my-5 lg:my-10 justify-center flex">
+          <main className="flex-1 w-11/12 md:w-10/12 xl:w-10/12 2xl:w-9/12  mx-auto my-5 lg:my-10 justify-center flex">
             {children}
           </main>
           <Footer />
@@ -44,7 +45,9 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       ) : (
         <div className="flex h-full justify-between flex-1">
           <Aside />
-          <main className="pl-[20%] 2xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">{children}</main>
+          <main className="pl-[30%] lg:pl-[22.5%] xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">
+            {children}
+          </main>
         </div>
       )}
     </div>

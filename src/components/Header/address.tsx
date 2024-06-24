@@ -13,19 +13,23 @@ const Address = () => {
   } = useAddress();
 
   return (
-    <div className="w-6/12 xl:w-2/12 relative flex justify-center">
+    <div className="w-6/12 sm:w-3/12 xl:w-2/12 relative flex justify-center">
       <button
         className="text-sm lg:text-lg text-center flex items-center gap-2 justify-center w-full"
-        onClick={handleShowDropdown}
+        onClick={defaultAddress ? handleShowDropdown : changeAddress}
         onBlur={handleHideDropdown}
       >
         <FaLocationDot />
-        <p className="w-11/12 truncate">
-          {defaultAddress?.apt} {defaultAddress?.block}
-          {defaultAddress?.address}
-        </p>
+        {defaultAddress ? (
+          <p className="w-11/12 truncate">
+            {defaultAddress?.apt} {defaultAddress?.block}
+            {defaultAddress?.address}
+          </p>
+        ) : (
+          <p className="w-11/12 truncate text-left">Add Address</p>
+        )}
       </button>
-      {showDropdown && !isManageAddressPage && (
+      {defaultAddress && showDropdown && !isManageAddressPage && (
         <div className="top-8 absolute bg-zinc-950 border-zinc-700 border p-2 rounded-lg w-full flex flex-col gap-2 z-10">
           <h4 className="font-semibold xl:text-lg text-[1rem]">
             Delivery Address

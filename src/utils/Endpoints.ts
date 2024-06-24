@@ -28,13 +28,15 @@ const ENDPOINTS = {
   PROFILE: "/profile",
   CHANGE_LANGUAGE:"/change-language",
   CHANGE_PASSWORD:"/change-password",
+  FOOD_TYPE: "/food-type",
+  STORE_FOOD_TYPE: "/store-food-type",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
   SIGNUP: "/signup",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password/:token",
-  
+  LOGIN_SUCCESS: "/login-success",
   HOME: "/",
   PROFILE: "/profile",
   ORDERS: "/orders",

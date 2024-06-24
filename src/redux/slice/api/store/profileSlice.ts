@@ -33,6 +33,10 @@ export type StoreProfileData = {
   email: string;
   image?: string;
 };
+export type FoodType = {
+  id: string;
+  foodType: string;
+};
 export const storeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     registerStore: builder.mutation<
@@ -126,6 +130,36 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Store"],
     }),
+    getAllFoodTypes: builder.query<AuthResponse<FoodType[]>, string>({
+      query: () => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.FOOD_TYPE}`,
+        method: "GET",
+      }),
+      providesTags: ["FoodType"],
+    }),
+    addFoodType: builder.mutation<AuthResponse, { id: string }>({
+      query: (data) => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.FOOD_TYPE}`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["FoodType", "StoreFoodType"],
+    }),
+    removeFoodType: builder.mutation<AuthResponse, { id: string }>({
+      query: (data) => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.FOOD_TYPE}`,
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["FoodType", "StoreFoodType"],
+    }),
+    getStoreFoodTypes: builder.query<AuthResponse<FoodType[]>, string>({
+      query: () => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.STORE_FOOD_TYPE}`,
+        method: "GET",
+      }),
+      providesTags: ["StoreFoodType"],
+    }),
   }),
 });
 export const {
@@ -141,4 +175,8 @@ export const {
   useResentStoreEmailOTPMutation,
   useUpdateStoreMutation,
   useLazyGetStoreQuery,
+  useGetAllFoodTypesQuery,
+  useAddFoodTypeMutation,
+  useRemoveFoodTypeMutation,
+  useGetStoreFoodTypesQuery,
 } = storeApiSlice;
