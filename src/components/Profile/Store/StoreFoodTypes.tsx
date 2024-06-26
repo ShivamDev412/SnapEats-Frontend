@@ -29,11 +29,7 @@ const FoodTypes: FC<{
             onClick={() => handleFoodType(foodType, type)}
           >
             {foodType.foodType}{" "}
-            {type === "selectedFoodTypes" ? (
-              <IoClose />
-            ) : (
-              <IoAdd />
-            )}
+            {type === "selectedFoodTypes" ? <IoClose /> : <IoAdd />}
           </button>
         </li>
       ))}

@@ -37,6 +37,18 @@ export type FoodType = {
   id: string;
   foodType: string;
 };
+export type StoreTiming = {
+  openTime: string;
+  closeTime: string;
+  type?: string;
+};
+type StoreTimingResponse = {
+  id: string;
+  openTime: Date | null;
+  closeTime: Date | null;
+  specialEventOpenTime: Date | null;
+  specialEventCloseTime: Date | null;
+};
 export const storeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     registerStore: builder.mutation<
@@ -160,6 +172,21 @@ export const storeApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["StoreFoodType"],
     }),
+    getStoreTiming: builder.query<AuthResponse<StoreTimingResponse>, string>({
+      query: () => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.STORE_TIMING}`,
+        method: "GET",
+      }),
+      providesTags: ["StoreTiming"],
+    }),
+    updateStoreTiming: builder.mutation<AuthResponse, StoreTiming>({
+      query: (data) => ({
+        url: `${BASE_ROUTE.STORE}${ENDPOINTS.STORE_TIMING}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["StoreTiming"],
+    }),
   }),
 });
 export const {
@@ -179,4 +206,6 @@ export const {
   useAddFoodTypeMutation,
   useRemoveFoodTypeMutation,
   useGetStoreFoodTypesQuery,
+  useGetStoreTimingQuery,
+  useUpdateStoreTimingMutation,
 } = storeApiSlice;
