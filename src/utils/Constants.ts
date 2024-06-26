@@ -367,6 +367,10 @@ const DEFAULT_VALUES = {
     newPassword: "",
     confirmPassword: "",
   },
+  STORE_TIMING: {
+    openTime: "",
+    closeTime:"",
+  },
 };
 export {
   addressTypes,

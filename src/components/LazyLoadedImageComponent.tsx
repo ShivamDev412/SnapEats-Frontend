@@ -15,7 +15,10 @@ const Image: FC<{ image: string; alt: string; className?: string }> = ({
     <img
       src={image}
       alt={alt}
-      className={(twMerge("w-full h-full object-contain rounded-lg"), className)}
+      className={
+        (twMerge("w-full h-full object-contain rounded-lg"), className)
+      }
+      loading="lazy"
     />
   );
 };

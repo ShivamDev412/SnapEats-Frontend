@@ -44,7 +44,7 @@ export const useLogin = () => {
         reset();
         clearErrors();
       }
-    } catch (error: any) {
+    } catch (error:any) {
       const message = error.data?.message.toLowerCase();
       const type = message?.includes("password") ? "password" : "email";
       setError(type, {

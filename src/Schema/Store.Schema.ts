@@ -97,4 +97,10 @@ export const MenuItemSchema = z.object({
     .optional(),
 });
 
+export const StoreTimingSchema = z.object({
+  openTime: z.string().min(1, "Open Time is required"),
+  closeTime: z.string().min(1, "Close Time is required"),
+});
+
+
 export default RegisterStoreSchema;

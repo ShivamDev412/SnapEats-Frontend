@@ -5,7 +5,7 @@ import { FoodType } from "@/redux/slice/api/store/profileSlice";
 
 const CategoriesItem: React.FC<{ category: FoodType }> = ({ category }) => {
   return (
-    <li className="bg-zinc-950 text-sm xl:text-lg border border-zinc-600 font-semibold text-zinc-100 flex justify-center rounded-[25px] items-center text-nowrap hover:bg-primary hover:border-primary transition-all">
+    <li className="px-2 bg-zinc-950 text-sm xl:text-lg border border-zinc-600 font-semibold text-zinc-100 flex justify-center rounded-[25px] items-center text-nowrap hover:bg-primary hover:border-primary transition-all">
       <button className="p-2">{category.foodType}</button>
     </li>
   );

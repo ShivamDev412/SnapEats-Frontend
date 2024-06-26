@@ -53,7 +53,6 @@ const Option: React.FC<OptionProps> = ({
 
     fetchChoices();
   }, [option.optionId]);
-
   return (
     <div
       key={option.id}

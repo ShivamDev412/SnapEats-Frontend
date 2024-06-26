@@ -18,7 +18,6 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
-
 type MenuItemFormProps = {
   actionType: string;
   handleCloseModal: () => void;
@@ -162,7 +161,6 @@ const MenuItemForm: React.FC<MenuItemFormProps> = ({
           {actionType === "add" ? "Add Dish" : "Update Dish"}
         </Button>
       </form>
-   
     </>
   );
 };

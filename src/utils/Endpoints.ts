@@ -3,6 +3,7 @@ const BASE_ROUTE = {
   USER: "/user",
   STORE: "/store",
   STORE_MENU: "/store/menu",
+  HOME: "/home",
 };
 const ENDPOINTS = {
   LOGIN: "/login",
@@ -30,6 +31,7 @@ const ENDPOINTS = {
   CHANGE_PASSWORD:"/change-password",
   FOOD_TYPE: "/food-type",
   STORE_FOOD_TYPE: "/store-food-type",
+  STORE_TIMING: "/store-timing",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
