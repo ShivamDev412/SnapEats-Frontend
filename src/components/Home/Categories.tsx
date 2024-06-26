@@ -27,20 +27,20 @@ const Categories = () => {
   return (
     <div className="relative flex items-center">
       {showLeftArrow && (
-        <button className="hidden xl:block absolute left-0 p-2 bg-zinc-700 text-white rounded-full" onClick={scrollLeft}>
+        <button className="hidden sm:block absolute left-0 p-2 bg-zinc-700 text-white rounded-full" onClick={scrollLeft}>
           <FaArrowLeft />
         </button>
       )}
       <ul
         ref={scrollContainerRef}
-        className="flex gap-2 overflow-scroll xl:overflow-hidden overflow-y-hidden scroll-smooth custom-scrollbar"
+        className="flex gap-2 overflow-scroll sm:overflow-hidden overflow-y-hidden scroll-smooth custom-scrollbar"
       >
         {categories?.data?.map((category) => (
           <CategoriesItem key={category.id} category={category} />
         ))}
       </ul>
       {showRightArrow && (
-        <button className="hidden xl:block absolute right-0 p-2 bg-zinc-700 text-white rounded-full" onClick={scrollRight}>
+        <button className="hidden sm:block absolute right-0 p-2 bg-zinc-700 text-white rounded-full" onClick={scrollRight}>
           <FaArrowRight />
         </button>
       )}
