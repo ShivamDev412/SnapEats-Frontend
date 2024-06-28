@@ -27,11 +27,12 @@ const ENDPOINTS = {
   OPTIONS: "/options",
   CHOICE: "/choice",
   PROFILE: "/profile",
-  CHANGE_LANGUAGE:"/change-language",
-  CHANGE_PASSWORD:"/change-password",
+  CHANGE_LANGUAGE: "/change-language",
+  CHANGE_PASSWORD: "/change-password",
   FOOD_TYPE: "/food-type",
   STORE_FOOD_TYPE: "/store-food-type",
   STORE_TIMING: "/store-timing",
+  HOME_STORE_DETAILS: "/home-store-details",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -40,6 +41,8 @@ const BROWSER_ROUTE = {
   RESET_PASSWORD: "/reset-password/:token",
   LOGIN_SUCCESS: "/login-success",
   HOME: "/",
+  USER_STORE_DETAIL: "/:name/:id",
+  USER_STORE_FOOD_DETAILS: "/:name/:id/:foodId",
   PROFILE: "/profile",
   ORDERS: "/orders",
   MANAGE_ADDRESS: "/manage-address",

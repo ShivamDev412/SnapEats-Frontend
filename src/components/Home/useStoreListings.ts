@@ -20,7 +20,6 @@ const useStorListings = () => {
 
   const { data: stores, isLoading } = useGetStoresQuery(query, {
     skip: query === "",
-    refetchOnMountOrArgChange: true,
   });
 
   return { stores, isLoading };

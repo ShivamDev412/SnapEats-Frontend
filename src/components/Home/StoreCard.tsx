@@ -1,11 +1,20 @@
 import { StoreType } from "@/redux/slice/api/user/homeSlice";
 import { FC } from "react";
 import { IoIosStar } from "react-icons/io";
-
 import LazyLoadedImageComponent from "../LazyLoadedImageComponent";
 import { Link } from "react-router-dom";
-import moment from "moment";
+import moment from "moment-timezone";
+import { IoMoonSharp } from "react-icons/io5";
+import { checkIfOpen } from "@/utils/ConstantFunctions";
 
+const ClosedStore = () => {
+  return (
+    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center text-orange-300">
+      <IoMoonSharp />
+      <p className="text-[1rem] font-semibold flex-col">Closed</p>
+    </div>
+  );
+};
 const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
   const {
     image,
@@ -17,12 +26,13 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
     travelTime,
     deliveryFee,
   } = { ...store };
-  const formattedTime1 = moment(openTime).format("hh:mm A");
-  const formattedTime2 = moment(closeTime).format("hh:mm A");
+
+  const formattedOpenTime = moment(openTime).format("hh:mm A");
+  const formattedCloseTime = moment(closeTime).format("hh:mm A");
   return (
     <Link
       to={`/${store.name}/${store.id}`}
-      className="w-full sm:w-1/2 xl:w-1/4 rounded-lg flex flex-col gap-2 bg-zinc-800"
+      className="w-full sm:w-1/2 xl:w-1/4 rounded-lg flex flex-col gap-2 bg-zinc-800 relative"
     >
       <LazyLoadedImageComponent
         image={image || ""}
@@ -30,6 +40,7 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
         compressedImage={compressedImage || ""}
         className="rounded-t-lg"
       />
+      {!checkIfOpen(openTime, closeTime) && <ClosedStore />}
       <div className="flex flex-col gap-1 px-3 pb-2">
         <div className="flex justify-between items-center">
           <h3 className="text-2xl font-semibold">{name}</h3>
@@ -37,9 +48,9 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
             <IoIosStar className="h-3 w-3" />
             {rating}
           </p>
-        </div>{" "}
+        </div>
         <p className="text-[0.9rem]">
-          {formattedTime1} - {formattedTime2}
+          {formattedOpenTime} - {formattedCloseTime}
         </p>
         <div className="flex items-center gap-2 text-zinc-300 text-[0.9rem]">
           <p className={`${deliveryFee === 0 && "text-yellow-700"}`}>
