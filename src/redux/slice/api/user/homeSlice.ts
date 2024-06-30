@@ -30,6 +30,7 @@ export type MenuItemsType = {
   isVeg: boolean;
   compressedImage?: string;
   category: CategoryType;
+  quantity: number;
   options: {
     id: string;
     option: {
@@ -55,12 +56,9 @@ export type ReviewType = {
 export interface StoreDetailType extends StoreType {
   phoneNumber: string;
   countryCode: string;
-  userId: string;
   specialEventOpenTime?: Date;
   specialEventCloseTime?: Date;
-  menuItems: MenuItemsType[];
   address: string;
-  reviews: ReviewType[];
 }
 export const homeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -71,13 +69,37 @@ export const homeApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
-    getStoreDetail: builder.query<AuthResponse<StoreDetailType>, string>({
+    getStorePrimaryDetails: builder.query<
+      AuthResponse<StoreDetailType>,
+      string
+    >({
       query: (storeId) => ({
-        url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_DETAILS}/${storeId}`,
+        url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_PRIMARY_DETAILS}/${storeId}`,
         method: "GET",
       }),
       keepUnusedDataFor: 5,
     }),
+    getStoreMenuCategories: builder.query<AuthResponse<CategoryType[]>, string>(
+      {
+        query: (storeId) => ({
+          url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_CATEGORY}/${storeId}`,
+          method: "GET",
+        }),
+        keepUnusedDataFor: 5,
+      }
+    ),
+    getStoreMenuItems: builder.query<AuthResponse<MenuItemsType[]>, string>({
+      query: (storeId) => ({
+        url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_MENU}/${storeId}`,
+        method: "GET",
+      }),
+      keepUnusedDataFor: 1,
+    }),
   }),
 });
-export const { useGetStoresQuery, useGetStoreDetailQuery } = homeApiSlice;
+export const {
+  useGetStoresQuery,
+  useGetStoreMenuCategoriesQuery,
+  useGetStorePrimaryDetailsQuery,
+  useGetStoreMenuItemsQuery,
+} = homeApiSlice;

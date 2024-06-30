@@ -1,13 +1,18 @@
 import LazyLoadedImageComponent from "@/components/LazyLoadedImageComponent";
 import { MenuItemsType } from "@/redux/slice/api/user/homeSlice";
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa";
 import { BiFoodTag } from "react-icons/bi";
-import Button from "@/components/Button";
+import { IoIosAdd } from "react-icons/io";
+import ModalComponent from "@/components/Modal";
+import useMenuSection from "./useMenuSection";
+import FoodItemDetails from "./FoodItemDetails";
+import { MdDelete } from "react-icons/md";
+import { FaMinus } from "react-icons/fa6";
 const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
   menuItems,
 }) => {
+  const { openModal, handleCloseModal, handleOpenModal, handleAddToCart } = useMenuSection();
   const groupMenuItemsByCategory = (
     menuItems: MenuItemsType[]
   ): { category: string; items: MenuItemsType[] }[] => {
@@ -22,8 +27,6 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
       acc[categoryId].items.push(item);
       return acc;
     }, {} as Record<string, { category: string; items: MenuItemsType[] }>);
-
-    // Convert the grouped items back into an array
     return Object.values(groupedItems);
   };
 
@@ -35,10 +38,10 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
           <h3 className="text-2xl font-semibold">{group.category}</h3>
           <section className="flex flex-wrap gap-2 mt-5">
             {group.items.map((item) => (
-              <Link
-                to={`${item.id}`}
+              <section
+                onClick={() => handleOpenModal(item)}
                 key={item.id}
-                className="flex w-1/3 gap-2 bg-zinc-800 p-2 rounded-lg"
+                className="flex w-1/3 gap-2 bg-zinc-800 p-2 rounded-lg hover:cursor-pointer"
               >
                 <LazyLoadedImageComponent
                   image={item.image || ""}
@@ -69,12 +72,43 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                       {item.prepTime.toFixed(2)} min
                     </p>
                   </section>
+                  <section>
+                    {item.quantity === 0 ? (
+                      <button className="border rounded-full border-zinc-400 text-zinc-400 hover:border-zinc-100 hover:text-zinc-100 transition-all">
+                        <IoIosAdd className="h-6 w-6" />
+                      </button>
+                    ) : (
+                      <div className="flex gap-2 items-center bg-zinc-600 rounded-[25px] px-2 py-1">
+                        {item.quantity === 1 ? (
+                          <button>
+                            <MdDelete className="h-5 w-5" />
+                          </button>
+                        ) : (
+                          <button>
+                            <FaMinus className="w-5 h-5" />
+                          </button>
+                        )}
+                        <span>1</span>
+                        <button onClick={(e) => handleAddToCart(e, item)}>
+                          <IoIosAdd className="h-6 w-6" />
+                        </button>
+                      </div>
+                    )}
+                  </section>
                 </div>
-              </Link>
+              </section>
             ))}
           </section>
         </section>
       ))}
+      <ModalComponent
+        open={openModal}
+        handleClose={handleCloseModal}
+        modalTitle="food-item-details"
+        className="2xl:w-4/12"
+      >
+        <FoodItemDetails />
+      </ModalComponent>
     </section>
   );
 };

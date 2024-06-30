@@ -5,7 +5,7 @@ import {
 } from "@/components/Home/Details";
 import { MenuCategories } from "@/components/Home/Details";
 const Details = () => {
-  const { storeDetails, isFetching, handleCategoryClick, categoryData } =
+  const { storePrimaryDetails, isFetching, handleCategoryClick, categoryData, menuItems } =
     useDetails();
   const {
     name,
@@ -18,8 +18,7 @@ const Details = () => {
     travelTime,
     address,
     deliveryFee,
-    menuItems,
-  } = storeDetails?.data || {};
+  } = storePrimaryDetails?.data || {};
 
   if (isFetching) return <p>Loading...</p>;
   return (

@@ -35,6 +35,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     }
   }, [getValues, id]);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onChange && onChange(e);
     setSelectField(e.target.value);
   };
   return (
@@ -49,7 +50,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
           id={id}
           {...(getValues && { value })}
           {...register(id, {
-            onChange: getValues ? handleChange : onChange,
+            onChange: handleChange,
             value,
           })}
         >

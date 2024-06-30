@@ -32,7 +32,9 @@ const ENDPOINTS = {
   FOOD_TYPE: "/food-type",
   STORE_FOOD_TYPE: "/store-food-type",
   STORE_TIMING: "/store-timing",
-  HOME_STORE_DETAILS: "/home-store-details",
+  HOME_STORE_PRIMARY_DETAILS: "/home-store-primary-details",
+  HOME_STORE_CATEGORY: "/home-store-category",
+  HOME_STORE_MENU: "/home-store-menu",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -42,7 +44,6 @@ const BROWSER_ROUTE = {
   LOGIN_SUCCESS: "/login-success",
   HOME: "/",
   USER_STORE_DETAIL: "/:name/:id",
-  USER_STORE_FOOD_DETAILS: "/:name/:id/:foodId",
   PROFILE: "/profile",
   ORDERS: "/orders",
   MANAGE_ADDRESS: "/manage-address",

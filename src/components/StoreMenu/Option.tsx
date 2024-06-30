@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   UseFormRegister,
   FieldErrors,
-  FieldArrayWithId,
   UseFormSetValue,
   UseFormGetValues,
 } from "react-hook-form";
@@ -12,13 +11,15 @@ import Button from "../Button";
 import { MenuItemType } from "@/redux/slice/api/store/menuSlice";
 import useOption from "./useOption";
 import Choice from "./Choice";
+import ToggleInput from "../InputComponent/ToggleInput";
 
 type OptionProps = {
-  option: FieldArrayWithId<MenuItemType, "options", "id">;
+  option: any;
   optionIndex: number;
   register: UseFormRegister<MenuItemType>;
   errors: FieldErrors<MenuItemType>;
   removeOption: (index: number) => void;
+  control: any;
   appendChoice: (optionIndex: number, choice: any) => void;
   handleChoiceChange: (
     optionIndex: number,
@@ -43,6 +44,7 @@ const Option: React.FC<OptionProps> = ({
   removeChoice,
   watchedChoices,
   getValues,
+  control,
 }) => {
   const { options, handleOptionChange, predefinedChoices } = useOption();
 
@@ -64,6 +66,7 @@ const Option: React.FC<OptionProps> = ({
           register={register}
           placeholder="Select Option"
           errors={errors}
+          getValues={getValues}
           onChange={(e) => handleOptionChange(e.target.value)}
           data={options?.data || []}
         />
@@ -74,7 +77,13 @@ const Option: React.FC<OptionProps> = ({
           <FiMinus className="h-7 w-7" />
         </Button>
       </div>
-
+      <ToggleInput
+        id={`options.${optionIndex}.isRequired`}
+        control={control}
+        register={register}
+        errors={errors}
+        label="Is Required"
+      />
       {watchedChoices?.map((choice, choiceIndex) => (
         <Choice
           key={choice.id}

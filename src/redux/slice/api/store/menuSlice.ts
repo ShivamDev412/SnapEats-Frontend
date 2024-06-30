@@ -16,6 +16,7 @@ type ChoiceType = {
 type OptionType = {
   id: string;
   optionId: string;
+  isRequired: boolean;
   choices: ChoiceType[];
 };
 
@@ -47,6 +48,7 @@ export interface MenuDetailType extends MenuType {
   options: {
     id: string;
     optionId: string;
+    isRequired: boolean;
     option: {
       id: string;
       name: string;
