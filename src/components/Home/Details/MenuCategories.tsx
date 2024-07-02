@@ -16,7 +16,7 @@ const MenuCategories: FC<{
               : "bg-zinc-900 border-zinc-700"
           }`}
         >
-          <button onClick={() => handleCategoryClick(category)} className="p-2">
+          <button onClick={() => handleCategoryClick(category)} className="p-2" type="button">
             {category.name}
           </button>
         </li>

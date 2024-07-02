@@ -51,31 +51,32 @@ const BannerProfileSection: FC<BannerProfileSectionProps> = ({
         compressedImage={compressedImage}
         className="w-full sm:w-1/3 rounded-lg"
       />
-      <section
+      <div
         className="flex flex-col gap-3 xl:gap-4"
         role="region"
         aria-labelledby="store-details"
       >
-        <section
+        <div
           className="flex gap-3 items-center"
           role="heading"
           aria-level={2}
+          aria-label="Store details section"
         >
           <h2 id="store-details" className="text-2xl xl:text-5xl font-semibold">
             {name}
           </h2>
           {!checkIfOpen(openTime, closeTime) && (
-            <section
+            <div
               className="text-orange-300 flex items-center gap-1"
               aria-label="Closed"
             >
               <IoMoonSharp />
-              <p className="text-[1rem] font-semibold flex-col">Closed</p>
-            </section>
+              <p className="text-[1rem] font-semibold">Closed</p>
+            </div>
           )}
-        </section>
+        </div>
 
-        <section
+        <div
           className="flex gap-2 items-center text-zinc-300"
           role="region"
           aria-labelledby="store-address"
@@ -84,7 +85,7 @@ const BannerProfileSection: FC<BannerProfileSectionProps> = ({
           <p id="store-address" className="text-sm xl:text-[0.9rem]">
             {address}
           </p>
-        </section>
+        </div>
         <Button
           className="bg-green-700 rounded-lg w-fit text-[0.9rem] flex gap-1"
           onClick={handleContactStore}
@@ -93,17 +94,17 @@ const BannerProfileSection: FC<BannerProfileSectionProps> = ({
           <IoMdCall className="h-4 w-4" aria-hidden="true" />
           Contact Store
         </Button>
-        <section
+        <div
           className="flex gap-2 items-center"
           role="region"
           aria-labelledby="store-timing"
         >
-          <section className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center">
             <IoTimeOutline aria-hidden="true" />
             <p id="store-timing">
               {formattedOpenTime} - {formattedCloseTime}
             </p>
-          </section>
+          </div>
           <span
             className="bg-white h-1 w-1 rounded-full"
             aria-hidden="true"
@@ -116,8 +117,8 @@ const BannerProfileSection: FC<BannerProfileSectionProps> = ({
           >
             ${deliveryFee} Delivery Fee
           </p>
-        </section>
-      </section>
+        </div>
+      </div>
     </section>
   );
 };

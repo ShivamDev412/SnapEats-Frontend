@@ -20,6 +20,23 @@ export type CategoryType = {
   name: string;
   isActive: boolean;
 };
+export type OptionType = {
+  id: string;
+  isRequired: boolean;
+  option: {
+    id: string;
+    name: string;
+  };
+  choices: {
+    id: string;
+    customChoice?: string;
+    predefinedChoice?: {
+      id: string;
+      name: string;
+    };
+    additionalPrice?: number;
+  }[];
+};
 export type MenuItemsType = {
   id: string;
   name: string;
@@ -31,18 +48,7 @@ export type MenuItemsType = {
   compressedImage?: string;
   category: CategoryType;
   quantity: number;
-  options: {
-    id: string;
-    option: {
-      id: string;
-      name: string;
-    };
-    choices: {
-      id: string;
-      customChoice?: string;
-      additionalPrice?: number;
-    }[];
-  }[];
+  options: OptionType[];
 };
 export type ReviewType = {
   rating: number;

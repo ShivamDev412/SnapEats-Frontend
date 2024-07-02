@@ -9,10 +9,18 @@ import useMenuSection from "./useMenuSection";
 import FoodItemDetails from "./FoodItemDetails";
 import { MdDelete } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
+
 const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
   menuItems,
 }) => {
-  const { openModal, handleCloseModal, handleOpenModal, handleAddToCart } = useMenuSection();
+  const {
+    openModal,
+    handleCloseModal,
+    handleOpenModal,
+    handleAddToCart,
+    modelItem,
+  } = useMenuSection();
+
   const groupMenuItemsByCategory = (
     menuItems: MenuItemsType[]
   ): { category: string; items: MenuItemsType[] }[] => {
@@ -31,14 +39,15 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
   };
 
   const groupedMenuItems = groupMenuItemsByCategory(menuItems);
+
   return (
     <section>
       {groupedMenuItems.map((group) => (
         <section key={group.category} className="my-8">
           <h3 className="text-2xl font-semibold">{group.category}</h3>
-          <section className="flex flex-wrap gap-2 mt-5">
+          <div className="flex flex-wrap gap-2 mt-5">
             {group.items.map((item) => (
-              <section
+              <div
                 onClick={() => handleOpenModal(item)}
                 key={item.id}
                 className="flex w-1/3 gap-2 bg-zinc-800 p-2 rounded-lg hover:cursor-pointer"
@@ -56,7 +65,7 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                   <p className="text-sm text-zinc-400 line-clamp-2">
                     {item.description}
                   </p>
-                  <section className="flex gap-2 items-center ">
+                  <div className="flex gap-2 items-center ">
                     <p className="text-[1rem] font-bold text-green-700">
                       ${item.price.toFixed(2)}
                     </p>
@@ -71,44 +80,63 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                       <FaRegClock className="h-4 w-4" />{" "}
                       {item.prepTime.toFixed(2)} min
                     </p>
-                  </section>
-                  <section>
+                  </div>
+                  <div>
                     {item.quantity === 0 ? (
-                      <button className="border rounded-full border-zinc-400 text-zinc-400 hover:border-zinc-100 hover:text-zinc-100 transition-all">
+                      <button
+                        type="button"
+                        aria-label="Add to cart"
+                        className="border rounded-full border-zinc-400 text-zinc-400 hover:border-zinc-100 hover:text-zinc-100 transition-all"
+                        onClick={(e) => handleAddToCart(e, item)}
+                      >
                         <IoIosAdd className="h-6 w-6" />
                       </button>
                     ) : (
                       <div className="flex gap-2 items-center bg-zinc-600 rounded-[25px] px-2 py-1">
                         {item.quantity === 1 ? (
-                          <button>
+                          <button
+                            onClick={(e) => handleAddToCart(e, item)}
+                            type="button"
+                            aria-label="Delete Item"
+                          >
                             <MdDelete className="h-5 w-5" />
                           </button>
                         ) : (
-                          <button>
+                          <button
+                            onClick={(e) => handleAddToCart(e, item)}
+                            type="button"
+                            aria-label="Update Quantity"
+                          >
                             <FaMinus className="w-5 h-5" />
                           </button>
                         )}
-                        <span>1</span>
-                        <button onClick={(e) => handleAddToCart(e, item)}>
+                        <span>{item.quantity}</span>
+                        <button
+                          onClick={(e) => handleAddToCart(e, item)}
+                          type="button"
+                          aria-label="Add Item"
+                        >
                           <IoIosAdd className="h-6 w-6" />
                         </button>
                       </div>
                     )}
-                  </section>
+                  </div>
                 </div>
-              </section>
+              </div>
             ))}
-          </section>
+          </div>
         </section>
       ))}
-      <ModalComponent
-        open={openModal}
-        handleClose={handleCloseModal}
-        modalTitle="food-item-details"
-        className="2xl:w-4/12"
-      >
-        <FoodItemDetails />
-      </ModalComponent>
+      {modelItem && Object.keys(modelItem).length > 0 && (
+        <ModalComponent
+          open={openModal}
+          handleClose={handleCloseModal}
+          modalTitle="food-item-details"
+          className="2xl:w-6/12"
+        >
+          <FoodItemDetails modelItem={modelItem} />
+        </ModalComponent>
+      )}
     </section>
   );
 };

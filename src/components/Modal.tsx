@@ -20,19 +20,19 @@ const ModalComponent: FC<Props> = ({
 }) => {
   return (
     <Modal open={open} aria-labelledby={modalTitle} className="outline-none">
-      <section
+      <div
         className={twMerge(
           "absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] p-4 shadow-lg bg-zinc-100 w-11/12  sm:w-6/12 xl:w-[30%] 2xl:w-1/4 text-zinc-900 rounded-lg",
           className
         )}
       >
-        <section className="flex justify-end">
+        <div className="flex justify-end">
           <button onClick={handleClose} className="text-xl">
             <IoClose />
           </button>
-        </section>
+        </div>
         {children}
-      </section>
+      </div>
     </Modal>
   );
 };
