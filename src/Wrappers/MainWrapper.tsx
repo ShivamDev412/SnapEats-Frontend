@@ -37,7 +37,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {isUser ? (
         <>
           <Header />{" "}
-          <main className="flex-1 w-11/12 md:w-10/12 xl:w-10/12 2xl:w-9/12  mx-auto my-5 lg:my-10 justify-center flex">
+          <main className="flex-1 w-11/12 xl:w-10/12 2xl:w-9/12  mx-auto my-5 lg:my-10 justify-center flex">
             {children}
           </main>
           <Footer />

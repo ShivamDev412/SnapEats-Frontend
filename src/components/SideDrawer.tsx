@@ -13,15 +13,13 @@ const SideDrawer: React.FC<SideDrawerProps> = ({
   children,
 }) => {
   return (
-    <div>
-      <Drawer
-        open={showCartDropDrawer}
-        onClose={handleDrawerClose}
-        anchor="right"
-      >
-        {children}
-      </Drawer>
-    </div>
+    <Drawer
+      open={showCartDropDrawer}
+      onClose={handleDrawerClose}
+      anchor="right"
+    >
+      {children}
+    </Drawer>
   );
 };
 

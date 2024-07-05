@@ -28,14 +28,14 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType, handleCloseModal: () => vo
   } = useFoodItemDetails(price, options, handleCloseModal);
 
   return (
-    <div className="flex flex-col xl:flex-row gap-4 max-h-[80vh] overflow-y-auto overflow-x-hidden">
+    <div className="flex flex-col sm:flex-row gap-4 max-h-[80vh] overflow-y-auto overflow-x-hidden">
       {modelItem && Object.keys(modelItem)?.length > 0 && (
         <>
           <LazyLoadedImageComponent
             image={image || ""}
             alt={name}
             compressedImage={compressedImage || ""}
-            className="w-full xl:w-5/12 h-fit rounded-lg"
+            className="w-full sm:w-5/12 h-fit rounded-lg"
           />
           <div className="gap-2 flex flex-col">
             <h2 className="text-3xl font-semibold">{name}</h2>
