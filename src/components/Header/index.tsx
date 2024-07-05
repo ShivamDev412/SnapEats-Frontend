@@ -3,7 +3,7 @@ import WebHeader from "./WebHeader";
 
 const Header = () => {
   return (
-    <header className="border-b-[1px] border-zinc-800 p-4">
+    <header className="border-b-[1px] border-zinc-800 p-4 sm:px-0">
       <WebHeader />
       <MobileHeader />
     </header>

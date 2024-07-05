@@ -5,18 +5,20 @@ import CartList from "./CartList";
 
 const Cart = () => {
   const { handleDrawerOpen, showCartDropDrawer, handleDrawerClose, cart } =
-    useCart();
-    console.log(cart?.data);
+    useCart()
   return (
     <div className="relative">
       <button type="button" onClick={handleDrawerOpen} aria-label="cart">
-        <IoCartOutline className="h-7 w-7" />
+        <IoCartOutline className="h-auto w-7 -mb-1" />
       </button>
       <SideDrawer
         showCartDropDrawer={showCartDropDrawer}
         handleDrawerClose={handleDrawerClose}
       >
-        <CartList cart={cart?.data || []} />
+        <CartList
+          cart={cart?.data || []}
+          handleDrawerClose={handleDrawerClose}
+        />
       </SideDrawer>
     </div>
   );

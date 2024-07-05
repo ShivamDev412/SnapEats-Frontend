@@ -5,7 +5,7 @@ const Search = () => {
   const { search, setSearch, showSearchDropdown, setSearchDropdown } =
     useSearch();
   return (
-    <div className="w-full md:w-5/12 lg:w-6/12 relative">
+    <div className="w-full md:w-5/12 lg:w-5/12 xl:w-6/12 relative">
       <div className="flex items-center bg-zinc-800 border border-zinc-600 rounded-[25px] p-2 gap-2 w-full md:m-0">
         <IoSearch />
         <input
