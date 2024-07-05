@@ -10,10 +10,10 @@ type AddToCartType = {
   options: CartOption[];
 };
 type CartOption = {
-  id: string;
+  id?: string;
   optionId: string;
   optionName: string;
-  choiceId: string;
+  choiceId: string | undefined;
   choiceName: string;
   additionalPrice: number;
 };
