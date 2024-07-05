@@ -19,7 +19,7 @@ const Settings = () => {
   const { storeStatus } = useSelector((state: RootState) => state.store);
   const isMobile = useDeviceType();
   return (
-    <section className="w-10/12">
+    <section className="w-full">
       <h2 className="text-3xl font-semibold mb-5">Settings</h2>
       <section className="bg-zinc-800 p-6 rounded-xl text-zinc-100 flex flex-col gap-6 h-fit w-full">
         <section className="flex flex-col gap-4 text-left">
