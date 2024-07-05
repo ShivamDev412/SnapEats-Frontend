@@ -27,7 +27,7 @@ const ModalComponent: FC<Props> = ({
         )}
       >
         <div className="flex justify-end">
-          <button onClick={handleClose} className="text-xl">
+          <button onClick={handleClose} className="text-xl" type="button" aria-label="close">
             <IoClose />
           </button>
         </div>

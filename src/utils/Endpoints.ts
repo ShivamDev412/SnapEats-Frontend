@@ -35,6 +35,7 @@ const ENDPOINTS = {
   HOME_STORE_PRIMARY_DETAILS: "/home-store-primary-details",
   HOME_STORE_CATEGORY: "/home-store-category",
   HOME_STORE_MENU: "/home-store-menu",
+  CART: "/cart",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",

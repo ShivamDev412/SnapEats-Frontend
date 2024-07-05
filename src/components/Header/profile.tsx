@@ -4,24 +4,36 @@ import { Avatar, MenuItem } from "@mui/material";
 import { Dropdown } from "@mui/base/Dropdown";
 import { Menu } from "@mui/base/Menu";
 import { MenuButton } from "@mui/base/MenuButton";
-import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import { useUserQuery } from "@/redux/slice/api/user/profileSlice";
-import useProfile from "./useProfile";
-import AvatarComponent from "../Avatar";
-import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice";
-import { setStoreStatus } from "@/redux/slice/storeSlice";
 import { useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { useTranslation } from "react-i18next";
+import { FaRegUserCircle } from "react-icons/fa";
+import { IoRestaurantSharp, IoSettings } from "react-icons/io5";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { RiFileListFill } from "react-icons/ri";
+import { IoIosLogOut } from "react-icons/io";
+import useProfile from "./useProfile";
+import AvatarComponent from "../Avatar";
+import { BROWSER_ROUTE } from "@/utils/Endpoints";
+import { useUserQuery } from "@/redux/slice/api/user/profileSlice";
+import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice";
+import { setStoreStatus } from "@/redux/slice/storeSlice";
 
 type MenuDataProps = {
   menu: string;
   link: string;
   setShowDropdown: (value: boolean) => void;
+  icon?: any;
 };
-const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown }) => {
+const MenuData: FC<MenuDataProps> = ({
+  menu,
+  link,
+  setShowDropdown,
+  icon,
+}) => {
   return (
-    <MenuItem className="px-6 hover:bg-white hover:text-primary">
+    <MenuItem className="px-6 hover:bg-white hover:text-primary flex items-center gap-2">
+     <span>{icon}</span>
       <Link to={link} onClick={() => setShowDropdown(false)} className="w-full">
         {menu}
       </Link>
@@ -80,22 +92,26 @@ const ProfileSection = () => {
           menu="Profile"
           link={BROWSER_ROUTE.PROFILE}
           setShowDropdown={setShowDropdown}
+          icon={<FaRegUserCircle className="h-5 w-5"/>}
         />
         <MenuData
           menu="Manage Address"
           link={BROWSER_ROUTE.MANAGE_ADDRESS}
           setShowDropdown={setShowDropdown}
+          icon={<FaMapLocationDot className="h-5 w-5"/>}
         />
         <MenuData
           menu="Orders"
           link={BROWSER_ROUTE.ORDERS}
           setShowDropdown={setShowDropdown}
+          icon={<RiFileListFill className="h-5 w-5"/>}
         />
         {(!user?.data.storeId || store?.data?.status === "PENDING") && (
           <MenuData
             menu="Register Your Store"
             link={BROWSER_ROUTE.STORE_REGISTER}
             setShowDropdown={setShowDropdown}
+            icon={<IoRestaurantSharp className="h-5 w-5"/>}
           />
         )}
 
@@ -103,11 +119,13 @@ const ProfileSection = () => {
           menu="Settings"
           link={BROWSER_ROUTE.SETTINGS}
           setShowDropdown={setShowDropdown}
+          icon={<IoSettings className="h-5 w-5"/>}
         />
         <MenuItem
-          className="px-6 hover:bg-white hover:text-primary text-gray-600"
+          className="px-6 hover:bg-white hover:text-primary text-gray-600 flex gap-2 items-center"
           onClick={logoutHandler}
         >
+          <IoIosLogOut className="h-5 w-5"/>
           <p>Logout</p>
         </MenuItem>
       </Menu>

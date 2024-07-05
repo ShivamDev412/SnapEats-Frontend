@@ -7,14 +7,13 @@ import { BiFoodTag } from "react-icons/bi";
 import { FaRegClock } from "react-icons/fa6";
 import useFoodItemDetails from "./useFoodItemDetails";
 
-const FoodItemDetails: FC<{ modelItem: MenuItemsType }> = ({ modelItem }) => {
+const FoodItemDetails: FC<{ modelItem: MenuItemsType, handleCloseModal: () => void }> = ({ modelItem, handleCloseModal }) => {
   const {
     name,
     image,
     compressedImage,
     price,
     description,
-    // id,
     isVeg,
     prepTime,
     options,
@@ -24,16 +23,19 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType }> = ({ modelItem }) => {
     isRequiredChoiceSelected,
     totalPrice,
     handleChoiceChange,
-  } = useFoodItemDetails(price, options);
+    handleAddToCart,
+    isLoading,
+  } = useFoodItemDetails(price, options, handleCloseModal);
+
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col xl:flex-row gap-4 max-h-[80vh] overflow-y-auto overflow-x-hidden">
       {modelItem && Object.keys(modelItem)?.length > 0 && (
         <>
           <LazyLoadedImageComponent
             image={image || ""}
             alt={name}
             compressedImage={compressedImage || ""}
-            className="w-5/12 h-fit rounded-lg"
+            className="w-full xl:w-5/12 h-fit rounded-lg"
           />
           <div className="gap-2 flex flex-col">
             <h2 className="text-3xl font-semibold">{name}</h2>
@@ -83,11 +85,16 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType }> = ({ modelItem }) => {
                                 ? choice.predefinedChoice.name
                                 : choice.customChoice || ""
                             }
-                            checked={selectedChoices[option.id] === choice.id}
+                            checked={
+                              selectedChoices[option.id]?.choiceId === choice.id
+                            }
                             onChange={() =>
                               handleChoiceChange(
                                 option.id,
                                 choice.id,
+                                choice.predefinedChoice?.name ||
+                                  choice.customChoice ||
+                                  "",
                                 choice.additionalPrice || 0
                               )
                             }
@@ -105,7 +112,13 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType }> = ({ modelItem }) => {
                   </div>
                 ))}
             </div>
-            <Button disabled={!isRequiredChoiceSelected}>
+            <Button
+              isLoading={isLoading}
+              disabled={!isRequiredChoiceSelected}
+              onClick={() =>
+                handleAddToCart(modelItem.id, name, totalPrice, "")
+              }
+            >
               Add 1 of ${totalPrice.toFixed(2)} to cart
             </Button>
           </div>

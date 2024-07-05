@@ -50,13 +50,13 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
               <div
                 onClick={() => handleOpenModal(item)}
                 key={item.id}
-                className="flex w-1/3 gap-2 bg-zinc-800 p-2 rounded-lg hover:cursor-pointer"
+                className="flex w-full my-1 xl:my-0 xl:w-1/3 gap-2 bg-zinc-800 p-2 rounded-lg hover:cursor-pointer"
               >
                 <LazyLoadedImageComponent
                   image={item.image || ""}
                   compressedImage={item.compressedImage || ""}
                   alt={item.name}
-                  className="w-[10rem] h-[10rem] rounded-lg"
+                  className="w-[1in] h-[1in] xl:w-[1.4in] xl:h-[1.4in] rounded-lg"
                 />
                 <div className="flex flex-col gap-2 items-start">
                   <h4 className="text-center text-xl font-semibold">
@@ -66,7 +66,7 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                     {item.description}
                   </p>
                   <div className="flex gap-2 items-center ">
-                    <p className="text-[1rem] font-bold text-green-700">
+                    <p className="text-sm xl:text-[1rem] font-bold text-green-700">
                       ${item.price.toFixed(2)}
                     </p>
                     <span className="bg-white h-1 w-1 rounded-full"></span>
@@ -76,7 +76,7 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                       } h-5 w-5`}
                     />{" "}
                     <span className="bg-white h-1 w-1 rounded-full"></span>
-                    <p className="flex gap-1 items-center text-[1rem]">
+                    <p className="flex gap-1 items-center text-sm xl:text-[1rem]">
                       <FaRegClock className="h-4 w-4" />{" "}
                       {item.prepTime.toFixed(2)} min
                     </p>
@@ -132,9 +132,9 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
           open={openModal}
           handleClose={handleCloseModal}
           modalTitle="food-item-details"
-          className="2xl:w-6/12"
+          className="xl:w-8/12 2xl:w-6/12 w-11/12"
         >
-          <FoodItemDetails modelItem={modelItem} />
+          <FoodItemDetails modelItem={modelItem} handleCloseModal={handleCloseModal}/>
         </ModalComponent>
       )}
     </section>
