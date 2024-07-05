@@ -355,6 +355,7 @@ const DEFAULT_VALUES = {
         {
           id: uuidv4(),
           optionId: "",
+          isRequired: false,
           choices: [
             { choiceId: "", id: uuidv4(), name: "", additionalPrice: 0 },
           ],

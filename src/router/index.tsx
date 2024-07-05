@@ -32,6 +32,7 @@ const TermsOfServiceScreen = lazy(
 const LoginSuccessScreen = lazy(
   () => import("@/screens/users/Login/SuccessPage")
 );
+const HomeDetailsScreen = lazy(() => import("@/screens/users/Home/Detail"));
 const Routers = () => {
   const {
     LOGIN,
@@ -39,6 +40,7 @@ const Routers = () => {
     FORGOT_PASSWORD,
     RESET_PASSWORD,
     HOME,
+    USER_STORE_DETAIL,
     STORE_REGISTER,
     PROFILE,
     MANAGE_ADDRESS,
@@ -68,6 +70,7 @@ const Routers = () => {
         <Route element={<PrivateRoute />}>
           {/* User  */}
           <Route path={HOME} element={<HomeScreen />} />
+          <Route path={USER_STORE_DETAIL} element={<HomeDetailsScreen />} />
           <Route path={PROFILE} element={<ProfileScreen />} />
           <Route path={MANAGE_ADDRESS} element={<ManageAddress />} />
           <Route path={ORDERS} element={<OrdersScreen />} />

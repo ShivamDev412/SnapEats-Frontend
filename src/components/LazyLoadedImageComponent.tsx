@@ -39,6 +39,7 @@ const LazyLoadedImageComponent: FC<Props> = ({
       {isImageLoaded ? (
         <Image image={image} alt={alt} className={className} />
       ) : (
+        // <Skeleton height="100%" width="100%" />
         <Image image={compressedImage} alt={alt} className={className} />
       )}
       <img

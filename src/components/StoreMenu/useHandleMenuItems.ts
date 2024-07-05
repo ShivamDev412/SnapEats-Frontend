@@ -18,7 +18,6 @@ const useMenu = (
   setActionType: any,
   menuItem?: MenuDetailType
 ) => {
-
   const [addMenuItem, { isLoading: isAddMenuItemLoading }] =
     useAddMenuItemMutation();
   const [updateMenuItem, { isLoading: isUpdateMenuItemLoading }] =
@@ -61,6 +60,7 @@ const useMenu = (
         menuItem?.options?.forEach(async (option, optionIndex) => {
           appendOption({
             optionId: option.optionId,
+            isRequired: option.isRequired,
             id: uuidv4(),
             choices: [],
           });
@@ -109,6 +109,7 @@ const useMenu = (
     const optionsToSend = options.map((option) => {
       return {
         optionId: option.optionId,
+        isRequired: option.isRequired,
         choice: option.choices.map((choice) => ({
           choiceId: choice.choiceId,
           name: choice.name,
@@ -117,7 +118,6 @@ const useMenu = (
       };
     });
     const formData = new FormData();
-    console.log(data.isVeg, "isVeg")
     formData.append("image", typeof image[0] === "object" ? image[0] : image);
     formData.append("name", name);
     formData.append("description", description);
@@ -144,7 +144,6 @@ const useMenu = (
   };
 
   return {
-
     showModal,
     handleCloseModal,
     actionType,
@@ -159,6 +158,7 @@ const useMenu = (
       appendOption({
         id: uuidv4(),
         optionId: "",
+        isRequired: false,
         choices: [{ choiceId: "", id: uuidv4(), name: "", additionalPrice: 0 }],
       }),
     removeOption,

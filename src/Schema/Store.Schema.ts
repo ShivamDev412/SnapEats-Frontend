@@ -62,6 +62,7 @@ export const MenuItemSchema = z.object({
       z.object({
         id: z.string().uuid(),
         optionId: z.string().min(1, "Option is required"),
+        isRequired: z.boolean().optional(),
         choices: z.array(
           z
             .object({

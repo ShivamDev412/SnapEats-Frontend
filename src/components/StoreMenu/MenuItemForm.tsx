@@ -146,6 +146,7 @@ const MenuItemForm: React.FC<MenuItemFormProps> = ({
               removeChoice={removeChoice}
               watchedChoices={watchedOptions?.[optionIndex]?.choices ?? []}
               setValue={setValue}
+              control={control}
               getValues={getValues}
             />
           ))}
