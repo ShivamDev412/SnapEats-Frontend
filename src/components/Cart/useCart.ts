@@ -1,21 +1,26 @@
-import { useLazyGetCartQuery } from "@/redux/slice/api/user/cartSlice";
+import {
+  useGetCartQuery,
+  useUpdateCartQuantityMutation,
+} from "@/redux/slice/api/user/cartSlice";
+import Toast from "@/utils/Toast";
 import { useState } from "react";
 
 const useCart = () => {
   const [showCartDropDrawer, setShowCartDropDrawer] = useState(false);
-  const [trigger, { data: cart }] = useLazyGetCartQuery();
+  const { data: cart, isLoading } = useGetCartQuery();
   const handleDrawerClose = () => {
     setShowCartDropDrawer(false);
   };
   const handleDrawerOpen = () => {
-    trigger();
     setShowCartDropDrawer(true);
   };
+
   return {
     handleDrawerOpen,
     showCartDropDrawer,
     handleDrawerClose,
     cart,
+    isLoading,
   };
 };
 export default useCart;
