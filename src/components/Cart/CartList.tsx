@@ -13,15 +13,25 @@ const CartList: React.FC<CartListProps> = ({ cart, handleDrawerClose }) => {
   return (
     <div className="bg-zinc-900 h-screen w-[4in] text-zinc-100 p-6 shadow-lg flex flex-col justify-between">
       <h3 className="text-xl sm:text-3xl font-bold flex items-center gap-2">
-        <IoIosArrowRoundBack className="md:hidden h-10 w-10" onClick={handleDrawerClose}/>
+        <IoIosArrowRoundBack
+          className="md:hidden h-10 w-10"
+          onClick={handleDrawerClose}
+        />
         Your Cart
       </h3>
-      <div className="overflow-auto flex-1 my-2">
+      <div className="overflow-auto my-2 flex-1 max-h-[85vh]">
         {cart.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </div>
-      <Button>Proceed to Checkout</Button>
+
+      {cart.length === 0 ? (
+        <div className="flex-1">
+          <p className="text-center">Your cart is empty</p>
+        </div>
+      ) : (
+        <Button>Proceed to Checkout</Button>
+      )}
     </div>
   );
 };

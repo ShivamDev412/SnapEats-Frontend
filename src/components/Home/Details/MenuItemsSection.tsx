@@ -3,12 +3,9 @@ import { MenuItemsType } from "@/redux/slice/api/user/homeSlice";
 import { FC } from "react";
 import { FaRegClock } from "react-icons/fa";
 import { BiFoodTag } from "react-icons/bi";
-import { IoIosAdd } from "react-icons/io";
 import ModalComponent from "@/components/Modal";
 import useMenuSection from "./useMenuSection";
 import FoodItemDetails from "./FoodItemDetails";
-import { MdDelete } from "react-icons/md";
-import { FaMinus } from "react-icons/fa6";
 
 const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
   menuItems,
@@ -17,7 +14,6 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
     openModal,
     handleCloseModal,
     handleOpenModal,
-    handleAddToCart,
     modelItem,
   } = useMenuSection();
 
@@ -81,46 +77,6 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
                       {item.prepTime.toFixed(2)} min
                     </p>
                   </div>
-                  <div>
-                    {item.quantity === 0 ? (
-                      <button
-                        type="button"
-                        aria-label="Add to cart"
-                        className="border rounded-full border-zinc-400 text-zinc-400 hover:border-zinc-100 hover:text-zinc-100 transition-all"
-                        onClick={(e) => handleAddToCart(e, item)}
-                      >
-                        <IoIosAdd className="h-6 w-6" />
-                      </button>
-                    ) : (
-                      <div className="flex gap-2 items-center bg-zinc-600 rounded-[25px] px-2 py-1">
-                        {item.quantity === 1 ? (
-                          <button
-                            onClick={(e) => handleAddToCart(e, item)}
-                            type="button"
-                            aria-label="Delete Item"
-                          >
-                            <MdDelete className="h-5 w-5" />
-                          </button>
-                        ) : (
-                          <button
-                            onClick={(e) => handleAddToCart(e, item)}
-                            type="button"
-                            aria-label="Update Quantity"
-                          >
-                            <FaMinus className="w-5 h-5" />
-                          </button>
-                        )}
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={(e) => handleAddToCart(e, item)}
-                          type="button"
-                          aria-label="Add Item"
-                        >
-                          <IoIosAdd className="h-6 w-6" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
             ))}
@@ -134,7 +90,10 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
           modalTitle="food-item-details"
           className="xl:w-8/12 2xl:w-6/12 w-11/12 md:w-9/12"
         >
-          <FoodItemDetails modelItem={modelItem} handleCloseModal={handleCloseModal}/>
+          <FoodItemDetails
+            modelItem={modelItem}
+            handleCloseModal={handleCloseModal}
+          />
         </ModalComponent>
       )}
     </section>

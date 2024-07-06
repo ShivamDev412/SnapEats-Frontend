@@ -4,11 +4,18 @@ import SideDrawer from "../SideDrawer";
 import CartList from "./CartList";
 
 const Cart = () => {
-  const { handleDrawerOpen, showCartDropDrawer, handleDrawerClose, cart } =
-    useCart()
+  const {
+    handleDrawerOpen,
+    showCartDropDrawer,
+    handleDrawerClose,
+    cart,
+    isLoading,
+  } = useCart();
+  if (isLoading) return <div>Loading...</div>;
   return (
     <div className="relative">
-      <button type="button" onClick={handleDrawerOpen} aria-label="cart">
+      <button type="button" onClick={handleDrawerOpen} aria-label="cart" className="relative">
+        {cart?.data?.length !== 0 && <span className="bg-primary text-zinc-100 rounded-full absolute h-5 w-5 text-sm">{cart?.data?.length}</span>}
         <IoCartOutline className="h-auto w-7 -mb-1" />
       </button>
       <SideDrawer

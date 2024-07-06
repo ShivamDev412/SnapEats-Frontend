@@ -35,6 +35,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.CART}`,
         method: "GET",
       }),
+      providesTags: ["Cart"],
       keepUnusedDataFor: 5,
     }),
     addToCart: builder.mutation<AuthResponse, AddToCartType>({
@@ -45,6 +46,30 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Cart"],
     }),
+    removeFromCart: builder.mutation<AuthResponse, { cartItemId: string }>({
+      query: ({ cartItemId }) => ({
+        url: `${BASE_ROUTE.USER}${ENDPOINTS.CART}`,
+        method: "DELETE",
+        body: { cartItemId },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    updateCartQuantity: builder.mutation<
+      AuthResponse,
+      { cartItemId: string; quantity: number }
+    >({
+      query: ({ cartItemId, quantity }) => ({
+        url: `${BASE_ROUTE.USER}${ENDPOINTS.CART}`,
+        method: "PUT",
+        body: { cartItemId, quantity },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
-export const { useLazyGetCartQuery, useAddToCartMutation } = authApiSlice;
+export const {
+  useGetCartQuery,
+  useAddToCartMutation,
+  useRemoveFromCartMutation,
+  useUpdateCartQuantityMutation,
+} = authApiSlice;

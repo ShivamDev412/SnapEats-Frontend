@@ -9,19 +9,12 @@ const useMenuSection = () => {
     setModelItem(menuItem);
     setOpenModal(true);
   };
-  const handleAddToCart = (e: any, item: MenuItemsType) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (item.options.some((option) => option.isRequired)) {
-      handleOpenModal(item);
-    }
-  };
   return {
     openModal,
     handleCloseModal,
     handleOpenModal,
-    handleAddToCart,
     modelItem,
+  
   };
 };
 export default useMenuSection;
