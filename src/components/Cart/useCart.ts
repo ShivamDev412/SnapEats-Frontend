@@ -1,8 +1,4 @@
-import {
-  useGetCartQuery,
-  useUpdateCartQuantityMutation,
-} from "@/redux/slice/api/user/cartSlice";
-import Toast from "@/utils/Toast";
+import { useGetCartQuery } from "@/redux/slice/api/user/cartSlice";
 import { useState } from "react";
 
 const useCart = () => {
