@@ -65,6 +65,17 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Cart"],
     }),
+    addNoteToCartItem: builder.mutation<
+      AuthResponse,
+      { cartItemId: string; note: string }
+    >({
+      query: ({ cartItemId, note }) => ({
+        url: `${BASE_ROUTE.USER}${ENDPOINTS.CART}/note`,
+        method: "PUT",
+        body: { cartItemId, note },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 export const {
@@ -72,4 +83,5 @@ export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useUpdateCartQuantityMutation,
+  useAddNoteToCartItemMutation,
 } = authApiSlice;

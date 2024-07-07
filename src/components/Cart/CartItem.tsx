@@ -2,6 +2,7 @@ import { CartItemType } from "@/redux/slice/api/user/cartSlice";
 import React from "react";
 import useCartItem from "./useCartItem";
 import QuantitySection from "./QuantitySection";
+import { IoClose } from "react-icons/io5";
 
 type CartItemProps = {
   cartItem: CartItemType;
@@ -16,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
       )) *
     cartItem.quantity;
   const { note, handleNoteChange, removeFromCart, updateCartQuantity } =
-    useCartItem(cartItem.note);
+    useCartItem(cartItem.note, cartItem.id);
   return (
     <div
       className="my-2 sm:my-4 p-4 bg-zinc-800 rounded-lg shadow-md"
@@ -38,14 +39,27 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
           </p>
         ))}
       </div>
-      <textarea
-        name="note"
-        id="note"
-        placeholder="Add a note..."
-        value={note}
-        onChange={(e) => handleNoteChange(e.target.value)}
-        className="w-full p-2 mb-2 bg-zinc-600 rounded-md text-zinc-100 placeholder-zinc-400 resize-none focus:outline-none focus:ring-2 focus:ring-zinc-400 text-xs sm:text-sm"
-      ></textarea>
+      <div className="relative">
+        <textarea
+          name="note"
+          id="note"
+          placeholder="Add a note..."
+          value={note}
+          onChange={(e) => handleNoteChange(e.target.value)}
+          className="w-full p-2 mb-2 bg-zinc-600 rounded-md text-zinc-100 placeholder-zinc-400 resize-none focus:outline-none focus:ring-2 focus:ring-zinc-400 text-xs sm:text-sm"
+        ></textarea>
+        {note.length > 0 && (
+          <button
+            type="button"
+            aria-label="clear-note"
+            className="absolute -top-2 -right-2 border bg-zinc-800 rounded-full text-zinc-100"
+            onClick={() => handleNoteChange("")}
+          >
+            <IoClose />
+          </button>
+        )}
+      </div>
+
       <div className="flex justify-between items-center mt-1 sm:mt-2 text-sm sm:text-xs">
         <QuantitySection
           quantity={cartItem.quantity}
