@@ -24,6 +24,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.ADDRESS}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 30,
       providesTags: ["Address"],
     }),
     createAddress: builder.mutation<AddressDataResponse, AddressType>({

@@ -60,6 +60,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.USER}/`,
         method: "GET",
       }),
+      keepUnusedDataFor: 30,
       providesTags: ["User"],
     }),
     logOut: builder.mutation<AuthResponse, void>({

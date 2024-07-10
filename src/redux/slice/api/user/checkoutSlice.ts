@@ -28,6 +28,7 @@ export const checkoutApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.CHECKOUT}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 5,
       providesTags: ["Checkout"],
     }),
   }),

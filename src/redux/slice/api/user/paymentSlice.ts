@@ -22,7 +22,7 @@ export const paymentApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.PAYMENTS}`,
         method: "GET",
       }),
-      
+      keepUnusedDataFor: 30,
       providesTags: ["PaymentMethods"],
     }),
     addNewPaymentMethod: builder.mutation<
