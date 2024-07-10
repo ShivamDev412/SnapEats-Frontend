@@ -77,6 +77,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CATEGORIES}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 30,
       providesTags: ["Categories"],
     }),
     menuOptions: builder.query<
@@ -87,6 +88,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.OPTIONS}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
     }),
     getMenuChoices: builder.query<
       AuthResponse<{ value: string; label: string }[]>,
@@ -96,6 +98,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}${ENDPOINTS.CHOICE}/${id}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
     }),
     addMenuItem: builder.mutation<AuthResponse, FormData>({
       query: (data) => ({
@@ -111,6 +114,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}/${menuId}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
       providesTags: ["MenuDetail"],
     }),
     storeMenuItems: builder.query<AuthResponse<MenuType[]>, string>({
@@ -118,6 +122,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE_MENU}${query}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
       providesTags: ["Menu"],
     }),
     updateMenuItem: builder.mutation<AuthResponse, FormData>({

@@ -73,7 +73,7 @@ export const homeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.HOME}/${query}`,
         method: "GET",
       }),
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 30,
     }),
     getStorePrimaryDetails: builder.query<
       AuthResponse<StoreDetailType>,
@@ -91,7 +91,7 @@ export const homeApiSlice = apiSlice.injectEndpoints({
           url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_CATEGORY}/${storeId}`,
           method: "GET",
         }),
-        keepUnusedDataFor: 5,
+        keepUnusedDataFor: 60,
       }
     ),
     getStoreMenuItems: builder.query<AuthResponse<MenuItemsType[]>, string>({
@@ -99,7 +99,7 @@ export const homeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.HOME}${ENDPOINTS.HOME_STORE_MENU}/${storeId}`,
         method: "GET",
       }),
-      keepUnusedDataFor: 1,
+      keepUnusedDataFor: 30,
     }),
   }),
 });

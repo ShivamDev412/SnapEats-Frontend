@@ -66,6 +66,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.PROFILE}/${id}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 30,
       providesTags: ["Store"],
     }),
     getStore: builder.query<AuthResponse<StoreType>, string>({
@@ -73,6 +74,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.PROFILE}`,
         method: "GET",
       }),
+      keepUnusedDataFor:30,
       providesTags: ["Store"],
     }),
     updateStorePhoneNumber: builder.mutation<AuthResponse, PhoneNumberType>({
@@ -147,6 +149,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.FOOD_TYPE}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
       providesTags: ["FoodType"],
     }),
     addFoodType: builder.mutation<AuthResponse, { id: string }>({
@@ -170,6 +173,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.STORE_FOOD_TYPE}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
       providesTags: ["StoreFoodType"],
     }),
     getStoreTiming: builder.query<AuthResponse<StoreTimingResponse>, string>({
@@ -177,6 +181,7 @@ export const storeApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.STORE_TIMING}`,
         method: "GET",
       }),
+      keepUnusedDataFor: 10,
       providesTags: ["StoreTiming"],
     }),
     updateStoreTiming: builder.mutation<AuthResponse, StoreTiming>({
