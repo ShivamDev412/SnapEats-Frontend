@@ -14,7 +14,7 @@ const PaymentCard: FC<PaymentCardProps> = ({
 }) => {
   const { handelSetDefaultPaymentMethod, handleDelete } = usePaymentCard();
   return (
-    <div key={paymentMethod.id} className="bg-zinc-800 p-4 rounded-lg w-[30%]">
+    <div key={paymentMethod.id} className="bg-zinc-800 p-4 rounded-lg w-full  xl:w-[30%]">
       <div className="flex gap-2 items-center text-lg">
         {" "}
         <CardBrand brand={paymentMethod.card.brand} />

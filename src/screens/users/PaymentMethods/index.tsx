@@ -16,7 +16,7 @@ const PaymentMethods = () => {
     <Elements stripe={stripePromise}>
       <section className="flex flex-col gap-2 w-full">
         <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-semibold">Payment Methods</h2>
+          <h2 className="text-2xl xl:text-3xl font-semibold">Payment Methods</h2>
           <Button className="bg-green-700" onClick={handleShowModal}>
             Add New Card
           </Button>
