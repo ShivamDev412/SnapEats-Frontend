@@ -1,8 +1,9 @@
 import { IoIosArrowRoundBack } from "react-icons/io";
-
+import { useNavigate } from "react-router-dom";
 import { CartItemType } from "@/redux/slice/api/user/cartSlice";
 import CartItem from "./CartItem";
 import Button from "../Button";
+import { BROWSER_ROUTE } from "@/utils/Endpoints";
 
 type CartListProps = {
   cart: CartItemType[];
@@ -10,6 +11,12 @@ type CartListProps = {
 };
 
 const CartList: React.FC<CartListProps> = ({ cart, handleDrawerClose }) => {
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    handleDrawerClose();
+    navigate(BROWSER_ROUTE.CHECKOUT);
+  };
   return (
     <div className="bg-zinc-900 h-screen w-[4in] text-zinc-100 p-6 shadow-lg flex flex-col justify-between">
       <h3 className="text-xl sm:text-3xl font-bold flex items-center gap-2">
@@ -30,7 +37,7 @@ const CartList: React.FC<CartListProps> = ({ cart, handleDrawerClose }) => {
           <p className="text-center">Your cart is empty</p>
         </div>
       ) : (
-        <Button>Proceed to Checkout</Button>
+        <Button onClick={handleCheckout}>Proceed to Checkout</Button>
       )}
     </div>
   );

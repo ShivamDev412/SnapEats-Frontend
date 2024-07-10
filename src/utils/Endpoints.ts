@@ -36,6 +36,9 @@ const ENDPOINTS = {
   HOME_STORE_CATEGORY: "/home-store-category",
   HOME_STORE_MENU: "/home-store-menu",
   CART: "/cart",
+  ORDER: "/order",
+  CHECKOUT: "/checkout",
+  PAYMENTS: "/payments",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -51,6 +54,9 @@ const BROWSER_ROUTE = {
   SETTINGS: "/settings",
   PRIVACY_POLICY: "/privacy-policy",
   TERMS_AND_CONDITIONS: "/terms-and-conditions",
+  CHECKOUT: "/checkout",
+  PAYMENT_METHODS: "/payment-methods",
+  
 
   STORE_REGISTER: "/store-register",
   STORE_DASHBOARD: "/store/dashboard",

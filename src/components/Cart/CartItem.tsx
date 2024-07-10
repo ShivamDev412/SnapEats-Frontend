@@ -3,19 +3,14 @@ import React from "react";
 import useCartItem from "./useCartItem";
 import QuantitySection from "./QuantitySection";
 import { IoClose } from "react-icons/io5";
+import useTotalPrice from "./useTotalPrice";
 
 type CartItemProps = {
   cartItem: CartItemType;
 };
 
 const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
-  const totalPrice =
-    (cartItem.price +
-      cartItem.options.reduce(
-        (acc, option) => acc + option.additionalPrice,
-        0
-      )) *
-    cartItem.quantity;
+const totalPrice = useTotalPrice(cartItem);
   const { note, handleNoteChange, removeFromCart, updateCartQuantity } =
     useCartItem(cartItem.note, cartItem.id);
   return (

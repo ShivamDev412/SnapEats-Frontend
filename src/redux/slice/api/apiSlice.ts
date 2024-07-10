@@ -75,6 +75,8 @@ export const apiSlice = createApi({
     "StoreFoodType",
     "StoreTiming",
     "Cart",
+    "Checkout",
+    "PaymentMethods",
   ],
   endpoints: () => ({}),
 });

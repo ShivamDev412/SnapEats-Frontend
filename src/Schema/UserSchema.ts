@@ -70,6 +70,9 @@ const ChangePasswordSchema = z
     message: "New Password should not be the same as the Current Password",
     path: ["newPassword"],
   });
+const NewPaymentMethodSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+});
 export {
   ForgotPasswordSchema,
   ResetPasswordSchema,
@@ -77,4 +80,5 @@ export {
   PhoneNumberSchema,
   UpdateProfileSchema,
   ChangePasswordSchema,
+  NewPaymentMethodSchema,
 };
