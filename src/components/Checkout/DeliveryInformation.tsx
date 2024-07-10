@@ -1,5 +1,4 @@
 import { useAddressQuery } from "@/redux/slice/api/user/addressSlice";
-import React from "react";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";

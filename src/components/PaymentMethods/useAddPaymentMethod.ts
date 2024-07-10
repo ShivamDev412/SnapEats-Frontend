@@ -40,22 +40,27 @@ const useAddPaymentMethod = (handleCloseModal: () => void) => {
         setError("cardNumber", {
           message: "Please enter a valid card number",
         });
+        break;
       case "invalid_number":
         setError("cardNumber", {
           message: "Please enter a valid card number",
         });
+        break;
       case "incomplete_cvc":
         setError("cvv", {
           message: "Please enter a valid CVV",
         });
+        break;
       case "invalid_cvc":
         setError("cvv", {
           message: "Please enter a valid CVV",
         });
+        break;
       case "incomplete_expiry":
         setError("expiryDate", {
           message: "Please enter a valid expiry date",
         });
+        break;
       case "invalid_expiry":
         setError("expiryDate", {
           message: "Please enter a valid expiry date",
