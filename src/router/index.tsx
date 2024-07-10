@@ -33,6 +33,10 @@ const LoginSuccessScreen = lazy(
   () => import("@/screens/users/Login/SuccessPage")
 );
 const HomeDetailsScreen = lazy(() => import("@/screens/users/Home/Detail"));
+const CheckoutScreen = lazy(() => import("@/screens/users/Checkout"));
+const PaymentMethodsScreen = lazy(
+  () => import("@/screens/users/PaymentMethods")
+);
 const Routers = () => {
   const {
     LOGIN,
@@ -56,6 +60,8 @@ const Routers = () => {
     PRIVACY_POLICY,
     TERMS_AND_CONDITIONS,
     LOGIN_SUCCESS,
+    CHECKOUT,
+    PAYMENT_METHODS,
   } = BROWSER_ROUTE;
   return (
     <BrowserRouter>
@@ -76,10 +82,13 @@ const Routers = () => {
           <Route path={ORDERS} element={<OrdersScreen />} />
           <Route path={SETTINGS} element={<StoreSettingsScreen />} />
           <Route path={PRIVACY_POLICY} element={<PrivacyPolicyScreen />} />
+          <Route path={CHECKOUT} element={<CheckoutScreen />} />
           <Route
             path={TERMS_AND_CONDITIONS}
             element={<TermsOfServiceScreen />}
           />
+
+          <Route path={PAYMENT_METHODS} element={<PaymentMethodsScreen />} />
           {/* Store */}
           <Route path={STORE_REGISTER} element={<StoreRegisterScreen />} />
           <Route path={STORE_DASHBOARD} element={<StoreDashboardScreen />} />

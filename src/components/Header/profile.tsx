@@ -18,6 +18,7 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { useUserQuery } from "@/redux/slice/api/user/profileSlice";
 import { useLazyGetStoreByUserQuery } from "@/redux/slice/api/store/profileSlice";
 import { setStoreStatus } from "@/redux/slice/storeSlice";
+import { MdOutlinePayment } from "react-icons/md";
 
 type MenuDataProps = {
   menu: string;
@@ -99,6 +100,12 @@ const ProfileSection = () => {
           link={BROWSER_ROUTE.MANAGE_ADDRESS}
           setShowDropdown={setShowDropdown}
           icon={<FaMapLocationDot className="h-5 w-5"/>}
+        />
+         <MenuData
+          menu="Payments"
+          link={BROWSER_ROUTE.PAYMENT_METHODS}
+          setShowDropdown={setShowDropdown}
+          icon={<MdOutlinePayment className="h-5 w-5"/>}
         />
         <MenuData
           menu="Orders"

@@ -372,6 +372,9 @@ const DEFAULT_VALUES = {
     openTime: "",
     closeTime:"",
   },
+  PAYMENT_METHOD: {
+    name: "",
+  }
 };
 export {
   addressTypes,
