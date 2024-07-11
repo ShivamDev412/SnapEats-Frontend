@@ -6,6 +6,7 @@ import { FC } from "react";
 import Button from "@/components/Button";
 import moment from "moment";
 import { checkIfOpen } from "@/utils/ConstantFunctions";
+import StorePlaceholderImage from "@/assets/store_placeholder.webp";
 
 type BannerProfileSectionProps = {
   name: string;
@@ -45,12 +46,23 @@ const BannerProfileSection: FC<BannerProfileSectionProps> = ({
       className="flex flex-wrap flex-col sm:flex-row gap-2 sm:gap-5 border-b border-zinc-700 pb-4"
       aria-label={`Store profile section for ${name}`}
     >
-      <LazyLoadedImageComponent
-        image={image}
-        alt={`Image of ${name}`}
-        compressedImage={compressedImage}
-        className="w-full sm:w-1/3 rounded-lg"
-      />
+      {image ? (
+        <LazyLoadedImageComponent
+          image={image}
+          alt={`Image of ${name}`}
+          compressedImage={compressedImage}
+          className="w-full sm:w-1/3 rounded-lg"
+        />
+      ) : (
+        <div className="w-full sm:w-1/3">
+          <img
+            src={StorePlaceholderImage}
+            alt="store-image-placeholder"
+            className="h-full w-full rounded-lg"
+          />
+        </div>
+      )}
+
       <div
         className="flex flex-col gap-3 xl:gap-4"
         role="region"

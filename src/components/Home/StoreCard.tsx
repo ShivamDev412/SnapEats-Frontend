@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import moment from "moment-timezone";
 import { IoMoonSharp } from "react-icons/io5";
 import { checkIfOpen } from "@/utils/ConstantFunctions";
-
+import StorePlaceholderImage from "@/assets/store_placeholder.webp";
 const ClosedStore = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center justify-center text-orange-300">
@@ -32,14 +32,20 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
   return (
     <Link
       to={`/${store.name}/${store.id}`}
-      className="w-full sm:w-1/2 xl:w-1/4 rounded-lg flex flex-col gap-2 bg-zinc-800 relative"
+      className="w-full sm:w-1/2 xl:w-1/4 rounded-sm flex flex-col gap-2 bg-zinc-800 relative"
     >
-      <LazyLoadedImageComponent
-        image={image || ""}
-        alt={name}
-        compressedImage={compressedImage || ""}
-        className="rounded-t-lg"
-      />
+      {image ? (
+        <LazyLoadedImageComponent
+          image={image || ""}
+          alt={`${name}-image`}
+          className="rounded-t-sm"
+          compressedImage={compressedImage || ""}
+        />
+      ) : (
+        <div className="h-[2.1in] w-full">
+          <img src={StorePlaceholderImage} alt="store-image-placeholder" className="h-full w-full rounded-t-sm"/>
+        </div>
+      )}
       {!checkIfOpen(openTime, closeTime) && <ClosedStore />}
       <div className="flex flex-col gap-1 px-3 pb-2">
         <div className="flex justify-between items-center">

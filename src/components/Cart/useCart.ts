@@ -3,7 +3,9 @@ import { useState } from "react";
 
 const useCart = () => {
   const [showCartDropDrawer, setShowCartDropDrawer] = useState(false);
-  const { data: cart, isLoading } = useGetCartQuery();
+  const { data: cart, isLoading } = useGetCartQuery("",{
+    refetchOnMountOrArgChange: true,
+  });
   const handleDrawerClose = () => {
     setShowCartDropDrawer(false);
   };
