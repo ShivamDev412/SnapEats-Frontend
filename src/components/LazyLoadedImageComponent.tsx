@@ -46,7 +46,7 @@ const LazyLoadedImageComponent: FC<Props> = ({
         src={image}
         alt={alt}
         onLoad={handleImageLoad}
-        style={{ display: "none" }}
+        className="hidden"
       />
     </>
   );

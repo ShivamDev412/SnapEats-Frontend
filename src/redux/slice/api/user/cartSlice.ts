@@ -30,7 +30,7 @@ export type CartItemType = {
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCart: builder.query<AuthResponse<CartItemType[]>, void>({
+    getCart: builder.query<AuthResponse<CartItemType[]>, string>({
       query: () => ({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.CART}`,
         method: "GET",
