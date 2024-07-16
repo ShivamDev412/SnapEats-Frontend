@@ -13,6 +13,7 @@ import { FaUmbrellaBeach } from "react-icons/fa6";
 
 import { AddressType } from "@/redux/slice/api/user/addressSlice";
 import Button from "../Button";
+import { useTranslation } from "react-i18next";
 
 const AddressCard: React.FC<{
   address: AddressType;
@@ -31,6 +32,7 @@ const AddressCard: React.FC<{
     } 
 
   };
+  const {t} = useTranslation();
   const renderAddressType = (type: string) => {
     switch (type) {
       case "home":
@@ -72,7 +74,7 @@ const AddressCard: React.FC<{
             }}
             inputProps={{ "aria-label": "controlled" }}
           />
-          <p>Default</p>
+          <p>{t('default')}</p>
         </div>
       </div>
       <div className="flex justify-between">

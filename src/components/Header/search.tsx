@@ -1,7 +1,9 @@
 import { IoSearch } from "react-icons/io5";
 import useSearch from "./useSearch";
+import { useTranslation } from "react-i18next";
 
 const Search = () => {
+  const { t } = useTranslation();
   const { search, setSearch, showSearchDropdown, setSearchDropdown } =
     useSearch();
   return (
@@ -11,7 +13,7 @@ const Search = () => {
         <input
           type="text"
           className="bg-transparent w-full focus:outline-none"
-          placeholder="Search for food or restaurants"
+          placeholder={t('searchForFoodOrRestaurant')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onFocus={() => setSearchDropdown(true)}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import NoDataFound from "../NoDataFound";
 import AddressCard from "./AddressCard";
 import useUserAddress from "./useUserAddress";
@@ -7,7 +8,7 @@ const UserAddress: React.FC<{
   handleUpdateAddress: (address: AddressType) => void;
 }> = ({ handleUpdateAddress }) => {
   const { data, handleDelete, markAsDefaultAddress } = useUserAddress();
-
+  const {t} = useTranslation();
   return (
     <section className="flex gap-4 mt-10 flex-wrap flex-1 h-full">
       {data?.data && data?.data?.length > 0 ? (
@@ -23,7 +24,7 @@ const UserAddress: React.FC<{
           ))}
         </>
       ) : (
-        <NoDataFound message="You haven't added any address" />
+        <NoDataFound message={t('noAddressFound')} />
       )}
     </section>
   );

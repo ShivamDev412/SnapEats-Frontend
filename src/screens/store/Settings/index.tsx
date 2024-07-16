@@ -8,6 +8,7 @@ import { LANGUAGE } from "@/utils/Constants";
 import { Link } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import ChangePassword from "@/components/Settings/ChangePassword";
+import { useTranslation } from "react-i18next";
 const Settings = () => {
   const {
     handleEditProfile,
@@ -18,43 +19,55 @@ const Settings = () => {
   } = useSettings();
   const { storeStatus } = useSelector((state: RootState) => state.store);
   const isMobile = useDeviceType();
+  const { t } = useTranslation();
   return (
     <section className="w-full">
-      <h2 className="text-3xl font-semibold mb-5">Settings</h2>
+      <h2 className="text-3xl font-semibold mb-5">{t("settings")}</h2>
       <section className="bg-zinc-800 p-6 rounded-xl text-zinc-100 flex flex-col gap-6 h-fit w-full">
         <section className="flex flex-col gap-4 text-left">
-          <h3 className="text-2xl font-semibold">Account Information</h3>
+          <h3 className="text-2xl font-semibold">{t("accountInfo")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             <SettingsListItem
               onClick={handleEditProfile}
-              title="Edit Profile"
+              title={t("editProfile")}
             />
             {(storeStatus === "approved" || !isUser) && !isMobile && (
               <SettingsListItem
                 onClick={switchAccount}
-                title="Switch Account"
+                title={
+                  !isUser ? <>{t("switchToUser")}</> : <>{t("switchToStore")}</>
+                }
               />
             )}
-            <button className="text-left font-semibold text-lg">
-              Delete Account
+            <button
+              className="text-left font-semibold text-lg"
+              aria-label="deleteAccount"
+              type="button"
+            >
+              {t("deleteAccount")}
             </button>
           </section>
         </section>
-        <section className="flex flex-col gap-4 text-left">
-          <h3 className="text-2xl font-semibold">Preferences</h3>
-          <section className="ml-5 flex flex-col gap-2">
-            <p className="text-left font-semibold text-lg">Language Settings</p>
-            <SimpleSelectField
-              placeholder={"Select Language"}
-              data={LANGUAGE}
-              defaultValue={language || "en"}
-              customClasses="border-zinc-400 hover:border-zinc-100 focus-within:border-zinc-400 w-fit text-zinc-100"
-              onChange={handleSelectedLanguage}
-            />
+        {isUser && (
+          <section className="flex flex-col gap-4 text-left">
+            <h3 className="text-2xl font-semibold">{t("preferences")}</h3>
+            <section className="ml-5 flex flex-col gap-2">
+              <p className="text-left font-semibold text-lg">
+                {t("languageSettings")}
+              </p>
+              <SimpleSelectField
+                placeholder={t("selectLanguage")}
+                data={LANGUAGE}
+                defaultValue={language || "en"}
+                customClasses="border-zinc-400 hover:border-zinc-100 focus-within:border-zinc-400 w-fit text-zinc-100"
+                onChange={handleSelectedLanguage}
+              />
+            </section>
           </section>
-        </section>
+        )}
+
         <section className="flex flex-col gap-4 text-left">
-          <h3 className="text-2xl font-semibold">Notifications</h3>
+          <h3 className="text-2xl font-semibold">{t("notifications")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             <p className="text-left font-semibold text-lg">
               Email Notifications
@@ -65,11 +78,11 @@ const Settings = () => {
           </section>
         </section>
         <section className="flex flex-col gap-4 text-left">
-          <h3 className="text-2xl font-semibold">Security</h3>
+          <h3 className="text-2xl font-semibold">{t("security")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             {!isUser ? (
               <p className="text-left font-semibold text-lg">
-                Two-Factor Authentication
+                {t("twoFactorAuth")}
               </p>
             ) : (
               <ChangePassword />
@@ -78,27 +91,27 @@ const Settings = () => {
         </section>
         {isUser && (
           <section className="flex flex-col gap-4 text-left">
-            <h3 className="text-2xl font-semibold">Other</h3>
+            <h3 className="text-2xl font-semibold">{t("other")}</h3>
 
             <section className="ml-5 flex flex-col gap-2">
-              <p className="text-left font-semibold text-lg">Help</p>
+              <p className="text-left font-semibold text-lg">{t("help")}</p>
               <Link
                 to={BROWSER_ROUTE.PRIVACY_POLICY}
                 className="text-left font-semibold text-lg"
               >
-                Privacy Policy
+                {t("privacyPolicy")}
               </Link>
               <Link
                 to={BROWSER_ROUTE.TERMS_AND_CONDITIONS}
                 className="text-left font-semibold text-lg"
               >
-                Terms of Service
+                {t("termsOfService")}
               </Link>
             </section>
           </section>
         )}
         <section className="flex flex-col gap-4 text-left">
-          <h3 className="text-2xl font-semibold">About</h3>
+          <h3 className="text-2xl font-semibold">{t("about")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             <p className="text-left font-semibold text-lg">Version 1.0.0</p>
           </section>

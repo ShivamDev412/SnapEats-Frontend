@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import usePaymentMethod from "./usePaymentMethods";
 import ModalComponent from "@/components/Modal";
 import { AddPaymentMethod, PaymentCard } from "@/components/PaymentMethods";
+import { useTranslation } from "react-i18next";
 
 const PaymentMethods = () => {
   const {
@@ -12,13 +13,14 @@ const PaymentMethods = () => {
     handleShowModal,
     handleCloseModal,
   } = usePaymentMethod();
+  const {t} = useTranslation();
   return (
     <Elements stripe={stripePromise}>
       <section className="flex flex-col gap-2 w-full">
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl xl:text-3xl font-semibold">Payment Methods</h2>
+          <h2 className="text-2xl xl:text-3xl font-semibold">{t('paymentCard')}</h2>
           <Button className="bg-green-700" onClick={handleShowModal}>
-            Add New Card
+           {t('addNewCard')}
           </Button>
         </div>
         <div className="flex gap-4 flex-col">
