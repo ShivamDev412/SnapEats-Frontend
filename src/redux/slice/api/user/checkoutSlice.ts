@@ -9,6 +9,7 @@ export type OrderSummaryItemType = {
   options: {
     id: string;
     optionName: string;
+    choiceName: string;
     additionalPrice?: number;
   }[];
   totalPrice: number;

@@ -23,7 +23,7 @@ const OrderSummary = () => {
     }, 0) || 0;
 
   return (
-    <div className="bg-zinc-800 rounded-lg p-4">
+    <div className="bg-zinc-800 rounded-lg p-4 w-full">
       <h3 className="text-2xl font-semibold mb-4">Order Summary</h3>
       <div>
         {orderSummary?.data?.map((store) => {

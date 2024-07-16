@@ -102,6 +102,18 @@ export const StoreTimingSchema = z.object({
   openTime: z.string().min(1, "Open Time is required"),
   closeTime: z.string().min(1, "Close Time is required"),
 });
-
+export const StoreBankAccountSchema = z.object({
+  accountHolderName: z
+    .string()
+    .min(1, { message: "Account holder name is required" }),
+  accountNumber: z.string().min(1, { message: "Account number is required" }),
+  email: z.string().min(1, { message: "Email is required" }),
+  transitNumber: z
+    .string()
+    .length(5, { message: "Transit number must be 5 digits" }),
+  institutionNumber: z
+    .string()
+    .length(3, { message: "Institution number must be 3 digits" }),
+});
 
 export default RegisterStoreSchema;

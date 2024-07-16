@@ -33,10 +33,15 @@
     "upload store picture": "Upload store picture",
     "storePrimaryInformation": "Store Primary Information",
     "additionalInformation": "Additional information",
-    "updatePhoneNumber":"Update Phone Number",
-    "addPhoneNumber":"Add Phone Number",
-    "changePassword":"Change Password",
-    "currentPassword":"Current Password",
-    "newPassword":"New Password",
-    "confirmPassword":"Confirm Password"
+    "updatePhoneNumber": "Update Phone Number",
+    "addPhoneNumber": "Add Phone Number",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "linkBankAccount": "Link Bank Account",
+    "accountNumber": "Account Number",
+    "accountHolderName": "Account Holder Name",
+    "transitNumber": "Transit Number",
+    "institutionNumber": "Institution Number"
 }

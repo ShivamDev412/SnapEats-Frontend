@@ -39,6 +39,7 @@ const ENDPOINTS = {
   ORDER: "/order",
   CHECKOUT: "/checkout",
   PAYMENTS: "/payments",
+  BANK_ACCOUNT  : "/bank-account",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -61,6 +62,7 @@ const BROWSER_ROUTE = {
   STORE_REGISTER: "/store-register",
   STORE_DASHBOARD: "/store/dashboard",
   STORE_ORDERS: "/store/orders",
+  STORE_PAYMENTS : "/store/payments",
   STORE_SETTINGS: "/store/settings",
   STORE_EDIT_PROFILE: "/store/edit-profile",
   STORE_PROFILE: "/store/profile",

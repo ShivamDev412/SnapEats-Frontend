@@ -13,7 +13,7 @@ const OrderSummaryItem = ({ item }: { item: OrderSummaryItemType }) => {
       <div>
         {item.options.map((option) => (
           <div key={option.id} className="flex gap-2 items-center ml-4">
-            <span className="text-sm text-gray-400">{option.optionName}</span>
+            <span className="text-sm text-gray-400">{option.optionName} - {option.choiceName} </span>
             {option.additionalPrice && (
               <span className="text-sm text-gray-400">
                 +${option.additionalPrice.toFixed(2)}

@@ -5,6 +5,8 @@ import { RiFileListFill } from "react-icons/ri";
 import { BROWSER_ROUTE } from "./Endpoints";
 import { IoRestaurant } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
+import { MdOutlinePayment } from "react-icons/md";
+
 const addressTypes = [
   { value: "home", label: "Home" },
   { value: "work", label: "Work" },
@@ -290,6 +292,12 @@ const STORE_NAV_LIST = [
     link: BROWSER_ROUTE.STORE_ORDERS,
   },
   {
+    id: "store-payments",
+    title: "Payments",
+    Icon: MdOutlinePayment,
+    link: BROWSER_ROUTE.STORE_PAYMENTS,
+  },
+  {
     id: "store-settings",
     title: "Settings",
     Icon: IoSettings,
@@ -370,11 +378,20 @@ const DEFAULT_VALUES = {
   },
   STORE_TIMING: {
     openTime: "",
-    closeTime:"",
+    closeTime: "",
   },
   PAYMENT_METHOD: {
     name: "",
-  }
+  },
+  BANK_ACCOUNT: {
+    accountHolderName: "",
+    accountNumber: "",
+    bankName: "",
+    email: "",
+    transitNumber: "",
+    currency: "",
+    institutionNumber: "",
+  },
 };
 export {
   addressTypes,
@@ -383,5 +400,5 @@ export {
   STORE_NAV_LIST,
   USER_ROUTES,
   DEFAULT_VALUES,
-  LANGUAGE
+  LANGUAGE,
 };
