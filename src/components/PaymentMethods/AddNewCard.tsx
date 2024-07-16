@@ -7,6 +7,7 @@ import {
   CardNumberElement,
 } from "@stripe/react-stripe-js";
 import useAddPaymentMethod from "./useAddPaymentMethod";
+import { useTranslation } from "react-i18next";
 
 const AddPaymentMethod = ({
     handleCloseModal,
@@ -15,10 +16,11 @@ const AddPaymentMethod = ({
   }) => {
     const { register, errors, handleSubmit, onSubmit, isLoading } =
       useAddPaymentMethod(handleCloseModal);
+      const {t} = useTranslation();
     return (
       <div className="w-full">
         <h3 className="text-2xl font-semibold text-center">
-          Add a New Payment Method
+          {t("addNewCard")}
         </h3>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -29,7 +31,7 @@ const AddPaymentMethod = ({
             type="text"
             register={register}
             errors={errors}
-            placeholder="Name on Card"
+            placeholder={t("nameOnCard")}
           />
           <CardInput
             errors={errors}
@@ -44,7 +46,7 @@ const AddPaymentMethod = ({
           <CardInput errors={errors} id={"cvv"} element={CardCvcElement} />
   
           <Button type="submit" isLoading={isLoading}>
-            Save Card
+            {t("saveCard")}
           </Button>
         </form>
       </div>

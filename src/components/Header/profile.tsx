@@ -26,15 +26,10 @@ type MenuDataProps = {
   setShowDropdown: (value: boolean) => void;
   icon?: any;
 };
-const MenuData: FC<MenuDataProps> = ({
-  menu,
-  link,
-  setShowDropdown,
-  icon,
-}) => {
+const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown, icon }) => {
   return (
     <MenuItem className="px-6 hover:bg-white hover:text-primary flex items-center gap-2">
-     <span>{icon}</span>
+      <span>{icon}</span>
       <Link to={link} onClick={() => setShowDropdown(false)} className="w-full">
         {menu}
       </Link>
@@ -68,6 +63,7 @@ const ProfileSection = () => {
       dispatch(setStoreStatus("approved"));
     }
   }, [store?.data?.status]);
+  const { t } = useTranslation();
   return (
     <Dropdown open={showDropdown}>
       <MenuButton>
@@ -90,50 +86,50 @@ const ProfileSection = () => {
       </MenuButton>
       <Menu className="bg-zinc-900 text-zinc-100 rounded-lg border border-zinc-700 w-[2in] py-3 z-10">
         <MenuData
-          menu="Profile"
+          menu={t("profile")}
           link={BROWSER_ROUTE.PROFILE}
           setShowDropdown={setShowDropdown}
-          icon={<FaRegUserCircle className="h-5 w-5"/>}
+          icon={<FaRegUserCircle className="h-5 w-5" />}
         />
         <MenuData
-          menu="Manage Address"
+          menu={t("manageAddress")}
           link={BROWSER_ROUTE.MANAGE_ADDRESS}
           setShowDropdown={setShowDropdown}
-          icon={<FaMapLocationDot className="h-5 w-5"/>}
-        />
-         <MenuData
-          menu="Payments"
-          link={BROWSER_ROUTE.PAYMENT_METHODS}
-          setShowDropdown={setShowDropdown}
-          icon={<MdOutlinePayment className="h-5 w-5"/>}
+          icon={<FaMapLocationDot className="h-5 w-5" />}
         />
         <MenuData
-          menu="Orders"
+          menu={t("payment")}
+          link={BROWSER_ROUTE.PAYMENT_METHODS}
+          setShowDropdown={setShowDropdown}
+          icon={<MdOutlinePayment className="h-5 w-5" />}
+        />
+        <MenuData
+          menu={t("orders")}
           link={BROWSER_ROUTE.ORDERS}
           setShowDropdown={setShowDropdown}
-          icon={<RiFileListFill className="h-5 w-5"/>}
+          icon={<RiFileListFill className="h-5 w-5" />}
         />
         {(!user?.data.storeId || store?.data?.status === "PENDING") && (
           <MenuData
-            menu="Register Your Store"
+            menu={t("registerYourStore")}
             link={BROWSER_ROUTE.STORE_REGISTER}
             setShowDropdown={setShowDropdown}
-            icon={<IoRestaurantSharp className="h-5 w-5"/>}
+            icon={<IoRestaurantSharp className="h-5 w-5" />}
           />
         )}
 
         <MenuData
-          menu="Settings"
+          menu={t("settings")}
           link={BROWSER_ROUTE.SETTINGS}
           setShowDropdown={setShowDropdown}
-          icon={<IoSettings className="h-5 w-5"/>}
+          icon={<IoSettings className="h-5 w-5" />}
         />
         <MenuItem
           className="px-6 hover:bg-white hover:text-primary text-gray-600 flex gap-2 items-center"
           onClick={logoutHandler}
         >
-          <IoIosLogOut className="h-5 w-5"/>
-          <p>Logout</p>
+          <IoIosLogOut className="h-5 w-5" />
+          <p>{t("logout")}</p>
         </MenuItem>
       </Menu>
     </Dropdown>

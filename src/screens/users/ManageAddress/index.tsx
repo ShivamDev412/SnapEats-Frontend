@@ -3,6 +3,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import useManageAddress from "./useManageAddress";
 import ModalComponent from "@/components/Modal";
 import { AddAddress, UserAddress } from "@/components/ManageAddress";
+import { useTranslation } from "react-i18next";
 
 const ManageAddress = () => {
   const {
@@ -20,17 +21,18 @@ const ManageAddress = () => {
     isUpdateAddressLoading,
     control,
   } = useManageAddress();
+  const {t} = useTranslation();
   return (
     <section className="flex flex-col h-full w-full flex-1">
       <section className="flex justify-between">
-        <h2 className="text-2xl lg:text-3xl font-semibold">Your Address</h2>
+        <h2 className="text-2xl lg:text-3xl font-semibold">{t('yourAddress')}</h2>
         <Button
           className="bg-green-800 flex items-center gap-2"
           type="button"
           onClick={handleAddAddress}
         >
           <FaLocationDot />
-          Add Address
+          {t('addAddress')}
         </Button>
       </section>
       <UserAddress handleUpdateAddress={handleUpdateAddress} />

@@ -1,19 +1,19 @@
-import {
-  PaymentMethodType,
-} from "@/redux/slice/api/user/paymentSlice";
+import { PaymentMethodType } from "@/redux/slice/api/user/paymentSlice";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { CardBrand } from "../PaymentMethods";
+import { useTranslation } from "react-i18next";
 
 const PaymentInformation = ({
   defaultPaymentMethod,
 }: {
   defaultPaymentMethod: PaymentMethodType | undefined;
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-zinc-800 rounded-lg p-4 flex flex-col gap-4 w-full">
-      <h3 className="text-2xl font-semibold">Payment Information</h3>
+      <h3 className="text-2xl font-semibold">{t("paymentInfo")}</h3>
       {defaultPaymentMethod ? (
         <div className="flex flex-col gap-2">
           <div className="flex gap-2 items-center">
@@ -29,12 +29,12 @@ const PaymentInformation = ({
             </div>
           </div>
           <Button className="text-sm w-fit">
-            <Link to={BROWSER_ROUTE.PAYMENT_METHODS}>Change Card</Link>
+            <Link to={BROWSER_ROUTE.PAYMENT_METHODS}>{t("changeCard")}</Link>
           </Button>
         </div>
       ) : (
         <Button className="text-sm w-fit">
-          <Link to={BROWSER_ROUTE.PAYMENT_METHODS}>Add New Card</Link>
+          <Link to={BROWSER_ROUTE.PAYMENT_METHODS}>{t("addNewCard")}</Link>
         </Button>
       )}
     </div>
