@@ -40,6 +40,10 @@ const ENDPOINTS = {
   CHECKOUT: "/checkout",
   PAYMENTS: "/payments",
   BANK_ACCOUNT  : "/bank-account",
+  VERIFY_2FA: "/verify-2fa",
+  ENABLE_2FA: "/enable-2fa",
+  DISABLE_2FA: "/disable-2fa",
+  TWO_FA_STATUS: "/two-fa-status",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",

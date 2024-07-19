@@ -1,2 +1,4 @@
 import SettingsListItem from './SettingsListItem';
-export {SettingsListItem}
+import TwoFA from './TwoFA';
+import ChangePassword from './ChangePassword'
+export {SettingsListItem, TwoFA, ChangePassword}

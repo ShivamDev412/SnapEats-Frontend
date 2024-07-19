@@ -78,6 +78,7 @@ export const apiSlice = createApi({
     "Checkout",
     "PaymentMethods",
     "BankAccount",
+    "2FAStatus"
   ],
   endpoints: () => ({}),
 });
