@@ -5,8 +5,13 @@ import {
 } from "@/components/Home/Details";
 import { MenuCategories } from "@/components/Home/Details";
 const Details = () => {
-  const { storePrimaryDetails, isFetching, handleCategoryClick, categoryData, menuItems } =
-    useDetails();
+  const {
+    storePrimaryDetails,
+    isFetching,
+    handleCategoryClick,
+    categoryData,
+    menuItems,
+  } = useDetails();
   const {
     name,
     image,
@@ -39,7 +44,11 @@ const Details = () => {
         categoryData={categoryData}
         handleCategoryClick={handleCategoryClick}
       />
-      <MenuItemsSection menuItems={menuItems || []}/>
+      <MenuItemsSection
+        menuItems={menuItems || []}
+        openTime={openTime || ""}
+        closeTime={closeTime || ""}
+      />
     </section>
   );
 };

@@ -42,8 +42,12 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
           compressedImage={compressedImage || ""}
         />
       ) : (
-        <div className="h-[2.1in] w-full">
-          <img src={StorePlaceholderImage} alt="store-image-placeholder" className="h-full w-full rounded-t-sm"/>
+        <div className="w-full">
+          <img
+            src={StorePlaceholderImage}
+            alt="store-image-placeholder"
+            className="h-full w-full rounded-t-sm"
+          />
         </div>
       )}
       {!checkIfOpen(openTime, closeTime) && <ClosedStore />}

@@ -7,15 +7,13 @@ import ModalComponent from "@/components/Modal";
 import useMenuSection from "./useMenuSection";
 import FoodItemDetails from "./FoodItemDetails";
 
-const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
-  menuItems,
-}) => {
-  const {
-    openModal,
-    handleCloseModal,
-    handleOpenModal,
-    modelItem,
-  } = useMenuSection();
+const MenuItemsSection: FC<{
+  menuItems: MenuItemsType[];
+  openTime: string;
+  closeTime: string;
+}> = ({ menuItems, openTime, closeTime }) => {
+  const { openModal, handleCloseModal, handleOpenModal, modelItem } =
+    useMenuSection();
 
   const groupMenuItemsByCategory = (
     menuItems: MenuItemsType[]
@@ -93,6 +91,8 @@ const MenuItemsSection: FC<{ menuItems: MenuItemsType[] }> = ({
           <FoodItemDetails
             modelItem={modelItem}
             handleCloseModal={handleCloseModal}
+            openTime={openTime}
+            closeTime={closeTime}
           />
         </ModalComponent>
       )}
