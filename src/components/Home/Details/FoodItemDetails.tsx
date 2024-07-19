@@ -6,8 +6,15 @@ import { FC } from "react";
 import { BiFoodTag } from "react-icons/bi";
 import { FaRegClock } from "react-icons/fa6";
 import useFoodItemDetails from "./useFoodItemDetails";
+import { checkIfOpen } from "@/utils/ConstantFunctions";
+import Toast from "@/utils/Toast";
 
-const FoodItemDetails: FC<{ modelItem: MenuItemsType, handleCloseModal: () => void }> = ({ modelItem, handleCloseModal }) => {
+const FoodItemDetails: FC<{
+  modelItem: MenuItemsType;
+  handleCloseModal: () => void;
+  openTime: string;
+  closeTime: string;
+}> = ({ modelItem, handleCloseModal, openTime, closeTime }) => {
   const {
     name,
     image,
@@ -26,7 +33,6 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType, handleCloseModal: () => vo
     handleAddToCart,
     isLoading,
   } = useFoodItemDetails(price, options, handleCloseModal);
-
   return (
     <div className="flex flex-col sm:flex-row gap-4 max-h-[80vh] overflow-y-auto overflow-x-hidden">
       {modelItem && Object.keys(modelItem)?.length > 0 && (
@@ -116,7 +122,9 @@ const FoodItemDetails: FC<{ modelItem: MenuItemsType, handleCloseModal: () => vo
               isLoading={isLoading}
               disabled={!isRequiredChoiceSelected}
               onClick={() =>
-                handleAddToCart(modelItem.id, name, totalPrice, "")
+                checkIfOpen(openTime, closeTime)
+                  ? handleAddToCart(modelItem.id, name, totalPrice, "")
+                  : Toast("The Store is closed", "info")
               }
             >
               Add 1 of ${totalPrice.toFixed(2)} to cart

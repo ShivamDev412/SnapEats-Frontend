@@ -90,7 +90,7 @@ const Settings = () => {
           <section className="ml-5 flex flex-col gap-2">
             {isUser && (
               <>
-                <TwoFA />
+                {!isMobile && <TwoFA />}
                 <ChangePassword />
               </>
             )}
@@ -130,21 +130,19 @@ const Settings = () => {
         modalTitle="Verify 2FA Token"
       >
         <div className="flex flex-col gap-6 justify-center w-full">
-          <h2 className="text-2xl font-semibold text-center">Enter 2FA Token</h2>
+          <h2 className="text-2xl font-semibold text-center">
+            Enter 2FA Token
+          </h2>
           <div className="flex justify-center">
-          <OTP
-            separator={<span> </span>}
-            value={token}
-            onChange={setToken}
-            length={6}
-          />
+            <OTP
+              separator={<span> </span>}
+              value={token}
+              onChange={setToken}
+              length={6}
+            />
           </div>
-   
-          <Button
-            onClick={handleVerifyCode}
-          >
-            Verify
-          </Button>
+
+          <Button onClick={handleVerifyCode}>Verify</Button>
         </div>
       </ModalComponent>
     </section>
