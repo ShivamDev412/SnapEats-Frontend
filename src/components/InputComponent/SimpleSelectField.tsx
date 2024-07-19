@@ -35,7 +35,7 @@ const SimpleSelectField: React.FC<SelectFieldProps> = ({
           customClasses
         )}
       >
-        <select
+        <select 
           className="appearance-none w-full bg-transparent focus:outline-none"
           value={value}
           onChange={handleChange}

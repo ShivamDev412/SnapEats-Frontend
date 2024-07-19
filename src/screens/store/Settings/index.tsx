@@ -1,21 +1,29 @@
-import { SettingsListItem } from "@/components/Settings";
-import useSettings from "./useSettings";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useSettings from "./useSettings";
 import { RootState } from "@/redux/Store";
 import useDeviceType from "@/Hooks/useDeviceType";
 import { SimpleSelectField } from "@/components/InputComponent";
 import { LANGUAGE } from "@/utils/Constants";
-import { Link } from "react-router-dom";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
-import ChangePassword from "@/components/Settings/ChangePassword";
-import { useTranslation } from "react-i18next";
+import { SettingsListItem, TwoFA, ChangePassword } from "@/components/Settings";
+import ModalComponent from "@/components/Modal";
+import OTP from "@/components/OtpInput";
+import Button from "@/components/Button";
+
 const Settings = () => {
   const {
     handleEditProfile,
     switchAccount,
     isUser,
-    handleSelectedLanguage,
     language,
+    handleSelectedLanguage,
+    verify2FAModal,
+    handleModalClose,
+    token,
+    setToken,
+    handleVerifyCode,
   } = useSettings();
   const { storeStatus } = useSelector((state: RootState) => state.store);
   const isMobile = useDeviceType();
@@ -80,12 +88,11 @@ const Settings = () => {
         <section className="flex flex-col gap-4 text-left">
           <h3 className="text-2xl font-semibold">{t("security")}</h3>
           <section className="ml-5 flex flex-col gap-2">
-            {!isUser ? (
-              <p className="text-left font-semibold text-lg">
-                {t("twoFactorAuth")}
-              </p>
-            ) : (
-              <ChangePassword />
+            {isUser && (
+              <>
+                <TwoFA />
+                <ChangePassword />
+              </>
             )}
           </section>
         </section>
@@ -117,6 +124,29 @@ const Settings = () => {
           </section>
         </section>
       </section>
+      <ModalComponent
+        open={verify2FAModal}
+        handleClose={handleModalClose}
+        modalTitle="Verify 2FA Token"
+      >
+        <div className="flex flex-col gap-6 justify-center w-full">
+          <h2 className="text-2xl font-semibold text-center">Enter 2FA Token</h2>
+          <div className="flex justify-center">
+          <OTP
+            separator={<span> </span>}
+            value={token}
+            onChange={setToken}
+            length={6}
+          />
+          </div>
+   
+          <Button
+            onClick={handleVerifyCode}
+          >
+            Verify
+          </Button>
+        </div>
+      </ModalComponent>
     </section>
   );
 };
