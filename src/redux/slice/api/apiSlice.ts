@@ -1,5 +1,5 @@
 import { RootState } from "@/redux/RootReducer";
-import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
+import { API_VERSION, BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import {
   BaseQueryApi,
   FetchArgs,
@@ -21,7 +21,7 @@ export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
       meta?: M;
     };
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_BASE_URL,
+  baseUrl: `${import.meta.env.VITE_BASE_URL}/api${API_VERSION}`,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState)?.auth.token;
@@ -78,7 +78,8 @@ export const apiSlice = createApi({
     "Checkout",
     "PaymentMethods",
     "BankAccount",
-    "2FAStatus"
+    "2FAStatus",
+    "Biometric",
   ],
   endpoints: () => ({}),
 });

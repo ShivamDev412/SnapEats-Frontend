@@ -13,18 +13,30 @@ export type OrderSummaryItemType = {
     additionalPrice?: number;
   }[];
   totalPrice: number;
+  gst: number;
+  pst: number;
 };
 
-type StoreSummary = {
+export type StoreSummary = {
   storeId: string;
   storeName: string;
+  stripeAccountId: string;
   deliveryFee: number;
   items: OrderSummaryItemType[];
   subtotal: number;
+  gst: number;
+  pst: number;
+  totalWithTax: number;
+};
+export type OrderSummaryType = {
+  orderSummary: StoreSummary[];
+  grandTotal: number;
+  gstRate: number;
+  pstRate: number;
 };
 export const checkoutApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getOrderSummary: builder.query<AuthResponse<StoreSummary[]>, string>({
+    getOrderSummary: builder.query<AuthResponse<OrderSummaryType>, string>({
       query: () => ({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.CHECKOUT}`,
         method: "GET",
@@ -32,6 +44,15 @@ export const checkoutApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
       providesTags: ["Checkout"],
     }),
+    placeOrder: builder.mutation<AuthResponse<any>,{ orderItems: StoreSummary[] }>({
+      query: ({ orderItems }) => ({
+        url: `${BASE_ROUTE.USER}${ENDPOINTS.PLACE_ORDER}`,
+        method: "POST",
+        body: orderItems,
+      }),
+      invalidatesTags:["Cart"]
+    }),
   }),
 });
-export const { useGetOrderSummaryQuery } = checkoutApiSlice;
+export const { useGetOrderSummaryQuery, usePlaceOrderMutation } =
+  checkoutApiSlice;

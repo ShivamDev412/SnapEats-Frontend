@@ -7,16 +7,27 @@ import {
 import useCheckout from "./useCheckout";
 import { useTranslation } from "react-i18next";
 const Checkout = () => {
-  const { isCheckoutEnabled, defaultAddress, defaultPaymentMethod } =
-    useCheckout();
+  const {
+    isCheckoutEnabled,
+    defaultAddress,
+    defaultPaymentMethod,
+    handleCheckout,
+    orderSummary,
+    isPlacingOrderLoading,
+  } = useCheckout();
   const { t } = useTranslation();
   return (
     <section className="flex flex-col w-full text-zinc-100 gap-4 justify-center items-center">
-      <h2 className="text-3xl font-semibold w-full">{t('checkout')}</h2>
-      <OrderSummary />
+      <h2 className="text-3xl font-semibold w-full">{t("checkout")}</h2>
+      {orderSummary?.data && <OrderSummary orderSummary={orderSummary?.data} />}
       <DeliveryInformation defaultAddress={defaultAddress} />
       <PaymentInformation defaultPaymentMethod={defaultPaymentMethod} />
-      <Button className="w-full sm:w-1/3" disabled={!isCheckoutEnabled}>
+      <Button
+        className="w-full sm:w-1/3"
+        disabled={!isCheckoutEnabled}
+        onClick={handleCheckout}
+        isLoading={isPlacingOrderLoading}
+      >
         {t("placeOrder")}
       </Button>
     </section>

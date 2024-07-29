@@ -44,7 +44,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Cart"],
+      invalidatesTags: ["Cart", "Checkout"],
     }),
     removeFromCart: builder.mutation<AuthResponse, { cartItemId: string }>({
       query: ({ cartItemId }) => ({
@@ -52,7 +52,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "DELETE",
         body: { cartItemId },
       }),
-      invalidatesTags: ["Cart"],
+      invalidatesTags: ["Cart", "Checkout"],
     }),
     updateCartQuantity: builder.mutation<
       AuthResponse,
@@ -63,7 +63,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: { cartItemId, quantity },
       }),
-      invalidatesTags: ["Cart"],
+      invalidatesTags: ["Cart", "Checkout"],
     }),
     addNoteToCartItem: builder.mutation<
       AuthResponse,

@@ -23,7 +23,7 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #000 !important;
   caret-color: #000 !important;
 }
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   border-radius: 8px;
@@ -34,10 +34,6 @@ input:-webkit-autofill:active {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(39 39 42);
+  background: #4b4b4b;
   border-radius: 8px;
-} */
-
-/* ::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} */
+} 

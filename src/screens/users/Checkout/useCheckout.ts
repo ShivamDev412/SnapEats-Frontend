@@ -1,8 +1,15 @@
 import { useAddressQuery } from "@/redux/slice/api/user/addressSlice";
+import {
+  useGetOrderSummaryQuery,
+  usePlaceOrderMutation,
+} from "@/redux/slice/api/user/checkoutSlice";
 import { useGetPaymentMethodsQuery } from "@/redux/slice/api/user/paymentSlice";
+import { BROWSER_ROUTE } from "@/utils/Endpoints";
+import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const useCheckout = () => {
+  const navigation = useNavigate();
   const [isCheckoutEnabled, setIsCheckoutEnabled] = useState(false);
   const { data: address } = useAddressQuery("");
   const defaultAddress = address?.data?.find(
@@ -19,10 +26,33 @@ const useCheckout = () => {
       setIsCheckoutEnabled(false);
     }
   }, [defaultAddress, defaultPaymentMethod]);
+  const { data: orderSummary } = useGetOrderSummaryQuery("", {
+    refetchOnMountOrArgChange: true,
+  });
+  const [placeOrder, { isLoading: isPlacingOrderLoading }] =
+    usePlaceOrderMutation();
+  const handleCheckout = async () => {
+    if (isCheckoutEnabled && orderSummary?.data) {
+      try {
+        const res = await placeOrder({
+          orderItems: orderSummary?.data?.orderSummary,
+        }).unwrap();
+        if (res.success) {
+          Toast(res.message, "success");
+          navigation(BROWSER_ROUTE.ORDERS)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return {
     isCheckoutEnabled,
     defaultAddress,
     defaultPaymentMethod,
+    handleCheckout,
+    orderSummary,
+    isPlacingOrderLoading,
   };
 };
 export default useCheckout;

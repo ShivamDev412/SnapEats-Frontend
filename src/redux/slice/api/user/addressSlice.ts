@@ -35,10 +35,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Address"],
     }),
-    updateAddress: builder.mutation<
-      AddressDataResponse,
-      { data: AddressType; id: string }
-    >({
+    updateAddress: builder.mutation<AddressDataResponse,{ data: AddressType; id: string }>({
       query: ({ data, id }) => ({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.ADDRESS}/${id}`,
         method: "PUT",
