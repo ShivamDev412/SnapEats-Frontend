@@ -4,7 +4,9 @@ const BASE_ROUTE = {
   STORE: "/store",
   STORE_MENU: "/store/menu",
   HOME: "/home",
+  BIOMETRICS: "/biometrics",
 };
+const API_VERSION = "/v1";
 const ENDPOINTS = {
   LOGIN: "/login",
   LOGOUT: "/logout",
@@ -44,6 +46,15 @@ const ENDPOINTS = {
   ENABLE_2FA: "/enable-2fa",
   DISABLE_2FA: "/disable-2fa",
   TWO_FA_STATUS: "/two-fa-status",
+  REGISTER_BIOMETRIC: "/register",
+  REGISTER_OPTIONS: "/register-options",
+  GET_AUTHENTICATE_OPTIONS: "/get-authenticate-options",
+  AUTHENTICATE_BIOMETRIC: "/authenticate",
+  DISABLE_BIOMETRIC: "/disable",
+  PLACE_ORDER: "/place-order",
+  ACCEPT_ORDER: "/accept-order",
+  CANCEL_ORDER: "/cancel-order",
+  STORE_ORDERS: "/store-orders",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -72,5 +83,7 @@ const BROWSER_ROUTE = {
   STORE_PROFILE: "/store/profile",
   STORE_MENU: "/store/menu",
   STORE_MENU_DETAILS: "/store/menu/:id",
+
+  
 };
-export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE };
+export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE, API_VERSION };

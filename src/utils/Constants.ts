@@ -393,6 +393,12 @@ const DEFAULT_VALUES = {
     institutionNumber: "",
   },
 };
+const SOCKET_EVENT = {
+  CONNECT: "connect",
+  DISCONNECT: "disconnect",
+  NEW_ORDER: "new_order",
+  ORDER_STATUS: "order_status",
+}
 export {
   addressTypes,
   countryCode,
@@ -401,4 +407,5 @@ export {
   USER_ROUTES,
   DEFAULT_VALUES,
   LANGUAGE,
+  SOCKET_EVENT,
 };

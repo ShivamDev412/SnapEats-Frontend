@@ -1,9 +1,10 @@
+import { API_VERSION } from "@/utils/Endpoints";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 
 const GitHubAuth: React.FC = () => {
   const handleGitHubLogin = () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}/auth/github`;
+    window.location.href = `${import.meta.env.VITE_BASE_URL}/api${API_VERSION}/auth/github`;
   };
 
   return (

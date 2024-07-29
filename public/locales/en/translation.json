@@ -95,6 +95,9 @@
     "help":"Help",
     "privacyPolicy":"Privacy Policy",
     "termsOfService":"Terms of Service",
-    "about":"About"
+    "about":"About",
+    "items":"Order Items",
+    "totalAmount":"Total Amount",
+    "status":"Status"
     
 }

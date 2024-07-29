@@ -1,9 +1,10 @@
+import { API_VERSION } from "@/utils/Endpoints";
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
 
 const GoogleAuth: React.FC = () => {
   const handleGoogleLogin = () => {
-    window.location.href = `${import.meta.env.VITE_BASE_URL}/auth/google`;
+    window.location.href = `${import.meta.env.VITE_BASE_URL}/api${API_VERSION}/auth/google`;
   };
 
   return (

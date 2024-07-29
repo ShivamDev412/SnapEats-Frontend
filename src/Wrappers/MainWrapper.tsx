@@ -10,9 +10,13 @@ import { USER_ROUTES } from "@/utils/Constants";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { Backdrop, CircularProgress } from "@mui/material";
 import useAccountType from "@/Hooks/useAccountType";
+import NewOrderPopUp from "@/components/NewOrderPopUp";
 
 const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { loading } = useSelector((state: RootState) => state.loading);
+  const { popUpOrderData } = useSelector(
+    (state: RootState) => state.storeOrder
+  );
   const location = useLocation();
   const navigation = useNavigate();
   const pathName = location.pathname.split("/")[1];
@@ -43,12 +47,15 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Footer />
         </>
       ) : (
-        <div className="flex h-full justify-between flex-1">
-          <Aside />
-          <main className="pl-[30%] lg:pl-[22.5%] xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">
-            {children}
-          </main>
-        </div>
+        <>
+          <div className="flex h-full justify-between flex-1 relative">
+            {popUpOrderData?.length && <NewOrderPopUp />}
+            <Aside />
+            <main className="pl-[30%] lg:pl-[22.5%] xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">
+              {children}
+            </main>
+          </div>
+        </>
       )}
     </div>
   );
