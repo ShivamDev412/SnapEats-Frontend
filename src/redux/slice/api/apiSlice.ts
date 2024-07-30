@@ -80,6 +80,7 @@ export const apiSlice = createApi({
     "BankAccount",
     "2FAStatus",
     "Biometric",
+    "StoreOrder",
   ],
   endpoints: () => ({}),
 });

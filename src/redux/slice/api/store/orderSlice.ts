@@ -22,6 +22,7 @@ export const storeOrderApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { orderId },
       }),
+      invalidatesTags: ["StoreOrder"],
     }),
     rejectOrder: builder.mutation<AuthResponse, string>({
       query: (orderId) => ({
@@ -29,12 +30,14 @@ export const storeOrderApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { orderId },
       }),
+      invalidatesTags: ["StoreOrder"],
     }),
     getStoreOrders: builder.query<AuthResponse<OrderTypeResponse<StoreOrderType>>, number>({
       query: (pageNumber) => ({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.ORDER}?page=${pageNumber}`,
         method: "GET",
       }),
+      providesTags: ["StoreOrder"],
       keepUnusedDataFor: 30,
     }),
   }),

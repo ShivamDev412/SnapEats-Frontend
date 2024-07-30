@@ -14,8 +14,10 @@ const Checkout = () => {
     handleCheckout,
     orderSummary,
     isPlacingOrderLoading,
+    isLoading,
   } = useCheckout();
   const { t } = useTranslation();
+  if (isLoading) return <div>Loading...</div>;
   return (
     <section className="flex flex-col w-full text-zinc-100 gap-4 justify-center items-center">
       <h2 className="text-3xl font-semibold w-full">{t("checkout")}</h2>
