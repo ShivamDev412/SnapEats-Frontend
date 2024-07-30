@@ -59,6 +59,7 @@ const useStoreTimingForm = (
     }
   }, [storeTiming, setValue, selectedDay]);
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
+
     const currentDate = moment().format("YYYY-MM-DD");
     const openTimeDateTime = moment
       .tz(
