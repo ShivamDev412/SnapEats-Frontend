@@ -60,7 +60,7 @@ const ProfileMainDetails: React.FC<{
             <img
               src={StorePlaceholderImage}
               alt="store_placeholder_image"
-              className="h-full w-full object-contain"
+              className="h-full w-full object-cover rounded-full"
             />
           </div>
         ) : (

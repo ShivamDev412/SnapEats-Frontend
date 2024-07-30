@@ -29,7 +29,7 @@ const Days = ({
           <span>{closeTime && formattedTime2}</span>
         </>
       )}
-      <button
+      <button type="button" aria-label="edit"
         onClick={() =>
           handleOpenModal(title === "Normal Days" ? "normalDay" : "specialDay")
         }
@@ -46,10 +46,12 @@ const StoreTimings = () => {
     showModal,
     selectedDay,
     storeTiming,
+    isLoading,
   } = useStoreTiming();
   const { openTime, closeTime, specialEventCloseTime, specialEventOpenTime } = {
     ...storeTiming?.data,
   };
+  if (isLoading) return <p>loading...</p>;
   return (
     <section className="flex flex-col gap-2">
       <h3 className="text-lg lg:text-xl font-bold ">Store Timing</h3>

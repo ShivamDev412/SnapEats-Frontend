@@ -9,13 +9,14 @@ const useStoreTiming = () => {
     setSelectedDay(type);
     setShowModal(true);
   };
-  const {data:storeTiming} = useGetStoreTimingQuery("");
+  const {data:storeTiming, isLoading} = useGetStoreTimingQuery("");
   return {
     showModal,
     handleCloseModal,
     handleOpenModal,
     selectedDay,
     storeTiming,
+    isLoading,
   };
 };
 export default useStoreTiming;
