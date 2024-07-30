@@ -26,7 +26,7 @@ const useCheckout = () => {
       setIsCheckoutEnabled(false);
     }
   }, [defaultAddress, defaultPaymentMethod]);
-  const { data: orderSummary } = useGetOrderSummaryQuery("", {
+  const { data: orderSummary, isLoading } = useGetOrderSummaryQuery("", {
     refetchOnMountOrArgChange: true,
   });
   const [placeOrder, { isLoading: isPlacingOrderLoading }] =
@@ -47,6 +47,7 @@ const useCheckout = () => {
     }
   };
   return {
+    isLoading,
     isCheckoutEnabled,
     defaultAddress,
     defaultPaymentMethod,
