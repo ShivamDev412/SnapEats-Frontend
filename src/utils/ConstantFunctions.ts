@@ -6,3 +6,14 @@ export const checkIfOpen = (openTime: string, closeTime: string) => {
   const isOpen = currentTime >= openingTime && currentTime <= closingTime;
   return isOpen;
 };
+export const orderMessage = (orderStatus: string) => {
+  debugger;
+  switch (orderStatus) {
+    case "ACCEPTED":
+      return "has been accepted by the store";
+    case "PREPARING":
+      return "is being prepared";
+    case "OUT_FOR_DELIVERY":
+      return "is out for delivery";
+  }
+};

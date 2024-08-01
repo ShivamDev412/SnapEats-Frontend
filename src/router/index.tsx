@@ -37,7 +37,6 @@ const CheckoutScreen = lazy(() => import("@/screens/users/Checkout"));
 const PaymentMethodsScreen = lazy(
   () => import("@/screens/users/PaymentMethods")
 );
-const StorePaymentsScreen = lazy(() => import("@/screens/store/Payments"));
 const Routers = () => {
   const {
     LOGIN,
@@ -63,7 +62,6 @@ const Routers = () => {
     LOGIN_SUCCESS,
     CHECKOUT,
     PAYMENT_METHODS,
-    STORE_PAYMENTS,
   } = BROWSER_ROUTE;
   return (
   
@@ -101,7 +99,6 @@ const Routers = () => {
               path={STORE_EDIT_PROFILE}
               element={<StoreEditProfileScreen />}
             />
-            <Route path={STORE_PAYMENTS} element={<StorePaymentsScreen />} />
             <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
             <Route
               path={STORE_MENU_DETAILS}

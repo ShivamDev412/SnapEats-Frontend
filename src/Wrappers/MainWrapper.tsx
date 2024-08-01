@@ -11,11 +11,15 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { Backdrop, CircularProgress } from "@mui/material";
 import useAccountType from "@/Hooks/useAccountType";
 import NewOrderPopUp from "@/components/NewOrderPopUp";
+import OrderStatusPopUp from "@/components/OrderStatusPopUp";
 
 const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { loading } = useSelector((state: RootState) => state.loading);
   const { popUpOrderData } = useSelector(
     (state: RootState) => state.storeOrder
+  );
+  const { popUpOrderMessages } = useSelector(
+    (state: RootState) => state.userOrder
   );
   const location = useLocation();
   const navigation = useNavigate();
@@ -42,6 +46,9 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <>
           <Header />{" "}
           <main className="flex-1 w-11/12 xl:w-10/12 2xl:w-9/12  mx-auto my-5 lg:my-10 justify-center flex">
+            {popUpOrderMessages && popUpOrderMessages?.length > 0 && (
+              <OrderStatusPopUp />
+            )}
             {children}
           </main>
           <Footer />
@@ -49,7 +56,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       ) : (
         <>
           <div className="flex h-full justify-between flex-1 relative">
-            {popUpOrderData?.length && <NewOrderPopUp />}
+            {!popUpOrderData?.length && <NewOrderPopUp />}
             <Aside />
             <main className="pl-[30%] lg:pl-[22.5%] xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">
               {children}

@@ -6,6 +6,7 @@ import storeSlice from "./slice/storeSlice";
 import accountSlice from "./slice/accountSlice";
 import searchSlice from "./slice/searchSlice";
 import storeOrderSlice from "./slice/storeOrderSlice";
+import userOrderSlice from "./slice/userOrderSlice";
 const appReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authSlice,
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
   store: storeSlice,
   search: searchSlice,
   storeOrder: storeOrderSlice,
+  userOrder: userOrderSlice,
 });
 
 const rootReducer = (
