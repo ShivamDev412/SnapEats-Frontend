@@ -8,7 +8,11 @@ const useOrders = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [orders, setOrders] = useState<OrderType>([]);
   const [totalCount, setTotalCount] = useState(0);
-  const { data: ordersData, isFetching } = useGetOrdersQuery(pageNumber, {
+  const {
+    data: ordersData,
+    isFetching,
+    isLoading,
+  } = useGetOrdersQuery(pageNumber, {
     refetchOnMountOrArgChange: true,
   });
   const initialRender = useRef(true);
@@ -23,7 +27,6 @@ const useOrders = () => {
       pageNumber === 1
         ? setOrders(ordersData.data.orders)
         : setOrders([...orders, ...ordersData.data.orders]);
-   
     }
   }, [ordersData, pageNumber]);
 
@@ -58,7 +61,14 @@ const useOrders = () => {
     }
   };
 
-  return { orders, loadMoreOrders, handleStatus, isFetching, totalCount };
+  return {
+    orders,
+    loadMoreOrders,
+    handleStatus,
+    isFetching,
+    totalCount,
+    isLoading,
+  };
 };
 
 export default useOrders;
