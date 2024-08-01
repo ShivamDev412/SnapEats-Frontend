@@ -6,7 +6,7 @@ import { removeOrderData } from "@/redux/slice/storeOrderSlice";
 import { RootState } from "@/redux/Store";
 import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";
-import StoreNotificationSound from "@/assets/sounds/store_notification.mp3";
+// import StoreNotificationSound from "@/assets/sounds/store_notification.mp3";
 import { useDispatch, useSelector } from "react-redux";
 
 const useNewOrderPopUp = () => {
@@ -16,10 +16,10 @@ const useNewOrderPopUp = () => {
   );
   const dispatch = useDispatch();
 
-  const playNotificationSound = () => {
-    const audio = new Audio(StoreNotificationSound);
-    audio.play().catch((error) => console.error("Error playing audio:", error));
-  };
+  // const playNotificationSound = () => {
+  //   const audio = new Audio(StoreNotificationSound);
+  //   audio.play().catch((error) => console.error("Error playing audio:", error));
+  // };
   useEffect(() => {
     // playNotificationSound();
     setIsVisible(true);
