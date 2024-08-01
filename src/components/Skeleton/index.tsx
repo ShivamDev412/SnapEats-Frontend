@@ -5,6 +5,7 @@ import AddressSkeleton from "./AddressSkeleton";
 import StoreProfileSkeleton from "./StoreProfileSkeleton";
 import MenuSkeleton from "./MenuSkeleton";
 import ItemDetailSkeleton from "./ItemDetailSkeleton";
+import HomeSkeleton from "./HomeSkeleton";
 export {
   LoginSkeleton,
   SignupSkeleton,
@@ -13,4 +14,5 @@ export {
   StoreProfileSkeleton,
   MenuSkeleton,
   ItemDetailSkeleton,
+  HomeSkeleton,
 };
