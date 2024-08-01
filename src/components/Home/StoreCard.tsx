@@ -32,7 +32,7 @@ const StoreCard: FC<{ store: StoreType }> = ({ store }) => {
   return (
     <Link
       to={`/${store.name}/${store.id}`}
-      className="w-full sm:w-1/2 xl:w-1/4 rounded-sm flex flex-col gap-2 bg-zinc-800 relative"
+      className="w-full sm:w-[48.5%] xl:w-1/4 rounded-sm flex flex-col gap-2 bg-zinc-800 relative"
     >
       {image ? (
         <LazyLoadedImageComponent

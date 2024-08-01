@@ -2,15 +2,12 @@ import { t } from "i18next";
 import useOrders from "./useOrders";
 import useInfiniteScroll from "@/Hooks/useInfiniteScroll";
 import { OrderItems } from "@/components/Orders";
-import UserOrderSkeleton from "@/components/Skeleton/UserOrderSkeleton";
+import { UserOrderSkeleton } from "@/components/Skeleton";
 
 const Orders = () => {
-  const { orders, loadMoreOrders, isFetching, totalCount, isLoading } =
-    useOrders();
+  const { orders, loadMoreOrders, isLoading, totalCount } = useOrders();
   const lastOrderElementRef = useInfiniteScroll(loadMoreOrders);
-  if (isLoading) {
-    return <UserOrderSkeleton />;
-  }
+  if (isLoading && orders.length < totalCount) return <UserOrderSkeleton />;
   return (
     <section className="flex flex-col h-full w-full flex-1 text-zinc-100">
       <header className="flex justify-between items-center mb-4">
@@ -28,11 +25,6 @@ const Orders = () => {
             <OrderItems order={order} />
           </div>
         ))}
-        {isFetching && orders.length < totalCount && (
-          <div className="text-center">
-            <p>{t("loading")}</p>
-          </div>
-        )}
       </section>
     </section>
   );

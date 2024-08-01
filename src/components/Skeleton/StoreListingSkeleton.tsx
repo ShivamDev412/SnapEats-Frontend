@@ -19,7 +19,7 @@ const StoreListingSkeleton: React.FC<StoreListingSkeletonProps> = ({
 
 const StoreCardSkeleton: React.FC = () => {
   return (
-    <div className="w-full sm:w-1/2 xl:w-1/4 rounded-sm flex flex-col gap-2 bg-zinc-800 relative">
+    <div className="w-full sm:w-[48.5%] xl:w-[24%] rounded-sm flex flex-col gap-2 bg-zinc-800 relative">
       <Skeleton
         style={{ aspectRatio: "1 / 0.55" }}
         className="rounded-t-sm w-full"

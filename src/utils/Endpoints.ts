@@ -39,6 +39,7 @@ const ENDPOINTS = {
   HOME_STORE_MENU: "/home-store-menu",
   CART: "/cart",
   ORDER: "/order",
+  ORDER_STATUS: "/order-status",
   CHECKOUT: "/checkout",
   PAYMENTS: "/payments",
   BANK_ACCOUNT  : "/bank-account",

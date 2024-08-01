@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import useCategories from "./useCategories";
 import { FoodType } from "@/redux/slice/api/store/profileSlice";
-import StoreCategoriesSkeleton from "../Skeleton/StoreCategoriesSkeleton";
+import StoreCategoriesSkeleton from "@/components/Skeleton/StoreCategoriesSkeleton";
 
 const CategoriesItem: React.FC<{ category: FoodType }> = ({ category }) => {
   return (
@@ -23,12 +23,14 @@ const Categories = () => {
     scrollRight,
   } = useCategories();
 
-  if (isFetching) return <StoreCategoriesSkeleton count={4} />;
+  if (isFetching) return <StoreCategoriesSkeleton count={12} />;
 
   return (
     <div className="relative flex items-center">
       {showLeftArrow && (
         <button
+          aria-label="scroll left"
+          type="button"
           className="hidden sm:block absolute left-0 p-2 bg-zinc-700 text-white rounded-full"
           onClick={scrollLeft}
         >
@@ -45,6 +47,8 @@ const Categories = () => {
       </ul>
       {showRightArrow && (
         <button
+          aria-label="scroll right"
+          type="button"
           className="hidden sm:block absolute right-0 p-2 bg-zinc-700 text-white rounded-full"
           onClick={scrollRight}
         >

@@ -56,7 +56,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       ) : (
         <>
           <div className="flex h-full justify-between flex-1 relative">
-            {!popUpOrderData?.length && <NewOrderPopUp />}
+            {popUpOrderData?.length && <NewOrderPopUp />}
             <Aside />
             <main className="pl-[30%] lg:pl-[22.5%] xl:pl-[16.6%] flex-1 w-9/12 ml-10 my-10">
               {children}
