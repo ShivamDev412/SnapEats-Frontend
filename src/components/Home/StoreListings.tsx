@@ -1,9 +1,9 @@
 import StoreCard from "./StoreCard";
 import useStorListings from "./useStoreListings";
-
+import StoreListingSkeleton from "@/components/Skeleton/StoreListingSkeleton";
 const StoreListings = () => {
   const { stores, isLoading } = useStorListings();
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <StoreListingSkeleton count={12} />;
   return (
     <section>
       <div className="w-full flex gap-4 flex-wrap my-5">
