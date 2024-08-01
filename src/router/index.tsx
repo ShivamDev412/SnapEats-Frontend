@@ -66,51 +66,50 @@ const Routers = () => {
     STORE_PAYMENTS,
   } = BROWSER_ROUTE;
   return (
-  
-      <BrowserRouter>
-        <Routes>
-          <Route element={<PublicRoute />}>
-            <Route path={LOGIN} element={<LoginScreen />} />
-            <Route path={SIGNUP} element={<SignupScreen />} />
-            <Route path={FORGOT_PASSWORD} element={<ForgotPasswordScreen />} />
-            <Route path={RESET_PASSWORD} element={<ResetPasswordScreen />} />
-            <Route path={LOGIN_SUCCESS} element={<LoginSuccessScreen />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
-            {/* User  */}
-            <Route path={HOME} element={<HomeScreen />} />
-            <Route path={USER_STORE_DETAIL} element={<HomeDetailsScreen />} />
-            <Route path={PROFILE} element={<ProfileScreen />} />
-            <Route path={MANAGE_ADDRESS} element={<ManageAddress />} />
-            <Route path={ORDERS} element={<OrdersScreen />} />
-            <Route path={SETTINGS} element={<StoreSettingsScreen />} />
-            <Route path={PRIVACY_POLICY} element={<PrivacyPolicyScreen />} />
-            <Route path={CHECKOUT} element={<CheckoutScreen />} />
-            <Route
-              path={TERMS_AND_CONDITIONS}
-              element={<TermsOfServiceScreen />}
-            />
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route path={LOGIN} element={<LoginScreen />} />
+          <Route path={SIGNUP} element={<SignupScreen />} />
+          <Route path={FORGOT_PASSWORD} element={<ForgotPasswordScreen />} />
+          <Route path={RESET_PASSWORD} element={<ResetPasswordScreen />} />
+          <Route path={LOGIN_SUCCESS} element={<LoginSuccessScreen />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          {/* User  */}
+          <Route path={HOME} element={<HomeScreen />} />
+          <Route path={USER_STORE_DETAIL} element={<HomeDetailsScreen />} />
+          <Route path={PROFILE} element={<ProfileScreen />} />
+          <Route path={MANAGE_ADDRESS} element={<ManageAddress />} />
+          <Route path={ORDERS} element={<OrdersScreen />} />
+          <Route path={SETTINGS} element={<StoreSettingsScreen />} />
+          <Route path={PRIVACY_POLICY} element={<PrivacyPolicyScreen />} />
+          <Route path={CHECKOUT} element={<CheckoutScreen />} />
+          <Route
+            path={TERMS_AND_CONDITIONS}
+            element={<TermsOfServiceScreen />}
+          />
 
-            <Route path={PAYMENT_METHODS} element={<PaymentMethodsScreen />} />
-            {/* Store */}
-            <Route path={STORE_REGISTER} element={<StoreRegisterScreen />} />
-            <Route path={STORE_DASHBOARD} element={<StoreDashboardScreen />} />
-            <Route path={STORE_ORDERS} element={<StoreOrdersScreen />} />
-            <Route path={STORE_SETTINGS} element={<StoreSettingsScreen />} />
-            <Route
-              path={STORE_EDIT_PROFILE}
-              element={<StoreEditProfileScreen />}
-            />
-            <Route path={STORE_PAYMENTS} element={<StorePaymentsScreen />} />
-            <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
-            <Route
-              path={STORE_MENU_DETAILS}
-              element={<StoreMenuDetailScreen />}
-            />
-            <Route path={STORE_MENU} element={<StoreMenuScreen />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          <Route path={PAYMENT_METHODS} element={<PaymentMethodsScreen />} />
+          {/* Store */}
+          <Route path={STORE_REGISTER} element={<StoreRegisterScreen />} />
+          <Route path={STORE_DASHBOARD} element={<StoreDashboardScreen />} />
+          <Route path={STORE_ORDERS} element={<StoreOrdersScreen />} />
+          <Route path={STORE_SETTINGS} element={<StoreSettingsScreen />} />
+          <Route
+            path={STORE_EDIT_PROFILE}
+            element={<StoreEditProfileScreen />}
+          />
+          <Route path={STORE_PAYMENTS} element={<StorePaymentsScreen />} />
+          <Route path={STORE_PROFILE} element={<StoreProfileScreen />} />
+          <Route
+            path={STORE_MENU_DETAILS}
+            element={<StoreMenuDetailScreen />}
+          />
+          <Route path={STORE_MENU} element={<StoreMenuScreen />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   MenuSkeleton,
   ItemDetailSkeleton,
   HomeSkeleton,
+  StoreOrderSkeleton,
 } from "./Skeleton";
 
 const RenderSkeleton = ({ pathname }: { pathname: string }) => {
@@ -27,6 +28,8 @@ const RenderSkeleton = ({ pathname }: { pathname: string }) => {
     return <ItemDetailSkeleton />;
   } else if (pathname === BROWSER_ROUTE.HOME) {
     return <HomeSkeleton />;
+  } else if (pathname === BROWSER_ROUTE.STORE_ORDERS) {
+    return <StoreOrderSkeleton />;
   }
 };
 export default RenderSkeleton;
