@@ -5,7 +5,6 @@ import { RiFileListFill } from "react-icons/ri";
 import { BROWSER_ROUTE } from "./Endpoints";
 import { IoRestaurant } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
-import { MdOutlinePayment } from "react-icons/md";
 
 const addressTypes = [
   { value: "home", label: "Home" },
@@ -290,12 +289,6 @@ const STORE_NAV_LIST = [
     title: "Orders",
     Icon: RiFileListFill,
     link: BROWSER_ROUTE.STORE_ORDERS,
-  },
-  {
-    id: "store-payments",
-    title: "Payments",
-    Icon: MdOutlinePayment,
-    link: BROWSER_ROUTE.STORE_PAYMENTS,
   },
   {
     id: "store-settings",

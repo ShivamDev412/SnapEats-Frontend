@@ -3,6 +3,8 @@ import { MiddlewareAPI, Dispatch, Action } from "@reduxjs/toolkit";
 import { SOCKET_EVENT } from "@/utils/Constants";
 import { io, Socket } from "socket.io-client";
 import { addOrderData } from "../slice/storeOrderSlice";
+import { setOrderStatus } from "../slice/userOrderSlice";
+import { orderMessage } from "@/utils/ConstantFunctions";
 
 let socket: Socket | null = null;
 
@@ -15,21 +17,25 @@ export const initializeSocket = (
       transports: ["websocket"],
     });
 
-    socket.on(SOCKET_EVENT.CONNECT, () => {
-      console.log("Socket connected");
-    });
+    socket.on(SOCKET_EVENT.CONNECT, () => {});
     socket.on(SOCKET_EVENT.NEW_ORDER, (order) => {
       store.dispatch(addOrderData(order));
     });
-    socket.on(SOCKET_EVENT.DISCONNECT, () => {
-      console.log("Socket disconnected");
-    });
+    socket.on(SOCKET_EVENT.DISCONNECT, () => {});
 
-    socket.on(SOCKET_EVENT.ORDER_STATUS, (status) => {
-      console.log("Order status update received:", status);
-      // Dispatch an action to the store if needed
-      store.dispatch({ type: "ORDER_STATUS_UPDATE", payload: status });
-    });
+    socket.on(
+      SOCKET_EVENT.ORDER_STATUS,
+      (order: { status: string; orderId: string }) => {
+        console;
+        let message = `Your order #${order.orderId} ${orderMessage(
+          order.status
+        )}`;
+        if (order.status === "DELIVERED") {
+          message = `Your order #${order.orderId} has been delivered`;
+        }
+        store.dispatch(setOrderStatus({ orderId: order.orderId, message }));
+      }
+    );
   }
 
   return socket;
