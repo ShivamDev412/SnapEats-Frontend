@@ -18,6 +18,8 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
+import "./menuItemStyle.css";
+
 type MenuItemFormProps = {
   actionType: string;
   handleCloseModal: () => void;
@@ -77,7 +79,7 @@ const MenuItemForm: React.FC<MenuItemFormProps> = ({
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full gap-4 flex flex-col max-h-[80vh] overflow-auto"
+        className="w-full gap-4 flex flex-col max-h-[80vh] overflow-auto pr-2"
       >
         <h3 className="text-2xl font-semibold text-center flex gap-1 items-center mx-auto">
           <IoFastFoodOutline className="h-7 w-7" />
