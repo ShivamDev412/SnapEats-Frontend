@@ -11,6 +11,7 @@ import { setAccountType } from "@/redux/slice/accountSlice";
 import useFormHandler from "@/Hooks/useFormHandler";
 import { DEFAULT_VALUES } from "@/utils/Constants";
 import useDeviceType from "@/Hooks/useDeviceType";
+import { useLazyGetOrdersLiveStatusQuery } from "@/redux/slice/api/user/orderSlice";
 
 type LoginType = {
   email: string;
@@ -19,7 +20,7 @@ type LoginType = {
 export const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isMobile = useDeviceType()
+  const isMobile = useDeviceType();
   type FormField = z.infer<typeof LoginSchema>;
   const {
     register,
@@ -30,6 +31,7 @@ export const useLogin = () => {
     setError,
   } = useFormHandler<LoginType>(DEFAULT_VALUES.LOGIN, LoginSchema);
   const [login, { isLoading }] = useLoginMutation();
+  const [trigger] = useLazyGetOrdersLiveStatusQuery();
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
     try {
       const response = await login(credentials).unwrap();
@@ -37,6 +39,7 @@ export const useLogin = () => {
       if (success) {
         Toast(message, "success");
         dispatch(setCredentials(response["auth-token"]));
+        trigger();
         if (isStoreRegistered && !isMobile) {
           dispatch(setAccountType("STORE"));
           navigate(BROWSER_ROUTE.STORE_DASHBOARD);
@@ -44,7 +47,7 @@ export const useLogin = () => {
         reset();
         clearErrors();
       }
-    } catch (error:any) {
+    } catch (error: any) {
       const message = error.data?.message.toLowerCase();
       const type = message?.includes("password") ? "password" : "email";
       setError(type, {

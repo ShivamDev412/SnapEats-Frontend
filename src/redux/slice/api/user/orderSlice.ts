@@ -25,7 +25,7 @@ export type OrderItems = {
   }[];
 }[];
 export type OrderType = {
-  id:string;
+  id: string;
   totalAmount: number;
   status: string;
   createdAt: Date;
@@ -37,13 +37,22 @@ export type OrderType = {
 }[];
 export const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getOrders: builder.query<AuthResponse<OrderTypeResponse<OrderType>>, number>({
+    getOrders: builder.query<
+      AuthResponse<OrderTypeResponse<OrderType>>,
+      number
+    >({
       query: (page) => ({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.ORDER}?page=${page}`,
         method: "GET",
       }),
       keepUnusedDataFor: 30,
     }),
+    getOrdersLiveStatus: builder.query<AuthResponse, void>({
+      query: () => ({
+        url: `${BASE_ROUTE.USER}${ENDPOINTS.ORDER_STATUS}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
-export const { useGetOrdersQuery } = orderApiSlice;
+export const { useGetOrdersQuery, useLazyGetOrdersLiveStatusQuery } = orderApiSlice;

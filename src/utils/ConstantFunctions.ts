@@ -7,7 +7,6 @@ export const checkIfOpen = (openTime: string, closeTime: string) => {
   return isOpen;
 };
 export const orderMessage = (orderStatus: string) => {
-  debugger;
   switch (orderStatus) {
     case "ACCEPTED":
       return "has been accepted by the store";
