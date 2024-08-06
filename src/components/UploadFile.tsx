@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect, useState } from "react";
 import { Control, useWatch } from "react-hook-form";
 import { FaCloudUploadAlt } from "react-icons/fa";

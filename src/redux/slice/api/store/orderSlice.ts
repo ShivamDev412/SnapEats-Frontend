@@ -1,19 +1,8 @@
 import { BASE_ROUTE, ENDPOINTS } from "@/utils/Endpoints";
 import { apiSlice } from "../apiSlice";
 import { AuthResponse } from "./profileSlice";
-import { OrderItems, OrderTypeResponse } from "../user/orderSlice";
+import { OrderType, OrderTypeResponse } from "../user/orderSlice";
 
-export type StoreOrderType = {
-  id: string;
-  totalAmount: number;
-  status: string;
-  createdAt: Date;
-  user: {
-    id: string;
-    name: string;
-  };
-  items: OrderItems;
-}[];
 export const storeOrderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     acceptOrder: builder.mutation<AuthResponse, string>({
@@ -32,7 +21,10 @@ export const storeOrderApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["StoreOrder"],
     }),
-    getStoreOrders: builder.query<AuthResponse<OrderTypeResponse<StoreOrderType>>, number>({
+    getStoreOrders: builder.query<
+      AuthResponse<OrderTypeResponse<OrderType[]>>,
+      number
+    >({
       query: (pageNumber) => ({
         url: `${BASE_ROUTE.STORE}${ENDPOINTS.ORDER}?page=${pageNumber}`,
         method: "GET",

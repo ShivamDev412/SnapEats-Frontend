@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
 import {
   UseFormRegister,
@@ -54,7 +55,7 @@ const Option: React.FC<OptionProps> = ({
     };
 
     fetchChoices();
-  }, [option.optionId]);
+  }, [handleOptionChange, option.optionId]);
   return (
     <div
       key={option.id}
