@@ -10,6 +10,7 @@ import {
   HomeSkeleton,
   StoreOrderSkeleton,
   UserOrderSkeleton,
+  CheckoutSkeleton,
 } from "./Skeleton";
 
 const RenderSkeleton = ({ pathname }: { pathname: string }) => {
@@ -33,6 +34,10 @@ const RenderSkeleton = ({ pathname }: { pathname: string }) => {
     return <StoreOrderSkeleton />;
   } else if (pathname === BROWSER_ROUTE.ORDERS) {
     return <UserOrderSkeleton />;
+  } else if (pathname === BROWSER_ROUTE.CHECKOUT) {
+    return <CheckoutSkeleton />;
+  } else {
+    return null;
   }
 };
 export default RenderSkeleton;
