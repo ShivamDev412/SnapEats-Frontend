@@ -2,8 +2,8 @@ import React from "react";
 import PrimaryInfo from "./PrimaryInfo";
 import OrderItemsComponent from "./OrderItemsComponent";
 import { OrderType } from "@/redux/slice/api/user/orderSlice";
-
-const OrderItems: React.FC<{ order: OrderType; type: "store" | "user" }> = ({
+type OrderUserType = "store" | "user";
+const OrderItems: React.FC<{ order: OrderType; type?: OrderUserType }> = ({
   order,
   type = "user",
 }) => {
