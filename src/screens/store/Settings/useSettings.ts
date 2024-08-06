@@ -44,6 +44,7 @@ const useSettings = () => {
         i18n.changeLanguage(e.target.value);
         Toast(res.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       Toast(e.message, "error");
     }
@@ -77,6 +78,7 @@ const useSettings = () => {
         handleModalClose();
         Toast(res.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       Toast(e.data.message, "error");
     }

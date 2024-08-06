@@ -29,6 +29,7 @@ export const useForgotPassword = () => {
       if (success) {
         Toast(message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError("email", {
         type: "manual",

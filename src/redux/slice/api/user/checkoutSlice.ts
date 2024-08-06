@@ -44,7 +44,7 @@ export const checkoutApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
       providesTags: ["Checkout"],
     }),
-    placeOrder: builder.mutation<AuthResponse<any>,{ orderItems: StoreSummary[] }>({
+    placeOrder: builder.mutation<AuthResponse<unknown>,{ orderItems: StoreSummary[] }>({
       query: ({ orderItems }) => ({
         url: `${BASE_ROUTE.USER}${ENDPOINTS.PLACE_ORDER}`,
         method: "POST",

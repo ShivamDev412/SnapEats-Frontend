@@ -13,9 +13,9 @@ import { useFieldArray, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 const useMenu = (
   showModal: boolean,
-  setShowModal: any,
+  setShowModal: (showModal: boolean) => void,
   actionType: string,
-  setActionType: any,
+  setActionType: (actionType: string) => void,
   menuItem?: MenuDetailType
 ) => {
   const [addMenuItem, { isLoading: isAddMenuItemLoading }] =
@@ -75,11 +75,13 @@ const useMenu = (
         });
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actionType, setShowModal]);
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const appendChoice = (optionIndex: number, choice: any) => {
     const options = getValues("options");
     const updatedChoices = [
@@ -138,6 +140,7 @@ const useMenu = (
         handleCloseModal();
         reset(DEFAULT_VALUES.MENU_ITEM as unknown as MenuItemType);
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       Toast(e?.data?.message, "error");
     }

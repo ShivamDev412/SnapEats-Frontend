@@ -10,7 +10,7 @@ const HandleMenuItem: React.FC<{
   categories: MenuCategory[];
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setActionType: any;
+  setActionType: React.Dispatch<React.SetStateAction<string>>;
   actionType: string;
   menuItem?: MenuDetailType;
 }> = ({

@@ -3,11 +3,12 @@ import useOrders from "./useOrders";
 import useInfiniteScroll from "@/Hooks/useInfiniteScroll";
 import { OrderItems } from "@/components/Orders";
 import { UserOrderSkeleton } from "@/components/Skeleton";
+import { LegacyRef } from "react";
 
 const Orders = () => {
-  const { orders, loadMoreOrders, isLoading, totalCount } = useOrders();
+  const { orders, loadMoreOrders, isFetching, totalCount } = useOrders();
   const lastOrderElementRef = useInfiniteScroll(loadMoreOrders);
-  if (isLoading && orders.length < totalCount) return <UserOrderSkeleton />;
+  if (isFetching && orders.length < totalCount) return <UserOrderSkeleton />;
   return (
     <section className="flex flex-col h-full w-full flex-1 text-zinc-100">
       <header className="flex justify-between items-center mb-4">
@@ -19,7 +20,9 @@ const Orders = () => {
             key={order.id}
             className="p-4 rounded-lg bg-zinc-800"
             ref={
-              orders.length === index + 1 ? (lastOrderElementRef as any) : null
+              orders.length === index + 1
+                ? (lastOrderElementRef as LegacyRef<HTMLDivElement> | undefined)
+                : null
             }
           >
             <OrderItems order={order} />

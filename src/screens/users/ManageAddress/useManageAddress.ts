@@ -56,6 +56,7 @@ const useManageAddress = () => {
         handleCloseModal();
         Toast(res.data.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       Toast(error.message, "error");
     }

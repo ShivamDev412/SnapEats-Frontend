@@ -4,7 +4,7 @@ import Button from "../Button";
 
 type Props = {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setActionType: any;
+  setActionType: React.Dispatch<React.SetStateAction<string>>;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 };

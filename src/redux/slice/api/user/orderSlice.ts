@@ -29,16 +29,20 @@ export type OrderType = {
   totalAmount: number;
   status: string;
   createdAt: Date;
-  store: {
+  store?: {
     id: string;
     name: string;
   };
+  user?:{
+    id:string;
+    name:string;
+  }
   items: OrderItems;
-}[];
+};
 export const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getOrders: builder.query<
-      AuthResponse<OrderTypeResponse<OrderType>>,
+      AuthResponse<OrderTypeResponse<OrderType[]>>,
       number
     >({
       query: (page) => ({

@@ -18,6 +18,7 @@ const useMenuDetails = () => {
         navigate(BROWSER_ROUTE.STORE_MENU);
         Toast(result.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       Toast(error.data.message, "error");
     }

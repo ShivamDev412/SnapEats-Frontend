@@ -12,6 +12,7 @@ const useOption = () => {
   const handleOptionChange = async (optionId: string) => {
     try {
       await getMenuChoices(optionId).unwrap();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       Toast(error.message as string, "error");
       return [];

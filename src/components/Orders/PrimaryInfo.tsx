@@ -1,17 +1,20 @@
 import { t } from "i18next";
 import moment from "moment-timezone";
 import { FC } from "react";
+import Button from "../Button";
 type PrimaryInfoProps = {
   name: string;
   createdAt: Date;
   totalAmount: number;
   status: string;
+  type: "store" | "user";
 };
 const PrimaryInfo: FC<PrimaryInfoProps> = ({
   name,
   createdAt,
   totalAmount,
   status,
+  type,
 }) => {
   const handleStatus = (status: string) => {
     switch (status) {
@@ -37,14 +40,24 @@ const PrimaryInfo: FC<PrimaryInfoProps> = ({
           {moment(createdAt).tz("America/New_York").format("lll")}
         </p>
       </div>
-      <div className="mb-2">
+      <div className="mb-2 flex flex-col gap-2">
         <p>
           <span className="font-semibold">{t("totalAmount")}:</span> $
           {totalAmount.toFixed(2)}
         </p>
         <p>
-          <span className="font-semibold">{t("status")}:</span>{" "}
-          {handleStatus(status)}
+          {type === "user" ? (
+            <>
+              <span className="font-semibold">{t("status")}:</span>{" "}
+              {handleStatus(status)}
+            </>
+          ) : (
+            <div>
+              <Button className="text-sm bg-green-800">
+                Mark as Out for Delivery
+              </Button>
+            </div>
+          )}
         </p>
       </div>
     </>

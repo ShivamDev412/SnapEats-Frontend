@@ -37,6 +37,7 @@ export const useSignup = () => {
         reset();
         clearErrors();
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const message = error.data?.message;
       const type = message.includes("Password") ? "password" : "email";
