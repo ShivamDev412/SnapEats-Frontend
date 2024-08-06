@@ -23,7 +23,24 @@ const Categories = () => {
     scrollRight,
   } = useCategories();
 
-  if (isFetching) return <StoreCategoriesSkeleton count={12} />;
+  if (isFetching) {
+    return (
+      <>
+        <div className="block sm:hidden">
+          <StoreCategoriesSkeleton count={3} />
+        </div>
+        <div className="hidden sm:block md:hidden">
+          <StoreCategoriesSkeleton count={6} />
+        </div>
+        <div className="hidden md:block lg:hidden">
+          <StoreCategoriesSkeleton count={6} />
+        </div>
+        <div className="hidden lg:block">
+          <StoreCategoriesSkeleton count={8} />
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="relative flex items-center">
