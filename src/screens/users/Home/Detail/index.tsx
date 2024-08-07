@@ -4,6 +4,7 @@ import {
   MenuItemsSection,
 } from "@/components/Home/Details";
 import { MenuCategories } from "@/components/Home/Details";
+import HomeDetailSkeleton from "@/components/Skeleton/HomeDetailSkeleton";
 const Details = () => {
   const {
     storePrimaryDetails,
@@ -25,7 +26,7 @@ const Details = () => {
     deliveryFee,
   } = storePrimaryDetails?.data || {};
 
-  if (isFetching) return <p>Loading...</p>;
+  if (isFetching) return <HomeDetailSkeleton />;
   return (
     <section>
       <BannerProfileSection
