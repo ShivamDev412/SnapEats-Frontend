@@ -1,12 +1,12 @@
 import { useState } from "react";
-import OTP from ".";
+import Otp from ".";
 
 export default function OTPInput() {
   const [otp, setOtp] = useState("");
 
   return (
     <div className="flex flex-col gap-4">
-      <OTP
+      <Otp
         separator={<span>-</span>}
         value={otp}
         onChange={setOtp}

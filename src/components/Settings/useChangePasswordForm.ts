@@ -32,6 +32,7 @@ const useChangePasswordForm = (handleCloseModal: () => void) => {
         reset();
         clearErrors();
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const message = error?.data.message;
       if (message === "Your current password is incorrect") {

@@ -77,6 +77,7 @@ const useFoodItemDetails = (
         handleCloseModal();
         Toast(res.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       Toast(err.message, "error");
     }

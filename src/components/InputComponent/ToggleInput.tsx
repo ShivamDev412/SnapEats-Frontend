@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   FieldErrors,
@@ -25,6 +26,7 @@ const ToggleInput: React.FC<ToggleInputProps> = ({
   onChange,
   value
 }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isChecked = control ? useWatch({ control, name: id }) : value;
   return (
     <div className="w-full mx-auto">

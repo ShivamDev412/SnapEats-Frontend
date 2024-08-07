@@ -3,7 +3,7 @@ import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-const userOrderStatusPopUp = () => {
+const useOrderStatusPopUp = () => {
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const path = location.pathname;
@@ -19,4 +19,4 @@ const userOrderStatusPopUp = () => {
     isVisible,
   };
 };
-export default userOrderStatusPopUp;
+export default useOrderStatusPopUp;

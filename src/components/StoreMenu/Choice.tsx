@@ -22,11 +22,11 @@ type ChoiceProps = {
     optionIndex: number,
     choiceIndex: number,
     field: keyof MenuItemType["options"][number]["choices"][number],
-    value: any
+    value: string | number
   ) => void;
   removeChoice: (optionIndex: number, choiceIndex: number) => void;
   watchedChoices: MenuItemType["options"][number]["choices"];
-  appendChoice: (optionIndex: number, choice: any) => void;
+  appendChoice: (optionIndex: number, choice: unknown) => void;
   predefinedChoices: {
     value: string;
     label: string;

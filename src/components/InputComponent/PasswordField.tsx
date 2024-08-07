@@ -5,6 +5,7 @@ import { FieldErrors, UseFormRegister } from "react-hook-form";
 interface PasswordFieldProps {
   id: string;
   placeholder: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>;
   errors: FieldErrors;
 }

@@ -9,7 +9,7 @@ import { LANGUAGE } from "@/utils/Constants";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { SettingsListItem, TwoFA, ChangePassword } from "@/components/Settings";
 import ModalComponent from "@/components/Modal";
-import OTP from "@/components/OtpInput";
+import Otp from "@/components/OtpInput";
 import Button from "@/components/Button";
 
 const Settings = () => {
@@ -134,7 +134,7 @@ const Settings = () => {
             Enter 2FA Token
           </h2>
           <div className="flex justify-center">
-            <OTP
+            <Otp
               separator={<span> </span>}
               value={token}
               onChange={setToken}

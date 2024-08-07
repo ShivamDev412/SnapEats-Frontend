@@ -33,6 +33,7 @@ const useFoodTypes = () => {
       }
 
       dispatch(setLoading(false));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(setLoading(false));
       Toast(error.data.message, "error");

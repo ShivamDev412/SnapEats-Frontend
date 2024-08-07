@@ -22,7 +22,7 @@ const use2FA = () => {
     if (data?.success && data.data) {
       dispatch(set2FAEnabled(data.data.twoFactorStatus));
     }
-  }, [data]);
+  }, [data, dispatch]);
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -44,6 +44,7 @@ const use2FA = () => {
 
         Toast(res.message, "success");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       Toast(e.data.message, "error");
     }

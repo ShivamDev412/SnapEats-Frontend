@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from "react";
 import { useGetAllFoodTypesQuery } from "@/redux/slice/api/store/profileSlice";
 
 const useCategories = () => {
@@ -9,7 +9,8 @@ const useCategories = () => {
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } =
+        scrollContainerRef.current;
       setShowLeftArrow(scrollLeft > 0);
       setShowRightArrow(scrollLeft + clientWidth < scrollWidth);
     }
@@ -17,21 +18,22 @@ const useCategories = () => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -200, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 200, behavior: "smooth" });
     }
   };
 
   useEffect(() => {
     if (scrollContainerRef.current) {
+      const scroll = scrollContainerRef.current;
       handleScroll();
-      scrollContainerRef.current.addEventListener('scroll', handleScroll);
-      return () => scrollContainerRef.current?.removeEventListener('scroll', handleScroll);
+      scroll.addEventListener("scroll", handleScroll);
+      return () => scroll?.removeEventListener("scroll", handleScroll);
     }
   }, [categories]);
 
