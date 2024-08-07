@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
 import { useSearchLocation } from "./useSearchLocation";
 import LocationDropdown from "@/components/LocationDropdown";
 import { TextInput } from "../InputComponent";
-import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { FieldErrors } from "react-hook-form";
 import { StoreRegisterType } from "@/redux/slice/api/store/profileSlice";
 
 type SearchLocationProps = {
-  register: UseFormRegister<StoreRegisterType>;
+  register: any;
   errors:  FieldErrors<StoreRegisterType>;
   placeholder: string;
-  setValue: UseFormSetValue<StoreRegisterType>;
+  setValue: any;
   id: string;
 };
 const SearchLocation: FC<SearchLocationProps> = ({
