@@ -40,6 +40,7 @@ export const useResetPassword = () => {
         Toast(message, "success");
         navigation(ENDPOINTS.LOGIN);
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage = error.data.message.toLowerCase();
       if (

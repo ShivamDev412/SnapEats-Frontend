@@ -21,7 +21,7 @@ type OptionType = {
 };
 
 export type MenuItemType = {
-  image: any;
+  image: string;
   name: string;
   description: string;
   price: number;

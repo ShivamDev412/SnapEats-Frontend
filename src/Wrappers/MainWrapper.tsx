@@ -31,7 +31,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     } else if (!isUser && USER_ROUTES.includes(`/${pathName}`)) {
       navigation(BROWSER_ROUTE.STORE_DASHBOARD);
     }
-  }, [pathName]);
+  }, [pathName, isUser, navigation]);
   return (
     <div className="flex flex-col justify-between bg-zinc-900 min-h-screen text-zinc-100 scrollbar-thumb-rounded-full">
       {loading && (

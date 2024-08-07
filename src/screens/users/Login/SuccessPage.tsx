@@ -26,11 +26,9 @@ const SuccessPage: React.FC = () => {
         navigate(BROWSER_ROUTE.STORE_DASHBOARD);
       } else navigate(BROWSER_ROUTE.HOME);
     }
-  }, [location, history]);
+  }, [location, dispatch, isMobile, navigate, trigger]);
 
-  return <section className="w-full">
-    
-  </section>;
+  return <section className="w-full"></section>;
 };
 
 export default SuccessPage;

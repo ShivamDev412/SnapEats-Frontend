@@ -1,4 +1,4 @@
-import { useAddressQuery } from "@/redux/slice/api/user/addressSlice";
+import { AddressType, useAddressQuery } from "@/redux/slice/api/user/addressSlice";
 import {
   useGetOrderSummaryQuery,
   usePlaceOrderMutation,
@@ -13,7 +13,7 @@ const useCheckout = () => {
   const [isCheckoutEnabled, setIsCheckoutEnabled] = useState(false);
   const { data: address } = useAddressQuery("");
   const defaultAddress = address?.data?.find(
-    (item: any) => item.isDefault === true
+    (item: AddressType) => item.isDefault === true
   );
   const { data: paymentMethods } = useGetPaymentMethodsQuery();
   const defaultPaymentMethod = paymentMethods?.data?.paymentMethods?.data?.find(

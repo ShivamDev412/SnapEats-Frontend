@@ -47,6 +47,7 @@ export const useLogin = () => {
         reset();
         clearErrors();
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const message = error.data?.message.toLowerCase();
       const type = message?.includes("password") ? "password" : "email";

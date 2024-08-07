@@ -1,14 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import {
-  StoreOrderType,
-  useGetStoreOrdersQuery,
-} from "@/redux/slice/api/store/orderSlice";
+import { useGetStoreOrdersQuery } from "@/redux/slice/api/store/orderSlice";
+import { OrderType } from "@/redux/slice/api/user/orderSlice";
 
 const useOrders = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const [orders, setOrders] = useState<StoreOrderType>([]);
+  const [orders, setOrders] = useState<OrderType[]>([]);
   const [totalCount, setTotalCount] = useState(0);
-  const { data: ordersData, isLoading } = useGetStoreOrdersQuery(pageNumber, {
+  const { data: ordersData, isFetching } = useGetStoreOrdersQuery(pageNumber, {
     refetchOnMountOrArgChange: true,
   });
   const initialRender = useRef(true);
@@ -24,7 +22,7 @@ const useOrders = () => {
         ? setOrders(ordersData.data.orders)
         : setOrders([...orders, ...ordersData.data.orders]);
     }
-  }, [ordersData, pageNumber]);
+  }, [ordersData, pageNumber, orders]);
 
   useEffect(() => {
     return () => {
@@ -35,14 +33,12 @@ const useOrders = () => {
   }, []);
 
   const loadMoreOrders = () => {
-    if (!isLoading && orders.length < totalCount) {
+    if (!isFetching && orders.length < totalCount) {
       setPageNumber((prev) => prev + 1);
     }
   };
 
-
-
-  return { orders, loadMoreOrders,  isLoading, totalCount };
+  return { orders, loadMoreOrders, isFetching, totalCount };
 };
 
 export default useOrders;

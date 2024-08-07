@@ -12,16 +12,16 @@ const useDetails = () => {
   const { data: storePrimaryDetails, isFetching } =
     useGetStorePrimaryDetailsQuery(path);
   const { data: getStoreMenuCategories } = useGetStoreMenuCategoriesQuery(path);
-  const {data:menuItemsData} = useGetStoreMenuItemsQuery(path);
+  const { data: menuItemsData } = useGetStoreMenuItemsQuery(path);
   const [categoryData, setCategory] = useState<
     { id: string; name: string; isActive: boolean }[]
   >([]);
   const menuItems = menuItemsData?.data || [];
   const categories = getStoreMenuCategories?.data || [];
   useEffect(() => {
-    if (categories.length > 0)
+    if (getStoreMenuCategories?.data && getStoreMenuCategories?.data.length > 0)
       setCategory(
-        categories
+        getStoreMenuCategories?.data
           .map((item) => ({
             id: item.id,
             name: item.name,
@@ -29,7 +29,7 @@ const useDetails = () => {
           }))
           .sort((a, b) => a.id.localeCompare(b.id))
       );
-  }, [categories]);
+  }, [getStoreMenuCategories?.data]);
   const handleCategoryClick = (category: CategoryType) => {
     setCategory(
       categoryData.map((item) => {

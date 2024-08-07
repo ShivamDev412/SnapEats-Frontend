@@ -27,13 +27,14 @@ const useCartItem = (noteData: string, cartItemId: string) => {
             cartItemId: cartItemId,
             note: debouncedNote,
           }).unwrap();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
           Toast(error.data.message, "error");
         }
       };
       updateNote();
     }
-  }, [debouncedNote, noteData, addNote]);
+  }, [debouncedNote, noteData, addNote, cartItemId]);
 
   const removeFromCart = async (cartItemId: string) => {
     try {
@@ -42,6 +43,7 @@ const useCartItem = (noteData: string, cartItemId: string) => {
         cartItemId,
       }).unwrap();
       dispatch(setLoading(false));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(setLoading(false));
       Toast(error?.data?.message, "error");
@@ -58,6 +60,7 @@ const useCartItem = (noteData: string, cartItemId: string) => {
       if (res.success) {
         dispatch(setLoading(false));
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(setLoading(false));
       Toast(error.data.message, "error");

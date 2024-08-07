@@ -9,20 +9,19 @@ const useMenuItems = (searchValue: string) => {
   const debouncedSearchTerm = useDebounce(searchValue);
   const [query, setQuery] = useState<string>("");
 
-  const generateQuery = () => {
-    let query = "";
-    if (selectedCategory !== "all") {
-      query += `?category=${selectedCategory}`;
-    }
-    if (debouncedSearchTerm) {
-      query += query
-        ? `&search=${debouncedSearchTerm}`
-        : `?search=${debouncedSearchTerm}`;
-    }
-    return query;
-  };
-
   useEffect(() => {
+    const generateQuery = () => {
+      let query = "";
+      if (selectedCategory !== "all") {
+        query += `?category=${selectedCategory}`;
+      }
+      if (debouncedSearchTerm) {
+        query += query
+          ? `&search=${debouncedSearchTerm}`
+          : `?search=${debouncedSearchTerm}`;
+      }
+      return query;
+    };
     setQuery(generateQuery());
   }, [debouncedSearchTerm, selectedCategory]);
 

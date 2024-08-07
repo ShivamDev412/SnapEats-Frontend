@@ -24,7 +24,7 @@ type MenuDataProps = {
   menu: string;
   link: string;
   setShowDropdown: (value: boolean) => void;
-  icon?: any;
+  icon?: JSX.Element;
 };
 const MenuData: FC<MenuDataProps> = ({ menu, link, setShowDropdown, icon }) => {
   return (
@@ -50,19 +50,19 @@ const ProfileSection = () => {
     if (user?.data.storeId) {
       trigger(user?.data.storeId);
     }
-  }, [user?.data.storeId]);
+  }, [trigger, user?.data.storeId]);
   useEffect(() => {
     if (user?.data.language) {
       i18n.changeLanguage(user?.data.language);
     }
-  }, [user?.data.language]);
+  }, [i18n, user?.data.language]);
   useEffect(() => {
     if (store?.data?.status === "PENDING") {
       dispatch(setStoreStatus("pending"));
     } else if (store?.data?.status === "APPROVED") {
       dispatch(setStoreStatus("approved"));
     }
-  }, [store?.data?.status]);
+  }, [dispatch, store?.data?.status]);
   const { t } = useTranslation();
   return (
     <Dropdown open={showDropdown}>

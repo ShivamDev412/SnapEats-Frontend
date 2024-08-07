@@ -26,7 +26,7 @@ const Item: React.FC<{ item: MenuType }> = ({ item }) => {
       <LazyLoadedImageComponent
         image={image}
         alt={name}
-        className="rounded-t-lg"
+        className="rounded-t-lg w-full"
         compressedImage={compressedImage}
       />
       <div className="p-4 flex flex-col gap-2">
