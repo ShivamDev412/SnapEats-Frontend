@@ -57,9 +57,16 @@ const useStoreTimingForm = (
           moment(specialEventCloseTime).tz("America/Toronto").format("HH:mm")
         );
     }
-  }, [storeTiming, setValue, selectedDay]);
+  }, [
+    storeTiming,
+    setValue,
+    selectedDay,
+    openTime,
+    closeTime,
+    specialEventOpenTime,
+    specialEventCloseTime,
+  ]);
   const onSubmit: SubmitHandler<FormField> = async (credentials) => {
-
     const currentDate = moment().format("YYYY-MM-DD");
     const openTimeDateTime = moment
       .tz(
@@ -87,6 +94,7 @@ const useStoreTimingForm = (
         reset();
         clearErrors();
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       Toast(err.message, "error");
     }

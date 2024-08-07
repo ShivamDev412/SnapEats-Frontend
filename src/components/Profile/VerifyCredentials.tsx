@@ -1,4 +1,4 @@
-import OTP from "../OtpInput";
+import Otp from "../OtpInput";
 import Button from "../Button";
 import useVerifyCredential from "./useVerifyCredentail";
 import { useTranslation } from "react-i18next";
@@ -38,7 +38,7 @@ const VerifyCredentials: React.FC<Props> = ({
             {t("enter otp received on your")}{" "}
             {type === "email" ? <>{t("email")}</> : <>{t("phoneNumber")}</>}
           </p>{" "}
-          <OTP
+          <Otp
             separator={<span> </span>}
             value={otp}
             onChange={setOtp}
