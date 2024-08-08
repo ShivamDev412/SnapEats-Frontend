@@ -15,6 +15,7 @@ const Image: FC<{ image: string; alt: string; className?: string }> = ({
     <img
       src={image}
       alt={alt}
+      aria-label={alt}
       className={
         (twMerge("w-full h-full object-contain rounded-lg"), className)
       }

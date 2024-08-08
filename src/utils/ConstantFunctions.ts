@@ -14,5 +14,7 @@ export const orderMessage = (orderStatus: string) => {
       return "is being prepared";
     case "OUT_FOR_DELIVERY":
       return "is out for delivery";
+    case "DELIVERED":
+      return "has been delivered";
   }
 };

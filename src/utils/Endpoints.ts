@@ -56,6 +56,7 @@ const ENDPOINTS = {
   ACCEPT_ORDER: "/accept-order",
   CANCEL_ORDER: "/cancel-order",
   STORE_ORDERS: "/store-orders",
+  OUT_FOR_DELIVERY: "/out-for-delivery",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",

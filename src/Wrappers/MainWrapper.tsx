@@ -21,6 +21,7 @@ const MainWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { popUpOrderMessages } = useSelector(
     (state: RootState) => state.userOrder
   );
+  console.log(popUpOrderMessages);
   const location = useLocation();
   const navigation = useNavigate();
   const pathName = location.pathname.split("/")[1];

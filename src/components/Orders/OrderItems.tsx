@@ -10,6 +10,7 @@ const OrderItems: React.FC<{ order: OrderType; type?: OrderUserType }> = ({
   return (
     <>
       <PrimaryInfo
+        id={order.id}
         name={(order?.user?.name || order?.store?.name) as string}
         createdAt={order.createdAt}
         totalAmount={order.totalAmount}

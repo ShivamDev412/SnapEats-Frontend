@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+export type OrderDataType = {
+  status: string;
+  orderId: string;
+  storeName: string;
+};
 const initialState: {
-  popUpOrderMessages: { orderId: string, message: string }[] | null;
+  popUpOrderMessages: OrderDataType[];
 } = {
   popUpOrderMessages: [],
 };
@@ -11,18 +15,24 @@ const userOrderSlice = createSlice({
   initialState,
   reducers: {
     setOrderStatus: (state, action) => {
-      const { orderId, message } = action.payload;
-      if (state.popUpOrderMessages) {
-        const existingMessageIndex = state.popUpOrderMessages.findIndex(
-          (item) => item.orderId === orderId
-        );
-        if (existingMessageIndex !== -1) {
-          state.popUpOrderMessages[existingMessageIndex].message = message;
-        } else {
-          state.popUpOrderMessages.push({ orderId, message });
-        }
+      const isOrderExist = state.popUpOrderMessages?.find(
+        (item) => item.orderId === action.payload.orderId
+      );
+      if (!isOrderExist) {
+        state.popUpOrderMessages?.push(action.payload);
       } else {
-        state.popUpOrderMessages = [{ orderId, message }];
+        if (action.payload.status === "DELIVERED") {
+          state.popUpOrderMessages = state.popUpOrderMessages?.filter(
+            (item) => item.orderId !== action.payload.orderId
+          );
+          return;
+        } else
+          state.popUpOrderMessages = state.popUpOrderMessages?.map((item) => {
+            if (item.orderId === action.payload.orderId) {
+              return action.payload;
+            }
+            return item;
+          });
       }
     },
     clearOrderStatus: (state, action) => {
