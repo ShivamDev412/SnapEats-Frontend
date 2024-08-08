@@ -4,6 +4,7 @@ import useInfiniteScroll from "@/Hooks/useInfiniteScroll";
 import { OrderItems } from "@/components/Orders";
 import { StoreOrderSkeleton } from "@/components/Skeleton";
 import { LegacyRef } from "react";
+import NoDataFound from "@/components/NoDataFound";
 
 const Orders = () => {
   const { orders, loadMoreOrders, isFetching, totalCount } = useOrders();
@@ -27,6 +28,11 @@ const Orders = () => {
           </div>
         ))}
       </section>
+      <div className="flex flex-1">
+        {orders.length === 0 && (
+          <NoDataFound message={"You haven't received any order"} />
+        )}
+      </div>
       {isFetching && orders.length < totalCount && (
         <div className="text-center">
           <p>{t("loading")}</p>

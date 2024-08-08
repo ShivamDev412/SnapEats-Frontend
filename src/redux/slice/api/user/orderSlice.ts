@@ -33,10 +33,10 @@ export type OrderType = {
     id: string;
     name: string;
   };
-  user?:{
-    id:string;
-    name:string;
-  }
+  user?: {
+    id: string;
+    name: string;
+  };
   items: OrderItems;
 };
 export const orderApiSlice = apiSlice.injectEndpoints({
@@ -59,4 +59,8 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
-export const { useGetOrdersQuery, useLazyGetOrdersLiveStatusQuery } = orderApiSlice;
+export const {
+  useGetOrdersQuery,
+  useLazyGetOrdersLiveStatusQuery,
+  useGetOrdersLiveStatusQuery,
+} = orderApiSlice;

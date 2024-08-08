@@ -74,7 +74,7 @@ const Settings = () => {
           </section>
         )}
 
-        <section className="flex flex-col gap-4 text-left">
+        {/* <section className="flex flex-col gap-4 text-left">
           <h3 className="text-2xl font-semibold">{t("notifications")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             <p className="text-left font-semibold text-lg">
@@ -84,7 +84,7 @@ const Settings = () => {
               Push Notifications
             </p>
           </section>
-        </section>
+        </section> */}
         <section className="flex flex-col gap-4 text-left">
           <h3 className="text-2xl font-semibold">{t("security")}</h3>
           <section className="ml-5 flex flex-col gap-2">
