@@ -1,3 +1,4 @@
+import { orderMessage } from "@/utils/ConstantFunctions";
 import useOrderStatusPopUp from "./useOrderStatusPopUp";
 
 const OrderStatusPopUp = () => {
@@ -13,11 +14,9 @@ const OrderStatusPopUp = () => {
           key={item.orderId}
           className="w-full border-b border-zinc-400 last:border-b-0 pb-2 mb-2 last:pb-0 last:mb-0"
         >
-          {item.message.split('. ').map((sentence, index) => (
-            <span key={index} className="block">
-              {sentence.trim()}{index < item.message.split('. ').length - 1 ? '.' : ''}
-            </span>
-          ))}
+          Your order from{" "}
+          <span className="font-semibold">{item.storeName}</span>{" "}
+          {orderMessage(item.status)}
         </p>
       ))}
     </div>

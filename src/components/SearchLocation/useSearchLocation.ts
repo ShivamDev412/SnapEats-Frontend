@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGooglePlaces } from "@/Hooks/useGooglePlaces";
 import { useState } from "react";
-export const useSearchLocation = (setValue: Function, id: string) => {
+import { UseFormSetValue } from "react-hook-form";
+export const useSearchLocation = (setValue: UseFormSetValue<any>, id: string) => {
   const [locationInput, setInputLocation] = useState("");
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const {

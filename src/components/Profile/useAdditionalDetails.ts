@@ -71,6 +71,7 @@ const useAdditionalDetails = () => {
         handleCloseModal();
         reset();
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       Toast(error.data?.message, "error");
     }

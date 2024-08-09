@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";

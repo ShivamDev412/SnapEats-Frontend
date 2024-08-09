@@ -54,7 +54,7 @@ const StoreFoodTypes = () => {
           )
       ) || []
     );
-  }, [storeFoodTypes]);
+  }, [foodTypes?.data, storeFoodTypes]);
 
   return (
     <section className="flex flex-col gap-2 md:gap-6">

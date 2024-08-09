@@ -9,7 +9,7 @@ import { LANGUAGE } from "@/utils/Constants";
 import { BROWSER_ROUTE } from "@/utils/Endpoints";
 import { SettingsListItem, TwoFA, ChangePassword } from "@/components/Settings";
 import ModalComponent from "@/components/Modal";
-import OTP from "@/components/OtpInput";
+import Otp from "@/components/OtpInput";
 import Button from "@/components/Button";
 
 const Settings = () => {
@@ -74,7 +74,7 @@ const Settings = () => {
           </section>
         )}
 
-        <section className="flex flex-col gap-4 text-left">
+        {/* <section className="flex flex-col gap-4 text-left">
           <h3 className="text-2xl font-semibold">{t("notifications")}</h3>
           <section className="ml-5 flex flex-col gap-2">
             <p className="text-left font-semibold text-lg">
@@ -84,7 +84,7 @@ const Settings = () => {
               Push Notifications
             </p>
           </section>
-        </section>
+        </section> */}
         <section className="flex flex-col gap-4 text-left">
           <h3 className="text-2xl font-semibold">{t("security")}</h3>
           <section className="ml-5 flex flex-col gap-2">
@@ -134,7 +134,7 @@ const Settings = () => {
             Enter 2FA Token
           </h2>
           <div className="flex justify-center">
-            <OTP
+            <Otp
               separator={<span> </span>}
               value={token}
               onChange={setToken}

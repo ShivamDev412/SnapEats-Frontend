@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function OTP({
+const  Otp = ({
   separator,
   length,
   value,
@@ -10,7 +10,7 @@ function OTP({
   length: number;
   value: string;
   onChange: React.Dispatch<React.SetStateAction<string>>;
-}) {
+}) => {
   const inputRefs = React.useRef<HTMLInputElement[]>(
     new Array(length).fill(null)
   );
@@ -172,4 +172,4 @@ function OTP({
   );
 }
 
-export default OTP;
+export default Otp;

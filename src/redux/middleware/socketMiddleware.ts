@@ -4,8 +4,7 @@ import { SOCKET_EVENT } from "@/utils/Constants";
 import { io, Socket } from "socket.io-client";
 import { addOrderData } from "../slice/storeOrderSlice";
 import { setOrderStatus } from "../slice/userOrderSlice";
-import { orderMessage } from "@/utils/ConstantFunctions";
-import moment from "moment-timezone";
+// import moment from "moment-timezone";
 
 let socket: Socket | null = null;
 
@@ -35,22 +34,13 @@ export const initializeSocket = (
           maxTime: string;
         };
       }) => {
-        let message = `Your order from ${order.storeName} is ${orderMessage(
-          order.status
-        )}`;
-        if (order.status === "DELIVERED") {
-          message = `Your order from ${order.storeName} has been delivered`;
-        } else {
-          const minTime = moment(order.estimatedDeliveryTime.minTime)
-            .tz("america/toronto")
-            .format("hh:mm A");
-          const maxTime = moment(order.estimatedDeliveryTime.maxTime)
-            .tz("america/toronto")
-            .format("hh:mm A");
-          message += `. Expected delivery between ${minTime} and ${maxTime}`;
-        }
-
-        store.dispatch(setOrderStatus({ orderId: order.orderId, message }));
+        const orderData = {
+          status: order.status,
+          orderId: order.orderId,
+          storeName: order.storeName,
+          // estimatedDeliveryTime: order.estimatedDeliveryTime,
+        };
+        store.dispatch(setOrderStatus(orderData));
       }
     );
   }

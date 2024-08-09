@@ -11,6 +11,7 @@ import Button from "../Button";
 import Option from "./Option";
 import ToggleInput from "../InputComponent/ToggleInput";
 import {
+  Control,
   FieldErrors,
   UseFieldArrayRemove,
   UseFormGetValues,
@@ -42,9 +43,9 @@ type MenuItemFormProps = {
   }[];
   removeOption: UseFieldArrayRemove;
   appendOption: () => void;
-  appendChoice: (optionIndex: number, choice: any) => void;
+  appendChoice: (optionIndex: number, choice: unknown) => void;
   removeChoice: (optionIndex: number, choiceIndex: number) => void;
-  control: any;
+  control: Control<MenuItemType>;
   watchedOptions: MenuItemType["options"];
   isLoading: boolean;
   getValues?: UseFormGetValues<MenuItemType>;
@@ -71,7 +72,7 @@ const MenuItemForm: React.FC<MenuItemFormProps> = ({
     optionIndex: number,
     choiceIndex: number,
     field: keyof MenuItemType["options"][number]["choices"][number],
-    value: any
+    value: string | number
   ) => {
     setValue(`options.${optionIndex}.choices.${choiceIndex}.${field}`, value);
   };

@@ -2,7 +2,9 @@ import { t } from "i18next";
 import moment from "moment-timezone";
 import { FC } from "react";
 import Button from "../Button";
+import { useOutForDeliveryMutation } from "@/redux/slice/api/store/deliverySlice";
 type PrimaryInfoProps = {
+  id: string;
   name: string;
   createdAt: Date;
   totalAmount: number;
@@ -10,12 +12,14 @@ type PrimaryInfoProps = {
   type: "store" | "user";
 };
 const PrimaryInfo: FC<PrimaryInfoProps> = ({
+  id,
   name,
   createdAt,
   totalAmount,
   status,
   type,
 }) => {
+  const [outForDelivery] = useOutForDeliveryMutation();
   const handleStatus = (status: string) => {
     switch (status) {
       case "PENDING":
@@ -25,11 +29,20 @@ const PrimaryInfo: FC<PrimaryInfoProps> = ({
       case "PREPARING":
         return "Order is being prepared";
       case "DELIVERED":
-        return "Order has been delivered successfully";
+        return "Order has been delivered";
       case "CANCELED":
         return "Order has been cancelled";
+      case "OUT_FOR_DELIVERY":
+        return "Order is out for delivery";
       default:
         return status;
+    }
+  };
+  const handleOutForDelivery = async (orderId: string) => {
+    try {
+      await outForDelivery({ orderId });
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -52,11 +65,26 @@ const PrimaryInfo: FC<PrimaryInfoProps> = ({
               {handleStatus(status)}
             </>
           ) : (
-            <div>
-              <Button className="text-sm bg-green-800">
-                Mark as Out for Delivery
-              </Button>
-            </div>
+            <>
+              {status === "PREPARING" ? (
+                <div>
+                  <Button
+                    className="text-sm bg-green-800"
+                    onClick={() => handleOutForDelivery(id)}
+                  >
+                    Mark as Out for Delivery
+                  </Button>
+                </div>
+              ) : status === "OUT_FOR_DELIVERY" ? (
+                <>
+                  {" "}
+                  <span className="font-semibold">{t("status")}:</span>{" "}
+                  {handleStatus(status)}
+                </>
+              ) : (
+                <></>
+              )}
+            </>
           )}
         </p>
       </div>

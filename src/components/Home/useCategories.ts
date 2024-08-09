@@ -1,7 +1,18 @@
-import { useRef, useState, useEffect } from 'react';
-import { useGetAllFoodTypesQuery } from "@/redux/slice/api/store/profileSlice";
-
+import { useRef, useState, useEffect } from "react";
+import {
+  FoodType,
+  useGetAllFoodTypesQuery,
+} from "@/redux/slice/api/store/profileSlice";
+import { setFoodType } from "@/redux/slice/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/Store";
+export interface CategoryDataType extends FoodType {
+  isSelected: boolean;
+}
 const useCategories = () => {
+  const dispatch = useDispatch();
+  const [categoryData, setCategoryData] = useState<CategoryDataType[]>([]);
+  const { foodType } = useSelector((state: RootState) => state.search);
   const { data: categories, isFetching } = useGetAllFoodTypesQuery("");
   const scrollContainerRef = useRef<HTMLUListElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -9,7 +20,8 @@ const useCategories = () => {
 
   const handleScroll = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } =
+        scrollContainerRef.current;
       setShowLeftArrow(scrollLeft > 0);
       setShowRightArrow(scrollLeft + clientWidth < scrollWidth);
     }
@@ -17,24 +29,36 @@ const useCategories = () => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -200, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 200, behavior: "smooth" });
     }
   };
-
+  useEffect(() => {
+    if (categories?.data) {
+      const updatedCategoryData = categories.data.map((item) => ({
+        ...item,
+        isSelected: item.foodType === foodType,
+      }));
+      setCategoryData(updatedCategoryData);
+    }
+  }, [categories, foodType, setCategoryData]);
   useEffect(() => {
     if (scrollContainerRef.current) {
+      const scroll = scrollContainerRef.current;
       handleScroll();
-      scrollContainerRef.current.addEventListener('scroll', handleScroll);
-      return () => scrollContainerRef.current?.removeEventListener('scroll', handleScroll);
+      scroll.addEventListener("scroll", handleScroll);
+      return () => scroll?.removeEventListener("scroll", handleScroll);
     }
   }, [categories]);
-
+  const handleSetFoodType = (id: string) => {
+    if (foodType === id) dispatch(setFoodType(""));
+    else dispatch(setFoodType(id));
+  };
   return {
     categories,
     isFetching,
@@ -43,6 +67,8 @@ const useCategories = () => {
     showRightArrow,
     scrollLeft,
     scrollRight,
+    setFoodType: handleSetFoodType,
+    categoryData,
   };
 };
 

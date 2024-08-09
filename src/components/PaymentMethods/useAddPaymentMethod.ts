@@ -11,7 +11,7 @@ import {
 import { useAddNewPaymentMethodMutation } from "@/redux/slice/api/user/paymentSlice";
 import Toast from "@/utils/Toast";
 
-type NewPaymentMethodType = {
+export type NewPaymentMethodType = {
   name: string;
   cardNumber: string;
   expiryDate: string;
@@ -86,12 +86,13 @@ const useAddPaymentMethod = (handleCloseModal: () => void) => {
       try {
         const res = await addPaymentCard({
           name: credentials.name,
-          paymentMethodId: paymentMethod?.id!,
+          paymentMethodId: paymentMethod?.id,
         }).unwrap();
         if (res.success) {
           handleCloseModal();
           Toast(res.message, "success");
         }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         Toast(error?.data.message || "Something went wrong", "error");
       }
