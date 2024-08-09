@@ -57,6 +57,9 @@ const ENDPOINTS = {
   CANCEL_ORDER: "/cancel-order",
   STORE_ORDERS: "/store-orders",
   OUT_FOR_DELIVERY: "/out-for-delivery",
+  OVERVIEW_METRICS: "/overview-metrics",
+  ORDER_STATS: "/order-stats",
+  REVENUE_TRENDS: "/revenue-trends",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
@@ -85,7 +88,7 @@ const BROWSER_ROUTE = {
   STORE_PROFILE: "/store/profile",
   STORE_MENU: "/store/menu",
   STORE_MENU_DETAILS: "/store/menu/:id",
-
-  
 };
+
+
 export { BASE_ROUTE, ENDPOINTS, BROWSER_ROUTE, API_VERSION };
