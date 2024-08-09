@@ -392,6 +392,27 @@ const SOCKET_EVENT = {
   NEW_ORDER: "new_order",
   ORDER_STATUS: "order_status",
 }
+const COLOR_SCHEMES = [
+  {
+    bg: "bg-zinc-950",
+    title: "text-indigo-500",
+    value: "text-white",
+    accent: "bg-gradient-to-r from-indigo-500 to-purple-500",
+  },
+  {
+    bg: "bg-gray-800",
+    title: "text-green-500",
+    value: "text-white",
+    accent: "bg-gradient-to-r from-green-500 to-teal-500",
+  },
+  {
+    bg: "bg-zinc-800",
+    title: "text-sky-400",
+    value: "text-white",
+    accent: "bg-sky-500",
+  },
+  // Add more schemes as needed
+];
 export {
   addressTypes,
   countryCode,
@@ -400,5 +421,6 @@ export {
   USER_ROUTES,
   DEFAULT_VALUES,
   LANGUAGE,
+  COLOR_SCHEMES,
   SOCKET_EVENT,
 };
