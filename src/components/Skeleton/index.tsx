@@ -8,6 +8,8 @@ import ItemDetailSkeleton from "./ItemDetailSkeleton";
 import HomeSkeleton from "./HomeSkeleton";
 import StoreOrderSkeleton from "./StoreOrderSkeleton";
 import UserOrderSkeleton from "./UserOrderSkeleton";
+import CheckoutSkeleton from "./CheckoutSkeleton";
+import HomeDetailSkeleton from "./HomeDetailSkeleton";
 export {
   LoginSkeleton,
   SignupSkeleton,
@@ -19,4 +21,6 @@ export {
   HomeSkeleton,
   StoreOrderSkeleton,
   UserOrderSkeleton,
+  CheckoutSkeleton,
+  HomeDetailSkeleton,
 };
