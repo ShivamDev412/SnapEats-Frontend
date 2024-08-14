@@ -1,10 +1,18 @@
 import { useGetOverviewMatricesQuery } from "@/redux/slice/api/store/dashboardSlice";
 import MatricesCard from "./MatricesCard";
+import { MatricesCardSkeleton } from "../Skeleton/StoreDashboardSkeleton";
 
 const OverviewSection = () => {
   const { data: overviewMatricesData, isLoading } =
     useGetOverviewMatricesQuery();
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex gap-4 flex-wrap">
+        <MatricesCardSkeleton />
+        <MatricesCardSkeleton />
+        <MatricesCardSkeleton />
+      </div>
+    );
   return (
     <section className="flex gap-4 flex-wrap">
       <MatricesCard
