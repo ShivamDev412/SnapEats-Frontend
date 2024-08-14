@@ -1,23 +1,42 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import { useGetOrderStatsQuery } from "@/redux/slice/api/store/dashboardSlice";
-import Chart from 'chart.js/auto';
+import Chart from "chart.js/auto";
+import { ChartSkeleton } from "../Skeleton/StoreDashboardSkeleton";
 
 const OrderStatsSection = () => {
   const { data: orderStatus, isLoading } = useGetOrderStatsQuery();
   const chartRef = useRef(null);
-  const { lastWeekOrders, lastMonthOrders, lastThreeMonthsOrders, lastSixMonthsOrders, lastYearOrders } = orderStatus?.data || {};
+  const {
+    lastWeekOrders,
+    lastMonthOrders,
+    lastThreeMonthsOrders,
+    lastSixMonthsOrders,
+    lastYearOrders,
+  } = orderStatus?.data || {};
 
   useEffect(() => {
     if (!chartRef.current || !orderStatus) return;
 
     const chartInstance = new Chart(chartRef.current, {
-      type: 'bar',
+      type: "bar",
       data: {
-        labels: ["Last Week", "Last Month", "Last 3 Months", "Last 6 Months", "Last Year"],
+        labels: [
+          "Last Week",
+          "Last Month",
+          "Last 3 Months",
+          "Last 6 Months",
+          "Last Year",
+        ],
         datasets: [
           {
             label: "Number of Orders",
-            data: [lastWeekOrders, lastMonthOrders, lastThreeMonthsOrders, lastSixMonthsOrders, lastYearOrders],
+            data: [
+              lastWeekOrders,
+              lastMonthOrders,
+              lastThreeMonthsOrders,
+              lastSixMonthsOrders,
+              lastYearOrders,
+            ],
             backgroundColor: [
               "rgba(54, 162, 235, 0.6)",
               "rgba(75, 192, 192, 0.6)",
@@ -44,8 +63,8 @@ const OrderStatsSection = () => {
           },
           title: {
             display: true,
-            text: 'Order Statistics',
-            color: 'white',
+            text: "Order Statistics",
+            color: "white",
             font: {
               size: 24,
             },
@@ -54,18 +73,18 @@ const OrderStatsSection = () => {
         scales: {
           x: {
             ticks: {
-              color: 'white',
+              color: "white",
             },
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: "rgba(255, 255, 255, 0.1)",
             },
           },
           y: {
             ticks: {
-              color: 'white',
+              color: "white",
             },
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: "rgba(255, 255, 255, 0.1)",
             },
           },
         },
@@ -75,9 +94,16 @@ const OrderStatsSection = () => {
     return () => {
       chartInstance.destroy();
     };
-  }, [orderStatus, lastWeekOrders, lastMonthOrders, lastThreeMonthsOrders, lastSixMonthsOrders, lastYearOrders]);
+  }, [
+    orderStatus,
+    lastWeekOrders,
+    lastMonthOrders,
+    lastThreeMonthsOrders,
+    lastSixMonthsOrders,
+    lastYearOrders,
+  ]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <ChartSkeleton />;
 
   return (
     <section className="w-1/2">

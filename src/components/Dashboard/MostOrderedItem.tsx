@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { useGetOrderStatsQuery } from "@/redux/slice/api/store/dashboardSlice";
+import { ChartSkeleton } from "../Skeleton/StoreDashboardSkeleton";
 
 const MostOrderedItem = () => {
   const chartRef = useRef(null);
@@ -52,7 +53,7 @@ const MostOrderedItem = () => {
           y: {
             ticks: {
               color: "white",
-              stepSize: 1
+              stepSize: 1,
             },
             grid: {
               color: "rgba(255, 255, 255, 0.1)",
@@ -67,7 +68,7 @@ const MostOrderedItem = () => {
       chartInstance.destroy();
     };
   }, [items]);
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <ChartSkeleton />;
   return (
     <div className="w-1/2">
       <canvas ref={chartRef}></canvas>

@@ -2,6 +2,7 @@ import { useGetRevenueTrendsQuery } from "@/redux/slice/api/store/dashboardSlice
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import moment from "moment-timezone";
+import { ChartSkeleton } from "../Skeleton/StoreDashboardSkeleton";
 
 const RevenueTrendsSection = () => {
   const { data: revenueTrends, isLoading } = useGetRevenueTrendsQuery();
@@ -13,13 +14,15 @@ const RevenueTrendsSection = () => {
     const chartInstance = new Chart(chartRef.current, {
       type: "line",
       data: {
-        labels: revenueTrends?.data?.map((entry) => moment(entry.date).format("MMM DD")),
+        labels: revenueTrends?.data?.map((entry) =>
+          moment(entry.date).format("MMM DD")
+        ),
         datasets: [
           {
             label: "Revenue",
             data: revenueTrends?.data?.map((entry) => entry.revenue.toFixed(2)),
             backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)", 
+            borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 2,
             fill: true,
             tension: 0.4,
@@ -69,7 +72,7 @@ const RevenueTrendsSection = () => {
   }, [revenueTrends]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <ChartSkeleton />;
   }
 
   return (
