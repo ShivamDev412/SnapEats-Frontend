@@ -73,7 +73,6 @@ const Categories = () => {
       </>
     );
   }
-
   return (
     <div className="relative flex items-center">
       {showLeftArrow && (

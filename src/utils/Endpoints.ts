@@ -60,6 +60,7 @@ const ENDPOINTS = {
   OVERVIEW_METRICS: "/overview-metrics",
   ORDER_STATS: "/order-stats",
   REVENUE_TRENDS: "/revenue-trends",
+  MOST_ORDERED: "/most-ordered",
 };
 const BROWSER_ROUTE = {
   LOGIN: "/login",
