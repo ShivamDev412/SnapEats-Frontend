@@ -11,7 +11,7 @@ const TwoFA = () => {
     <>
       <ToggleInput
         id="2fa"
-        label="Enable 2FA for your account"
+        label={t("enable2FA")}
         value={is2FAEnabled}
         onChange={handleToggle2FA}
       />
