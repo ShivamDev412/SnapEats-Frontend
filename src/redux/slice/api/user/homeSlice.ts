@@ -66,6 +66,14 @@ export interface StoreDetailType extends StoreType {
   specialEventCloseTime?: Date;
   address: string;
 }
+export type MostOrderedDataType = {
+  id: string;
+  name: string;
+  image: string;
+  compressedImage: string;
+  storeId: string;
+  storeName: string;
+}
 export const homeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getStores: builder.query<AuthResponse<StoreType[]>, string>({
@@ -101,6 +109,12 @@ export const homeApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 30,
     }),
+    getMostOrderedItems: builder.query<AuthResponse<MostOrderedDataType[]>, void>({
+      query: () => ({
+        url: `${BASE_ROUTE.HOME}${ENDPOINTS.MOST_ORDERED}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 export const {
@@ -108,4 +122,5 @@ export const {
   useGetStoreMenuCategoriesQuery,
   useGetStorePrimaryDetailsQuery,
   useGetStoreMenuItemsQuery,
+  useGetMostOrderedItemsQuery,
 } = homeApiSlice;

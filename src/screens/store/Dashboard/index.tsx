@@ -10,9 +10,10 @@ const Dashboard = () => {
       <OverviewSection />
       <section className="flex justify-between">
         <OrderStatsSection />
-        <MostOrderedItem />
+        <RevenueTrendsSection />
+     
       </section>
-      <RevenueTrendsSection />
+      <MostOrderedItem />
     </div>
   );
 };

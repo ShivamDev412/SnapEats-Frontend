@@ -1,28 +1,38 @@
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { useGetOrderStatsQuery } from "@/redux/slice/api/store/dashboardSlice";
-import { ChartSkeleton } from "../Skeleton/StoreDashboardSkeleton";
 
 const MostOrderedItem = () => {
   const chartRef = useRef(null);
   const { data: orderStatus, isLoading } = useGetOrderStatsQuery();
   const { mostOrderedItems: items } = orderStatus?.data || {};
+
   useEffect(() => {
-    if (!chartRef.current) return;
+    if (!chartRef.current || !items) return;
 
     const chartInstance = new Chart(chartRef.current, {
-      type: "line",
+      type: "doughnut",
       data: {
         labels: items?.map((item) => item.name),
         datasets: [
           {
             label: "Number of Orders",
             data: items?.map((item) => item.quantity),
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
-            borderColor: "rgba(75, 192, 192, 1)",
-            borderWidth: 2,
-            fill: true,
-            tension: 0.4,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+            ], 
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+            ], 
+            borderWidth: 1,
           },
         ],
       },
@@ -30,7 +40,11 @@ const MostOrderedItem = () => {
         responsive: true,
         plugins: {
           legend: {
-            display: false,
+            display: true, 
+            position: 'top', 
+            labels: {
+              color: 'white',
+            },
           },
           title: {
             display: true,
@@ -41,26 +55,6 @@ const MostOrderedItem = () => {
             },
           },
         },
-        scales: {
-          x: {
-            ticks: {
-              color: "white",
-            },
-            grid: {
-              color: "rgba(255, 255, 255, 0.1)",
-            },
-          },
-          y: {
-            ticks: {
-              color: "white",
-              stepSize: 1,
-            },
-            grid: {
-              color: "rgba(255, 255, 255, 0.1)",
-            },
-            beginAtZero: true,
-          },
-        },
       },
     });
 
@@ -68,9 +62,11 @@ const MostOrderedItem = () => {
       chartInstance.destroy();
     };
   }, [items]);
-  if (isLoading) return <ChartSkeleton />;
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
-    <div className="w-1/2">
+    <div className="w-1/2 h-[5in]">
       <canvas ref={chartRef}></canvas>
     </div>
   );
