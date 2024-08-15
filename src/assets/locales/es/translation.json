@@ -95,5 +95,9 @@
   "help": "Ayuda",
   "privacyPolicy": "Política de Privacidad",
   "termsOfService": "Términos del Servicio",
-  "about": "Acerca de"
+  "about": "Acerca de",
+  "items": "Elementos del Pedido",
+  "totalAmount": "Monto Total",
+  "status": "Estado",
+  "enable2FA": "Habilitar 2FA para tu cuenta"
 }
