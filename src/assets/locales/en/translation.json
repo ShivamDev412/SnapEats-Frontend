@@ -98,6 +98,6 @@
     "about":"About",
     "items":"Order Items",
     "totalAmount":"Total Amount",
-    "status":"Status"
-    
+    "status":"Status",
+    "enable2FA":"Enable 2FA for your account"
 }

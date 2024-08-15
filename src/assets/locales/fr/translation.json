@@ -95,5 +95,9 @@
   "help": "Aide",
   "privacyPolicy": "Politique de Confidentialité",
   "termsOfService": "Conditions d'Utilisation",
-  "about": "À Propos"
+  "about": "À Propos",
+  "items": "Éléments de la Commande",
+  "totalAmount": "Montant Total",
+  "status": "État",
+  "enable2FA": "Activer l'authentification à deux facteurs pour votre compte"
 }

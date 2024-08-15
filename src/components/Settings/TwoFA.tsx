@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import ToggleInput from "../InputComponent/ToggleInput";
 import ModalComponent from "../Modal";
 import use2FA from "./use2fa";
@@ -5,7 +6,7 @@ import use2FA from "./use2fa";
 const TwoFA = () => {
   const { is2FAEnabled, handleToggle2FA, qrCode, openModal, handleCloseModal } =
     use2FA();
-
+  const {t} = useTranslation();
   return (
     <>
       <ToggleInput
@@ -17,7 +18,7 @@ const TwoFA = () => {
       <ModalComponent
         open={openModal}
         handleClose={handleCloseModal}
-        modalTitle="Enable Two-Factor Authentication"
+        modalTitle={t("enable2FA")}
       >
         <div className="p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Two-Factor Authentication</h2>
