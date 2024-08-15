@@ -9,7 +9,7 @@ import NoDataFound from "@/components/NoDataFound";
 const Orders = () => {
   const { orders, loadMoreOrders, isFetching, totalCount } = useOrders();
   const lastOrderElementRef = useInfiniteScroll(loadMoreOrders);
-  if (isFetching && orders.length < totalCount) return <UserOrderSkeleton />;
+  if (isFetching) return <UserOrderSkeleton />;
   return (
     <section className="flex flex-col min-h-full w-full flex-1 text-zinc-100">
       <div className="flex justify-between items-center mb-4">
@@ -39,6 +39,11 @@ const Orders = () => {
           <NoDataFound message={"You haven't ordered anythings yet"} />
         )}
       </div>
+      {isFetching && orders.length < totalCount && (
+        <div className="text-center">
+          <p>{t("loading")}</p>
+        </div>
+      )}
     </section>
   );
 };
